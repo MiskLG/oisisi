@@ -1,10 +1,10 @@
 package model;
 
 public class Adresa {
-	String 		ulica;
-	int			broj;
-	String 		grad;
-	String		drzava;
+	private String 		ulica;
+	private int			broj;
+	private String 		grad;
+	private String		drzava;
 	
 	
 	// konstruktor sa parametrima

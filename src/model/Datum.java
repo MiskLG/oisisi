@@ -1,9 +1,9 @@
 package model;
 
 public class Datum {
-	int dan;
-	int mesec;
-	int godina;
+	private int dan;
+	private int mesec;
+	private int godina;
 	
 	
 	// konstruktor sa parametrima
