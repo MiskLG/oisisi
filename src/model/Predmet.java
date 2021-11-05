@@ -2,22 +2,23 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Predmet {
-	private String polozeniFajl = "vezaPredmetStudentOcena.txt";
-	private String nepolozeniFajl = "vezaPredmetStudentNepolozeni.txt";
-	private String sifra;
-	private String naziv;
-	private String semestar;
-	private int godinaStudija;
-	private int predmetniProf;
-	private int brojESPB;
-	private List<String> spisakNepolozeni;
-	private List<String> spisakPolozeni;
+	
+	private String 	polozeniFajl = "baza/vezaPredmetStudentOcena.txt";
+	private String 	nepolozeniFajl = "baza/vezaPredmetStudentNepolozeni.txt";
+	
+	private String 	sifra;
+	private String 	naziv;
+	private String 	semestar;
+	private int 	godinaStudija;
+	private int 	predmetniProf;
+	private int 	brojESPB;
+	
+	private List<String> 	spisakNepolozeni;
+	private List<String> 	spisakPolozeni;
 	
 	
 	
@@ -35,7 +36,8 @@ public class Predmet {
 	}
 	
 	
-	
+// ucitavanje ce imati samo kljuc na koji se poziva
+// lakse je za memoriju
 	private void loadNepolozeni() {	
 		try {
 			
@@ -46,8 +48,8 @@ public class Predmet {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("*\\");
 				
-				if(data[1].equals(getSifra())) {
-					spisakNepolozeni.add(data[0]);
+				if(data[0].equals(getSifra())) {
+					spisakNepolozeni.add(data[1]);
 				}
 			}
 			
@@ -61,24 +63,9 @@ public class Predmet {
 		return;
 	}
 
-	public void wirteNepolozeni() {
-		 try {
-		      FileWriter writer = new FileWriter(nepolozeniFajl, true);  
-		      String splitter = "*\\";
-		      
-		      for(String index : spisakNepolozeni) {
-		    	  String stringToWrite = getSifra() + splitter + index;
-		    	  writer.write(stringToWrite);
-		      }
-		      writer.close();
-		      
-		    } catch (IOException e) {
-		      System.out.println("ERROR.");
-		      e.printStackTrace();
-		    }
-	}
 
-
+// ucitavanje ce imati samo kljuc na koji se poziva
+// lakse je za memoriju
 	private void loadPolozeni() {
 		try {
 			
@@ -89,8 +76,8 @@ public class Predmet {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("*\\");
 				
-				if(data[1].equals(getSifra())) {
-					spisakPolozeni.add(data[0]);
+				if(data[0].equals(getSifra())) {
+					spisakPolozeni.add(data[1]);
 				}
 			}
 			

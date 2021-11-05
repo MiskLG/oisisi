@@ -7,6 +7,9 @@ public class Datum {
 	
 	
 	// konstruktor sa parametrima
+	
+	
+	
 	public Datum(int dan, int mesec, int godina) {
 		if(false == proveraDatuma(dan,mesec,godina)) {
 			System.out.println("ERROR");
@@ -19,9 +22,24 @@ public class Datum {
 		this.mesec = mesec;
 		this.godina = godina;
 	}
+	
+	public Datum(String datumString) {
+		String[] data = datumString.split(".");
+		if( false == proveraDatuma(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2])) ) {
+			System.out.println("ERROR");
+			// trenutna implikacija errora bice poboljsano i ispravljeno kasnije TODO
+			dan = 0;
+			mesec = 0;
+			godina = 0;
+		}
+		this.dan = Integer.parseInt(data[0]);
+		this.mesec = Integer.parseInt(data[1]);
+		this.godina = Integer.parseInt(data[2]);
+	}
 
 	// geteri i seteri
 	public int getDan() {
+
 		return dan;
 	}
 
@@ -74,13 +92,10 @@ public class Datum {
 		return true;
 	}
 	
-	
-	
-	
+
 	// tostring metoda za pisanje u bazu
 	@Override
 	public String toString() {
-		String splitter = "*\\";
-		return dan + "." + mesec + "." + godina + "." + splitter;
+		return dan + "." + mesec + "." + godina + "." ;
 	}
 }
