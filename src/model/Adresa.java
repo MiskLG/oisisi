@@ -46,7 +46,7 @@ public class Adresa {
 	@Override
 	public String toString() {
 		String splitter = "*\\";
-		return ulica + splitter + broj + splitter + grad + splitter + drzava + splitter;
+		return ulica + splitter + broj + splitter + grad + splitter + drzava;
 	}
 	
 	

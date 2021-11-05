@@ -201,6 +201,15 @@ public class Student {
 	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
+
+	@Override
+	public String toString() {
+		String splitter = "*\\";
+		return prezime + splitter +  ime + splitter + datumRodjenja.toString() + splitter + adresaStanovanja.toString() + 
+				splitter + kontaktTelefon + splitter + email + splitter + brojIndeksa + splitter + godinaUpisa + splitter +
+				trenutnaGodinaStudija + splitter + status.toString() + splitter + prosecnaOcena;
+		
+	}
 	
 	
 	
