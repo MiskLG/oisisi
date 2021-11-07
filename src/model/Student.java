@@ -201,6 +201,24 @@ public class Student {
 	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
+	
+
+	public List<NepolozenPredmet> getSpisakNepolozeni() {
+		return spisakNepolozeni;
+	}
+
+	public void setSpisakNepolozeni(List<NepolozenPredmet> spisakNepolozeni) {
+		this.spisakNepolozeni = spisakNepolozeni;
+	}
+
+	public List<Ocena> getSpisakPolozeni() {
+		return spisakPolozeni;
+	}
+
+	public void setSpisakPolozeni(List<Ocena> spisakPolozeni) {
+		this.spisakPolozeni = spisakPolozeni;
+	}
+	
 
 	@Override
 	public String toString() {

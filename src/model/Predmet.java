@@ -131,6 +131,26 @@ public class Predmet {
 
 
 
+	public List<String> getSpisakNepolozeni() {
+		return spisakNepolozeni;
+	}
+
+
+	public void setSpisakNepolozeni(List<String> spisakNepolozeni) {
+		this.spisakNepolozeni = spisakNepolozeni;
+	}
+
+
+	public List<String> getSpisakPolozeni() {
+		return spisakPolozeni;
+	}
+
+
+	public void setSpisakPolozeni(List<String> spisakPolozeni) {
+		this.spisakPolozeni = spisakPolozeni;
+	}
+
+
 	@Override
 	public String toString() {
 		String splitter = "*\\";
