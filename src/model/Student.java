@@ -11,60 +11,62 @@ enum Status{B,S};
 
 public class Student {
 	
-	private String 	polozeniFajl = "baza/vezaPredmetStudentOcena.txt";
-	private String 	nepolozeniFajl = "baza/vezaPredmetStudentNepolozeni.txt";
+	private String 	passedFile = "database/linkSubjectStudentGrade.txt";
+	private String 	unfinishedFile= "database/linkSubjectStudentUnfinished.txt";
 	
-	private String 	prezime;
-	private String 	ime;
-	private Datum 	datumRodjenja;
-	private String 	adresaStanovanja;
-	private String 	kontaktTelefon;
+	private String 	lastname;
+	private String 	name;
+	private Date 	dateOfBirth;
+	private Adress 	adress;
+	private String 	phone;
 	private String 	email;
-	private String 	brojIndeksa;
-	private int 	godinaUpisa;
-	private int 	trenutnaGodinaStudija;
+	private String 	index;
+	private int 	enrolmentYear;
+	private int 	yearOfStudy;
 	private Status 	status;
-	private double 	prosecnaOcena;
+	private double 	averageGrade;
 	
-	private List<NepolozenPredmet> 	spisakNepolozeni;
-	private List<Ocena> 			spisakPolozeni;
-	
-	
+	private List<UnfinishedSubjects> 	listUnfinished;
+	private List<Grade> 				listPassed;
 	
 	
-	public Student(String prezime, String ime, Datum datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
-			double prosecnaOcena) {
+	
+	
+	
+	
+	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
+			String index, int enrolmentYear, int yearOfStudy, Status status, double averageGrade) {
 		
-		this.prezime = prezime;
-		this.ime = ime;
-		this.datumRodjenja = datumRodjenja;
-		this.adresaStanovanja = adresaStanovanja;
-		this.kontaktTelefon = kontaktTelefon;
+		this.lastname = lastname;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.adress = adress;
+		this.phone = phone;
 		this.email = email;
-		this.brojIndeksa = brojIndeksa;
-		this.godinaUpisa = godinaUpisa;
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+		this.index = index;
+		this.enrolmentYear = enrolmentYear;
+		this.yearOfStudy = yearOfStudy;
 		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
+		this.averageGrade = averageGrade;
 		
-		loadNepolozeni();
-		loadPolozeni();
+		loadUnfinished();
+		loadPassed();
+		
 	}
-	
-	private void loadNepolozeni() {	
+
+	private void loadUnfinished() {	
 		try {
 			
-			File file = new File(nepolozeniFajl);
+			File file = new File(unfinishedFile);
 			Scanner reader = new Scanner(file);
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("*\\");
 				
-				if(data[1].equals(getBrojIndeksa())) {
-					NepolozenPredmet np = new NepolozenPredmet(data[0],data[1]);
-					spisakNepolozeni.add(np);
+				if(data[1].equals(getIndex())) {
+					UnfinishedSubjects us = new UnfinishedSubjects(data[0],data[1]);
+					listUnfinished.add(us);
 				}
 				
 			}
@@ -72,44 +74,44 @@ public class Student {
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR kod citanja iz fajla");
+			System.out.println("Readfile ERROR");
 			e.printStackTrace();
 		}
 		
 		return;
 	}
 	
-	private void loadPolozeni() {
+	private void loadPassed() {
 		try {
 			
-			File file = new File(polozeniFajl);
+			File file = new File(passedFile);
 			Scanner reader = new Scanner(file);
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("*\\");
 				
-				if(data[1].equals(getBrojIndeksa())) {
-					Ocena o = new Ocena(data[0],data[1],Integer.parseInt(data[2]),new Datum(data[3]));
-					spisakPolozeni.add(o);
+				if(data[1].equals(getIndex())) {
+					Grade o = new Grade(data[0],data[1],Integer.parseInt(data[2]),new Date(data[3]));
+					listPassed.add(o);
 				}
 			}
 			
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR kod citanja iz fajla");
+			System.out.println("Readfile ERROR");
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void wirteNepolozeni() {
+	public void writeUnfinished() {
 		 try {
-		      FileWriter writer = new FileWriter(nepolozeniFajl, true);        
+		      FileWriter writer = new FileWriter(unfinishedFile, true);        
 		      
-		      for(NepolozenPredmet np : spisakNepolozeni) {
-		    	  writer.write(np.toString());
+		      for(UnfinishedSubjects us : listUnfinished) {
+		    	  writer.write(us.toString());
 		      }
 		      writer.close();
 		      
@@ -119,11 +121,11 @@ public class Student {
 		    }
 	}
 	
-	public void writePolozeni() {
+	public void writePassed() {
 		 try {
-		      FileWriter writer = new FileWriter(polozeniFajl, true);        
+		      FileWriter writer = new FileWriter(passedFile, true);        
 		      
-		      for(Ocena o : spisakPolozeni) {
+		      for(Grade o : listPassed) {
 		    	  writer.write(o.toString());
 		      }
 		      writer.close();
@@ -134,98 +136,117 @@ public class Student {
 		    }
 	}
 	
-	
-	public String getPrezime() {
-		return prezime;
+
+	public String getLastname() {
+		return lastname;
 	}
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
-	public String getIme() {
-		return ime;
+
+	public String getName() {
+		return name;
 	}
-	public void setIme(String ime) {
-		this.ime = ime;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Datum getDatumRodjenja() {
-		return datumRodjenja;
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
-	public void setDatumRodjenja(Datum datumRodjenja) {
-		this.datumRodjenja = datumRodjenja;
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
-	public String getAdresaStanovanja() {
-		return adresaStanovanja;
+
+	public Adress getAdress() {
+		return adress;
 	}
-	public void setAdresaStanovanja(String adresaStanovanja) {
-		this.adresaStanovanja = adresaStanovanja;
+
+	public void setAdress(Adress adress) {
+		this.adress = adress;
 	}
-	public String getKontaktTelefon() {
-		return kontaktTelefon;
+
+	public String getPhone() {
+		return phone;
 	}
-	public void setKontaktTelefon(String kontaktTelefon) {
-		this.kontaktTelefon = kontaktTelefon;
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getBrojIndeksa() {
-		return brojIndeksa;
+
+	public String getIndex() {
+		return index;
 	}
-	public void setBrojIndeksa(String brojIndeksa) {
-		this.brojIndeksa = brojIndeksa;
+
+	public void setIndex(String index) {
+		this.index = index;
 	}
-	public int getGodinaUpisa() {
-		return godinaUpisa;
+
+	public int getEnrolmentYear() {
+		return enrolmentYear;
 	}
-	public void setGodinaUpisa(int godinaUpisa) {
-		this.godinaUpisa = godinaUpisa;
+
+	public void setEnrolmentYear(int enrolmentYear) {
+		this.enrolmentYear = enrolmentYear;
 	}
-	public int getTrenutnaGodinaStudija() {
-		return trenutnaGodinaStudija;
+
+	public int getYearOfStudy() {
+		return yearOfStudy;
 	}
-	public void setTrenutnaGodinaStudija(int trenutnaGodinaStudija) {
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+
+	public void setYearOfStudy(int yearOfStudy) {
+		this.yearOfStudy = yearOfStudy;
 	}
+
 	public Status getStatus() {
 		return status;
 	}
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public double getProsecnaOcena() {
-		return prosecnaOcena;
-	}
-	public void setProsecnaOcena(double prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
-	}
-	
 
-	public List<NepolozenPredmet> getSpisakNepolozeni() {
-		return spisakNepolozeni;
+	public double getAverageGrade() {
+		return averageGrade;
 	}
 
-	public void setSpisakNepolozeni(List<NepolozenPredmet> spisakNepolozeni) {
-		this.spisakNepolozeni = spisakNepolozeni;
+	public void setAverageGrade(double averageGrade) {
+		this.averageGrade = averageGrade;
 	}
 
-	public List<Ocena> getSpisakPolozeni() {
-		return spisakPolozeni;
+	public List<UnfinishedSubjects> getListUnfinished() {
+		return listUnfinished;
 	}
 
-	public void setSpisakPolozeni(List<Ocena> spisakPolozeni) {
-		this.spisakPolozeni = spisakPolozeni;
+	public void setListUnfinished(List<UnfinishedSubjects> listUnfinished) {
+		this.listUnfinished = listUnfinished;
 	}
-	
+
+	public List<Grade> getListPassed() {
+		return listPassed;
+	}
+
+	public void setListPassed(List<Grade> listPassed) {
+		this.listPassed = listPassed;
+	}
 
 	@Override
 	public String toString() {
 		String splitter = "*\\";
-		return prezime + splitter +  ime + splitter + datumRodjenja.toString() + splitter + adresaStanovanja.toString() + 
-				splitter + kontaktTelefon + splitter + email + splitter + brojIndeksa + splitter + godinaUpisa + splitter +
-				trenutnaGodinaStudija + splitter + status.toString() + splitter + prosecnaOcena;
+		return lastname + splitter +  name+ splitter + dateOfBirth.toString() + splitter + adress.toString() + 
+				splitter + phone+ splitter + email + splitter + index+ splitter + enrolmentYear+ splitter +
+				yearOfStudy + splitter + status.toString() + splitter + averageGrade;
 		
 	}
 	
