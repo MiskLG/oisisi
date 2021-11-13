@@ -10,7 +10,6 @@ import javax.swing.WindowConstants;
 public class MainWindow extends JFrame {
 
 	public MainWindow() {
-		super();
 		
 		setVisible(true);
 		
@@ -28,6 +27,7 @@ public class MainWindow extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
-		
+		MenuBar menuBar = new MenuBar();
+		this.setJMenuBar(menuBar);
 	}
 }
