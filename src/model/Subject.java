@@ -9,8 +9,8 @@ enum Semester{WINTER,SUMMER};
 
 public class Subject {
 
-	private String 		passedStudentsFile = "database/linkSubjectStudentGrade.txt";
-	private String 		unfinishedStudentsFile = "database/linkSubjectStudentUnfinished.txt";
+	private String 		passedStudentsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentGrade.txt";
+	private String 		unfinishedStudentsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentUnfinished.txt";
 	
 	private String 		subjectCode;
 	private String 		title;

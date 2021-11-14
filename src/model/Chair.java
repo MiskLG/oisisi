@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Chair {
-	private String professorListFile = "database/linkProfessorChair.txt";
+	private String professorListFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkProfessorChair.txt";
 	
 	private String chairCode;
 	private String title;
