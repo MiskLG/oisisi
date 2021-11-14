@@ -1,17 +1,17 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class MainWindow extends JFrame {
 
 	public MainWindow() {
-		
-		setVisible(true);
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		
@@ -23,11 +23,20 @@ public class MainWindow extends JFrame {
 		
 		setLocation(screenWidth / 8, screenHeight / 8);
 		
-		setTitle("Studenstka služba");
+		setTitle("Studenstka sluï¿½ba");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
 		MenuBar menuBar = new MenuBar();
 		this.setJMenuBar(menuBar);
+		
+		JPanel contentPanel = new JPanel(new BorderLayout());
+		this.setContentPane(contentPanel);
+		
+		
+		ToolBar toolbar = new ToolBar();
+		contentPanel.add(toolbar,BorderLayout.NORTH);
+		
+		setVisible(true);
 	}
 }
