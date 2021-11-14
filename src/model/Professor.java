@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Professor {
 
-	private String 	listSubjectsFile = "database/linkProfessorSubject.txt";
+	private String 	listSubjectsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkProfessorSubject.txt";
 	
 	private String 	lastname;
 	private String 	name;

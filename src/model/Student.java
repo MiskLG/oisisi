@@ -11,8 +11,8 @@ enum Status{B,S};
 
 public class Student {
 	
-	private String 	passedFile = "database/linkSubjectStudentGrade.txt";
-	private String 	unfinishedFile= "database/linkSubjectStudentUnfinished.txt";
+	private String 	passedFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentGrade.txt";
+	private String 	unfinishedFile= System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentUnfinished.txt";
 	
 	private String 	lastname;
 	private String 	name;

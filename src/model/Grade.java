@@ -1,11 +1,12 @@
 package model;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Grade {
 	
-	private String 	gradeFile = "database/linkSubjectStudentGrade.txt";
+	private String 	gradeFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentGrade.txt";
 	
 	private String 	index;
 	private String 	subjectCode;
