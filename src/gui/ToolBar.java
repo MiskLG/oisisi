@@ -72,6 +72,10 @@ public class ToolBar extends JPanel {
 		buttonDelete.setContentAreaFilled(false); 
 		buttonDelete.setFocusPainted(false); 
 		
+		buttonNew.setToolTipText("New");
+		buttonEdit.setToolTipText("Edit");
+		buttonDelete.setToolTipText("Delete");
+		
 		
 		// pushing buttons to panel
 		toolbarLeft.add(buttonNew);
@@ -101,7 +105,7 @@ public class ToolBar extends JPanel {
 		buttonSearch.setContentAreaFilled(false); 
 		buttonSearch.setFocusPainted(false); 
 		
-		
+		buttonSearch.setToolTipText("Search");
 		
 		toolbarRight.add(textSearch);
 		toolbarRight.add(buttonSearch);
