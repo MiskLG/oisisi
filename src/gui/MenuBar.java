@@ -13,14 +13,20 @@ import javax.swing.KeyStroke;
 
 public class MenuBar extends JMenuBar{
 	
-	String newIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "new.png";
-	String editIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "edit.png";
-	String deleteIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "delete.png";
-	String closeIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "close.png";
-	String helpIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "help.png";
-	String informationIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "information.png";
-	String openIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "open.png";
-	String saveIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "save.png";
+	// Icons made by https://www.flaticon.com/authors/inkubators
+	private String newIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "new.png";
+	private String editIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "edit.png";
+	private String deleteIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "delete.png";
+	private String closeIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "close.png";
+	private String helpIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "help.png";
+	private String informationIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "information.png";
+	private String openIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "open.png";
+	private String saveIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "save.png";
+	private String professorsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "professors.png";
+	private String studentsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "students.png";
+	private String subjectsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "subjects.png";
+	private String chairsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "chairs.png";
+	
 	
 	
 	
@@ -86,6 +92,27 @@ public class MenuBar extends JMenuBar{
 		menuItemProfessors.setMnemonic(KeyEvent.VK_P);
 		menuItemChairs.setMnemonic(KeyEvent.VK_C);
 		
+		menuItemStudents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+		menuItemSubjects.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+		menuItemProfessors.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+		menuItemChairs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+		
+		ImageIcon professorsIcon = new ImageIcon(professorsIconPNG);
+		Image professorsImage = professorsIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+		menuItemProfessors.setIcon(new ImageIcon(professorsImage));
+		
+		ImageIcon subjectsIcon = new ImageIcon(subjectsIconPNG);	
+		Image subjectsImage = subjectsIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+		menuItemSubjects.setIcon(new ImageIcon(subjectsImage));
+		
+		ImageIcon chairsIcon = new ImageIcon(chairsIconPNG);	
+		Image chairsImage = chairsIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+		menuItemChairs.setIcon(new ImageIcon(chairsImage));
+		
+		ImageIcon studentsIcon = new ImageIcon(studentsIconPNG);
+		Image studentsImage = studentsIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+		menuItemStudents.setIcon(new ImageIcon(studentsImage));
+		
 		menuItemOpen.add(menuItemStudents);
 		menuItemOpen.add(menuItemSubjects);
 		menuItemOpen.add(menuItemProfessors);
@@ -114,11 +141,11 @@ public class MenuBar extends JMenuBar{
 		
 		JMenuItem menuItemHelp = new JMenuItem("Help");
 		menuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
-		menuItemHelp.setMnemonic(KeyEvent.VK_F1);
+		menuItemHelp.setMnemonic(KeyEvent.VK_H);
 		
 		JMenuItem menuItemAbout = new JMenuItem("About");
 		menuItemAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
-		menuItemAbout.setMnemonic(KeyEvent.VK_F2);
+		menuItemAbout.setMnemonic(KeyEvent.VK_A);
 		
 		// setting up icons	
 		ImageIcon helpIcon = new ImageIcon(helpIconPNG);

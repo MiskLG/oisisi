@@ -23,7 +23,7 @@ public class MainWindow extends JFrame {
 		
 		setLocation(screenWidth / 8, screenHeight / 8);
 		
-		setTitle("Studenstka slu�ba");
+		setTitle("Studenstka služba");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
@@ -36,6 +36,9 @@ public class MainWindow extends JFrame {
 		
 		ToolBar toolbar = new ToolBar();
 		contentPanel.add(toolbar,BorderLayout.NORTH);
+		
+		StatusBar statusbar = new StatusBar();
+		contentPanel.add(statusbar,BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}

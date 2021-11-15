@@ -17,10 +17,10 @@ import javax.swing.border.EmptyBorder;
 public class ToolBar extends JPanel {
 	
 	// Icons made by https://www.flaticon.com/authors/inkubators
-	String newIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "new.png";
-	String editIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "edit.png";
-	String deleteIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "delete.png";
-	String searchIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "search.png";
+	private String newIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "new.png";
+	private String editIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "edit.png";
+	private String deleteIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "delete.png";
+	private String searchIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "search.png";
 	
 	
 	public ToolBar() {
@@ -61,19 +61,21 @@ public class ToolBar extends JPanel {
 		buttonNew.setBorderPainted(false); 
 		buttonNew.setContentAreaFilled(false); 
 		buttonNew.setFocusPainted(false); 
-		buttonNew.setOpaque(false);
 		
 		buttonEdit.setBorder(new EmptyBorder(0,0,0,0));
 		buttonEdit.setBorderPainted(false); 
 		buttonEdit.setContentAreaFilled(false); 
 		buttonEdit.setFocusPainted(false); 
-		buttonEdit.setOpaque(false);
 			
 		buttonDelete.setBorder(new EmptyBorder(0,0,0,0));
 		buttonDelete.setBorderPainted(false); 
 		buttonDelete.setContentAreaFilled(false); 
 		buttonDelete.setFocusPainted(false); 
-		buttonDelete.setOpaque(false);
+		
+		buttonNew.setToolTipText("New");
+		buttonEdit.setToolTipText("Edit");
+		buttonDelete.setToolTipText("Delete");
+		
 		
 		// pushing buttons to panel
 		toolbarLeft.add(buttonNew);
@@ -102,9 +104,8 @@ public class ToolBar extends JPanel {
 		buttonSearch.setBorderPainted(false); 
 		buttonSearch.setContentAreaFilled(false); 
 		buttonSearch.setFocusPainted(false); 
-		buttonSearch.setOpaque(false);
 		
-		
+		buttonSearch.setToolTipText("Search");
 		
 		toolbarRight.add(textSearch);
 		toolbarRight.add(buttonSearch);
