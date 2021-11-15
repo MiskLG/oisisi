@@ -37,6 +37,9 @@ public class MainWindow extends JFrame {
 		ToolBar toolbar = new ToolBar();
 		contentPanel.add(toolbar,BorderLayout.NORTH);
 		
+		StatusBar statusbar = new StatusBar();
+		contentPanel.add(statusbar,BorderLayout.SOUTH);
+		
 		setVisible(true);
 	}
 }
