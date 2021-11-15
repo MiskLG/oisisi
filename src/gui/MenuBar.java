@@ -115,11 +115,11 @@ public class MenuBar extends JMenuBar{
 		
 		JMenuItem menuItemHelp = new JMenuItem("Help");
 		menuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
-		menuItemHelp.setMnemonic(KeyEvent.VK_F1);
+		menuItemHelp.setMnemonic(KeyEvent.VK_H);
 		
 		JMenuItem menuItemAbout = new JMenuItem("About");
 		menuItemAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
-		menuItemAbout.setMnemonic(KeyEvent.VK_F2);
+		menuItemAbout.setMnemonic(KeyEvent.VK_A);
 		
 		// setting up icons	
 		ImageIcon helpIcon = new ImageIcon(helpIconPNG);
