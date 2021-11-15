@@ -23,7 +23,7 @@ public class MainWindow extends JFrame {
 		
 		setLocation(screenWidth / 8, screenHeight / 8);
 		
-		setTitle("Studenstka slu�ba");
+		setTitle("Studenstka služba");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
