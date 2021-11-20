@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
 
@@ -34,11 +36,25 @@ public class MainWindow extends JFrame {
 		this.setContentPane(contentPanel);
 		
 		
-		ToolBar toolbar = new ToolBar();
-		contentPanel.add(toolbar,BorderLayout.NORTH);
-		
+		ToolBar toolbar = new ToolBar();	
 		StatusBar statusbar = new StatusBar();
+		TablePanel tablePanel = new TablePanel();
+		
+		// Initial change and change listener
+		statusbar.setCurrentTab(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
+		toolbar.updateToolTips(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
+		tablePanel.addChangeListener(new ChangeListener() {
+		    public void stateChanged(ChangeEvent e) {
+		        statusbar.setCurrentTab(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
+		        toolbar.updateToolTips(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
+		    }
+		});
+		
+		
+		contentPanel.add(toolbar,BorderLayout.NORTH);
 		contentPanel.add(statusbar,BorderLayout.SOUTH);
+		contentPanel.add(tablePanel,BorderLayout.CENTER);
+		
 		
 		setVisible(true);
 	}

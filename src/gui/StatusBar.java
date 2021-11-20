@@ -12,18 +12,21 @@ import javax.swing.Timer;
 
 public class StatusBar extends JPanel{
 	
+	private String appName = "Studentska služba";
 	private String currentTab;
+	private JLabel tab;
 
 	public StatusBar() {	
 		this.setLayout(new BorderLayout(0,0));
-		this.setBorder(BorderFactory.createRaisedBevelBorder());	
-		currentTab = "Studentska služba";
+		this.setBorder(BorderFactory.createRaisedBevelBorder());
+		
+		currentTab = "";
 	
 		// Left side of the status bar
 		JPanel currentTabPanel = new JPanel();
 		currentTabPanel.setLayout(new FlowLayout());
 			
-		JLabel tab = new JLabel(currentTab);
+		tab = new JLabel(appName + currentTab);
 		
 	
 		// Right side of the status bar
@@ -32,7 +35,7 @@ public class StatusBar extends JPanel{
 		
 		// Setting initial values so there is no 1s downtime without date
 		JLabel  currentDate = new JLabel(new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date(System.currentTimeMillis())));
-		JLabel  currentTime = new JLabel(new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(System.currentTimeMillis())));
+		JLabel  currentTime = new JLabel(new java.text.SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date(System.currentTimeMillis())));
 		
 		
 		// clock updater
@@ -40,7 +43,7 @@ public class StatusBar extends JPanel{
 	      ActionListener taskPerformer = new ActionListener() {
 	          public void actionPerformed(ActionEvent evt) {
 	              String date = new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date(System.currentTimeMillis()));
-	              String time = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(System.currentTimeMillis()));
+	              String time = new java.text.SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date(System.currentTimeMillis()));
 	              
 	              currentTime.setText(time);
 	              currentDate.setText(date);
@@ -67,9 +70,12 @@ public class StatusBar extends JPanel{
 
 	public void setCurrentTab(String currentTab) {
 		this.currentTab = currentTab;
+		updateTab();
 	}
 	
-	
+	private void updateTab() {
+		tab.setText(appName + " - " + currentTab);
+	}
 	
 	
 }
