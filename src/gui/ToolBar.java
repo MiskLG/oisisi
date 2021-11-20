@@ -22,6 +22,10 @@ public class ToolBar extends JPanel {
 	private String deleteIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "delete.png";
 	private String searchIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "toolbar" + File.separator + "search.png";
 	
+	private JButton buttonNew = new JButton();
+	private JButton buttonEdit = new JButton();
+	private JButton buttonDelete = new JButton();
+	private JButton buttonSearch = new JButton();
 	
 	public ToolBar() {
 		
@@ -38,9 +42,7 @@ public class ToolBar extends JPanel {
 		
 		
 		
-		JButton buttonNew = new JButton();
-		JButton buttonEdit = new JButton();
-		JButton buttonDelete = new JButton();
+		
 			
 		// adding icons to buttons
 		ImageIcon newIcon = new ImageIcon(newIconPNG);
@@ -72,9 +74,9 @@ public class ToolBar extends JPanel {
 		buttonDelete.setContentAreaFilled(false); 
 		buttonDelete.setFocusPainted(false); 
 		
-		buttonNew.setToolTipText("New");
-		buttonEdit.setToolTipText("Edit");
-		buttonDelete.setToolTipText("Delete");
+		buttonNew.setToolTipText("Dodavanje novog studenta");
+		buttonEdit.setToolTipText("Promena izabranog studenta");
+		buttonDelete.setToolTipText("Brisanje izabranog studenta");
 		
 		
 		// pushing buttons to panel
@@ -89,7 +91,7 @@ public class ToolBar extends JPanel {
 		toolbarRight.setLayout(new FlowLayout());
 		//toolbarRight.setLayout(new BoxLayout(toolbarRight,BoxLayout.X_AXIS));
 		
-		JButton buttonSearch = new JButton();
+	
 		JTextField textSearch = new JTextField();
 		
 		
@@ -105,7 +107,7 @@ public class ToolBar extends JPanel {
 		buttonSearch.setContentAreaFilled(false); 
 		buttonSearch.setFocusPainted(false); 
 		
-		buttonSearch.setToolTipText("Search");
+		buttonSearch.setToolTipText("Pretrega studenta");
 		
 		toolbarRight.add(textSearch);
 		toolbarRight.add(buttonSearch);
@@ -116,6 +118,29 @@ public class ToolBar extends JPanel {
 		this.add(toolbarRight, BorderLayout.EAST);
 		
 		
+	}
+	
+	public void updateToolTips(String entitet) {
+		if(entitet.equalsIgnoreCase("Studenti"))
+		{
+			buttonNew.setToolTipText("Dodavanje novog studenta");
+			buttonEdit.setToolTipText("Promena izabranog studenta");
+			buttonDelete.setToolTipText("Brisanje izabranog studenta");
+			buttonSearch.setToolTipText("Pretraga studenta");
+		}
+		else if(entitet.equalsIgnoreCase("Profesori")) {
+			buttonNew.setToolTipText("Dodavanje novog profesora");
+			buttonEdit.setToolTipText("Promena izabranog profesora");
+			buttonDelete.setToolTipText("Brisanje izabranog profesora");
+			buttonSearch.setToolTipText("Pretraga profesora");
+		}
+		else if(entitet.equalsIgnoreCase("Predmeti")) {
+			buttonNew.setToolTipText("Dodavanje novog predmeta");
+			buttonEdit.setToolTipText("Promena izabranog predmeta");
+			buttonDelete.setToolTipText("Brisanje izabranog predmeta");
+			buttonSearch.setToolTipText("Pretraga predmeta");
+		}
+		return;
 	}
 	
 }
