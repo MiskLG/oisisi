@@ -2,6 +2,8 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ import model.Date;
 import model.Professor;
 import model.Student;
 import model.Subject;
+import model.UnfinishedSubjects;
 
 public class DataClass {
 	
@@ -41,6 +44,82 @@ public class DataClass {
  
         return dataClass;
     }
+	
+	public void writeOutData() {
+		writeOutProfessors();
+		writeOutChairs();
+		writeOutSubjects();
+		writeOutStudents();
+	}
+	
+	
+	// methods to write to files
+	private void writeOutProfessors() {
+		 try {
+		      FileWriter writer = new FileWriter(professorsFile, true);        
+		      
+		      for(Professor pr : professorListData) {
+		    	  pr.writeListSubject();
+		    	  writer.write(pr.toString());
+		      }
+		      writer.close();
+		      
+		    } catch (IOException e) {
+		      System.out.println("ERROR.");
+		      e.printStackTrace();
+		    }
+	
+	}
+	private void writeOutChairs() {
+		 try {
+		      FileWriter writer = new FileWriter(chairsFile, true);        
+		      
+		      for(Chair ch : chairListData) {
+		    	  ch.writeProfessorList();
+		    	  writer.write(ch.toString());
+		      }
+		      writer.close();
+		      
+		    } catch (IOException e) {
+		      System.out.println("ERROR.");
+		      e.printStackTrace();
+		    }
+	
+	}
+	private void writeOutStudents() {
+		 try {
+		      FileWriter writer = new FileWriter(studentsFile, true);        
+		      
+		      for(Student st : studentListData) {
+		    	  st.writePassed();
+		    	  st.writeUnfinished();
+		    	  writer.write(st.toString());
+		      }
+		      writer.close();
+		      
+		    } catch (IOException e) {
+		      System.out.println("ERROR.");
+		      e.printStackTrace();
+		    }
+	
+	}
+	private void writeOutSubjects() {
+		 try {
+		      FileWriter writer = new FileWriter(subjectsFile, true);        
+		      
+		      for(Subject sb : subjectListData) {
+		    	  writer.write(sb.toString());
+		      }
+		      writer.close();
+		      
+		    } catch (IOException e) {
+		      System.out.println("ERROR.");
+		      e.printStackTrace();
+		    }
+	
+	}
+	
+	
 	
 	
 	// methods to load data from .txt files to lists
