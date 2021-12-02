@@ -26,7 +26,7 @@ public class DataClass {
 	private List<Student> studentListData;
 	private List<Subject> subjectListData;
 	
-	public DataClass() {
+	private DataClass() {
 		// loading from database
 		loadProfessors();
 		loadChairs();
