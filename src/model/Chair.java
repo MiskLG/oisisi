@@ -48,7 +48,7 @@ public class Chair {
 		}
 	}
 
-	public void writeListaProfesora() {
+	public void writeProfessorList() {
 		 try {
 		      FileWriter writer = new FileWriter(professorListFile, true);        
 		      String splitter = "*\\";

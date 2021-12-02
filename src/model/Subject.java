@@ -25,10 +25,17 @@ public class Subject {
 	
 	
 	
-	public Subject(String subjectCode, String title, Semester semester, int yearOfStudy, String subjectProfessor, int numberECTS) {
+	public Subject(String subjectCode, String title, String semester, int yearOfStudy, String subjectProfessor, int numberECTS) {
 		this.subjectCode = subjectCode;
 		this.title = title;
-		this.semester = semester;
+		
+		if(semester.compareToIgnoreCase("WINTER") == 0) {
+			this.semester = Semester.WINTER;
+		}
+		else {
+			this.semester = Semester.SUMMER;
+		}
+		
 		this.yearOfStudy = yearOfStudy;
 		this.subjectProfessor = subjectProfessor;
 		this.numberECTS = numberECTS;
