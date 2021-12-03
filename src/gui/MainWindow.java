@@ -2,12 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -20,6 +18,9 @@ public class MainWindow extends JFrame {
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
+		
+		this.setMaximumSize(new Dimension(1920,1080));
+		this.setMinimumSize(new Dimension(960,540));
 		
 		setSize(screenWidth / 4 * 3, screenHeight / 4 * 3);
 		
@@ -45,6 +46,10 @@ public class MainWindow extends JFrame {
 		toolbar.updateToolTips(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
 		tablePanel.addChangeListener(new ChangeListener() {
 		    public void stateChanged(ChangeEvent e) {
+		    	
+		    	toolbar.setIndicator(tablePanel.getSelectedIndex());
+		    	menuBar.setIndicator(tablePanel.getSelectedIndex());
+		    	
 		        statusbar.setCurrentTab(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
 		        toolbar.updateToolTips(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
 		    }

@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
@@ -10,6 +11,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MenuBar extends JMenuBar{
 	
@@ -27,8 +30,8 @@ public class MenuBar extends JMenuBar{
 	private String subjectsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "subjects.png";
 	private String chairsIconPNG = System.getProperty("user.dir") + File.separator + "images" + File.separator + "menubar" + File.separator + "chairs.png";
 	
-	
-	
+	private enum OpenedTab {STUDENT, PROFESSOR, SUBJECT};
+	private OpenedTab current = OpenedTab.STUDENT;
 	
 	public MenuBar() {
 		JMenu file = new JMenu("File");
@@ -45,6 +48,7 @@ public class MenuBar extends JMenuBar{
 		JMenuItem menuItemNew = new JMenuItem("New");
 		menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		menuItemNew.setMnemonic(KeyEvent.VK_N);
+			
 		
 		JMenuItem menuItemSave = new JMenuItem("Save");
 		menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
@@ -56,6 +60,23 @@ public class MenuBar extends JMenuBar{
 		JMenuItem menuItemClose = new JMenuItem("Close");
 		menuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
 		menuItemClose.setMnemonic(KeyEvent.VK_C);
+		
+		// setting up action listeners
+		menuItemNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					break;
+				case STUDENT:
+					AddStudentsPanel panel = new AddStudentsPanel();
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;}		
+			}		
+		});
 		
 		
 		// setting icons
@@ -158,5 +179,21 @@ public class MenuBar extends JMenuBar{
 		
 		help.add(menuItemHelp);
 		help.add(menuItemAbout);
+	}
+	
+	public void setIndicator(int number) {
+		switch(number) {
+			case 0:
+				this.current = OpenedTab.STUDENT;
+				return;
+			case 1:
+				this.current = OpenedTab.PROFESSOR;
+				return;
+			case 2:
+				this.current = OpenedTab.SUBJECT;
+				return;
+			default:
+				return;
+		}
 	}
 }
