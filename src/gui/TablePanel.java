@@ -107,6 +107,11 @@ public class TablePanel extends JTabbedPane {
 		
 		// Load data from database TODO
 		
+		//
+		studentsTable.setAutoCreateRowSorter(true);
+		professorsTable.setAutoCreateRowSorter(true);
+		subjectsTable.setAutoCreateRowSorter(true);
+		
 		// Linking tables with scrollPanes
 		JScrollPane studentsTablePanel = new JScrollPane(studentsTable);
 		JScrollPane professorsTablePanel = new JScrollPane(professorsTable);

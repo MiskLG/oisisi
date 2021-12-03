@@ -35,7 +35,7 @@ public class Student {
 	
 	
 	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
-			String index, int enrolmentYear, int yearOfStudy, Status status, double averageGrade) {
+			String index, int enrolmentYear, int yearOfStudy, String status, double averageGrade) {
 		
 		this.lastname = lastname;
 		this.name = name;
@@ -46,7 +46,14 @@ public class Student {
 		this.index = index;
 		this.enrolmentYear = enrolmentYear;
 		this.yearOfStudy = yearOfStudy;
-		this.status = status;
+		
+		if(status.compareToIgnoreCase("B") == 0) {
+			this.status = Status.B;
+		}
+		else {
+			this.status = Status.S;
+		}
+		
 		this.averageGrade = averageGrade;
 		
 		loadUnfinished();
