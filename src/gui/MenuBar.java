@@ -11,8 +11,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class MenuBar extends JMenuBar{
 	
@@ -69,7 +67,7 @@ public class MenuBar extends JMenuBar{
 				case PROFESSOR:
 					break;
 				case STUDENT:
-					AddStudentsPanel panel = new AddStudentsPanel();
+					AddStudentsPanel panel = new AddStudentsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
 					break;
 				case SUBJECT:
 					break;

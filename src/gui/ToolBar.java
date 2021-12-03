@@ -90,7 +90,7 @@ public class ToolBar extends JPanel {
 				case PROFESSOR:
 					break;
 				case STUDENT:
-					AddStudentsPanel panel = new AddStudentsPanel();
+					AddStudentsPanel panel = new AddStudentsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
 					break;
 				case SUBJECT:
 					break;
