@@ -36,7 +36,7 @@ public class Date {
 	
 	
 	// check date format
-	private boolean checkDate(int dan, int mesec, int godina) {
+	public static boolean checkDate(int day, int month, int year) {
 		// some checks
 		if(month < 1 || month > 12) {
 			return false;
@@ -49,7 +49,15 @@ public class Date {
 				break;
 			case 2:
 				if(day > 28)
-					return false;
+					if(year % 4 != 0) {
+						return false;
+					}
+					else if(year % 100 == 0){
+						return false;
+					}
+					else if(year % 400 != 0){
+						return false;
+					}
 				break;
 			case 4: case 6: case 9: case 11:
 				if(day > 30)
@@ -61,6 +69,8 @@ public class Date {
 		}
 		if(year < 1920)
 			return false;
+		
+		
 		return true;
 	}
 	

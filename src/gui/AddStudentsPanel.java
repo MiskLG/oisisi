@@ -90,13 +90,13 @@ public class AddStudentsPanel extends JDialog {
 		
 		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
 		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
-		JComboBox yearOfStudyField = new JComboBox(yearChoices);
+		JComboBox yearOfStudyField = new JComboBox<String>(yearChoices);
 		fieldsPanel.add(yearOfStudyLabel);
 		fieldsPanel.add(yearOfStudyField);
 		
 		JLabel statusLabel = new JLabel("Način finansiranja*:");
 		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
-		JComboBox statusField = new JComboBox(statusChoices);
+		JComboBox statusField = new JComboBox<String>(statusChoices);
 		fieldsPanel.add(statusLabel);
 		fieldsPanel.add(statusField);
 		
@@ -124,6 +124,7 @@ public class AddStudentsPanel extends JDialog {
 		buttonsPanel.add(spacer);
 		buttonsPanel.add(cancelButton);
 		
+		acceptButton.setEnabled(false);
 	
 		cancelButton.addActionListener( e -> { this.dispose(); });
 		

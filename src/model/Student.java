@@ -31,9 +31,6 @@ public class Student {
 	
 	
 	
-	
-	
-	
 	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
 			String index, int enrolmentYear, int yearOfStudy, String status, double averageGrade) {
 		
@@ -47,7 +44,7 @@ public class Student {
 		this.enrolmentYear = enrolmentYear;
 		this.yearOfStudy = yearOfStudy;
 		
-		if(status.compareToIgnoreCase("B") == 0) {
+		if(status.equalsIgnoreCase("B")) {
 			this.status = Status.B;
 		}
 		else {
@@ -58,6 +55,28 @@ public class Student {
 		
 		loadUnfinished();
 		loadPassed();
+		
+	}
+	
+	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
+			String index, int enrolmentYear, int yearOfStudy, int status) {
+		
+		this.lastname = lastname;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.adress = adress;
+		this.phone = phone;
+		this.email = email;
+		this.index = index;
+		this.enrolmentYear = enrolmentYear;
+		this.yearOfStudy = yearOfStudy;
+		
+		if(status == 0) {
+			this.status = Status.B;
+		}
+		else {
+			this.status = Status.S;
+		}
 		
 	}
 
