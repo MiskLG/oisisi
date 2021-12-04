@@ -12,6 +12,8 @@ import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
 
+	private TablePanel tablePanel;
+	
 	public MainWindow() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -40,7 +42,7 @@ public class MainWindow extends JFrame {
 		
 		ToolBar toolbar = new ToolBar();	
 		StatusBar statusbar = new StatusBar();
-		TablePanel tablePanel = new TablePanel();
+		tablePanel = new TablePanel();
 		
 		// Initial change and change listener
 		statusbar.setCurrentTab(tablePanel.getTitleAt(tablePanel.getSelectedIndex()));
@@ -65,5 +67,8 @@ public class MainWindow extends JFrame {
 		setVisible(true);
 	}
 	
-	
+	public void changeTab(int index) {
+		tablePanel.setSelectedIndex(index);
+		return;
+	}
 }

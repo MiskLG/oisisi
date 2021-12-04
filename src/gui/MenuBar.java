@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -56,7 +57,7 @@ public class MenuBar extends JMenuBar{
 		menuItemOpen.setMnemonic(KeyEvent.VK_O);
 		
 		JMenuItem menuItemClose = new JMenuItem("Close");
-		menuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
+		menuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
 		menuItemClose.setMnemonic(KeyEvent.VK_C);
 		
 		// setting up action listeners
@@ -73,6 +74,14 @@ public class MenuBar extends JMenuBar{
 					break;
 				default:
 					break;}		
+			}		
+		});
+		
+		// close button action listener
+		menuItemClose.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((MainWindow) getParent().getParent().getParent()).dispose();	
 			}		
 		});
 		
@@ -94,7 +103,8 @@ public class MenuBar extends JMenuBar{
 		ImageIcon closeIcon = new ImageIcon(closeIconPNG);
 		Image closeImage = closeIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
 		menuItemClose.setIcon(new ImageIcon(closeImage));
-			
+		
+		
 		
 		file.add(menuItemNew);
 		file.add(menuItemSave);
@@ -110,6 +120,30 @@ public class MenuBar extends JMenuBar{
 		menuItemSubjects.setMnemonic(KeyEvent.VK_B);
 		menuItemProfessors.setMnemonic(KeyEvent.VK_P);
 		menuItemChairs.setMnemonic(KeyEvent.VK_C);
+		
+		// action listeners for open tab
+		menuItemStudents.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((MainWindow)getParent().getParent().getParent()).changeTab(0);
+			}
+			
+			});
+		menuItemSubjects.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((MainWindow)getParent().getParent().getParent()).changeTab(2);
+			}
+			
+			});
+		menuItemProfessors.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((MainWindow)getParent().getParent().getParent()).changeTab(1);
+			}
+			
+			});
+		
 		
 		menuItemStudents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
 		menuItemSubjects.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
@@ -133,8 +167,8 @@ public class MenuBar extends JMenuBar{
 		menuItemStudents.setIcon(new ImageIcon(studentsImage));
 		
 		menuItemOpen.add(menuItemStudents);
-		menuItemOpen.add(menuItemSubjects);
 		menuItemOpen.add(menuItemProfessors);
+		menuItemOpen.add(menuItemSubjects);
 		menuItemOpen.add(menuItemChairs);
 		
 		JMenuItem menuItemEdit = new JMenuItem("Edit");
