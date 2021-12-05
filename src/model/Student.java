@@ -135,7 +135,7 @@ public class Student {
 	
 	public void writeUnfinished() {
 		 try {
-		      FileWriter writer = new FileWriter(unfinishedFile, true);        
+		      FileWriter writer = new FileWriter(unfinishedFile, false);        
 		      
 		      for(UnfinishedSubjects us : listUnfinished) {
 		    	  writer.write(us.toString());
@@ -150,7 +150,7 @@ public class Student {
 	
 	public void writePassed() {
 		 try {
-		      FileWriter writer = new FileWriter(passedFile, true);        
+		      FileWriter writer = new FileWriter(passedFile, false);        
 		      
 		      for(Grade o : listPassed) {
 		    	  writer.write(o.toString());

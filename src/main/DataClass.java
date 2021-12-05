@@ -57,7 +57,7 @@ public class DataClass {
 	// methods to write to files
 	private void writeOutProfessors() {
 		 try {
-		      FileWriter writer = new FileWriter(professorsFile, true);        
+		      FileWriter writer = new FileWriter(professorsFile, false);        
 		      
 		      for(Professor pr : professorListData) {
 		    	  pr.writeListSubject();
@@ -73,7 +73,7 @@ public class DataClass {
 	}
 	private void writeOutChairs() {
 		 try {
-		      FileWriter writer = new FileWriter(chairsFile, true);        
+		      FileWriter writer = new FileWriter(chairsFile, false);        
 		      
 		      for(Chair ch : chairListData) {
 		    	  ch.writeProfessorList();
@@ -89,7 +89,7 @@ public class DataClass {
 	}
 	private void writeOutStudents() {
 		 try {
-		      FileWriter writer = new FileWriter(studentsFile, true);        
+		      FileWriter writer = new FileWriter(studentsFile, false);        
 		      
 		      for(Student st : studentListData) {
 		    	  st.writePassed();
@@ -106,7 +106,7 @@ public class DataClass {
 	}
 	private void writeOutSubjects() {
 		 try {
-		      FileWriter writer = new FileWriter(subjectsFile, true);        
+		      FileWriter writer = new FileWriter(subjectsFile, false);        
 		      
 		      for(Subject sb : subjectListData) {
 		    	  writer.write(sb.toString());

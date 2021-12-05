@@ -51,7 +51,7 @@ public class Chair {
 
 	public void writeProfessorList() {
 		 try {
-		      FileWriter writer = new FileWriter(professorListFile, true);        
+		      FileWriter writer = new FileWriter(professorListFile, false);        
 		      String splitter = "*/";
 		      
 		      for(String p : professorList) {
