@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.AddStudentsController;
 
 public class AddStudentsPanel extends JDialog {
 
@@ -38,7 +42,9 @@ public class AddStudentsPanel extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		this.setTitle("Dodavanje studenta");
-
+		
+		JLabel errLabel = new JLabel();
+		
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -49,57 +55,67 @@ public class AddStudentsPanel extends JDialog {
 		fieldsPanel.setLayout(new GridLayout(10,2));
 		
 		JLabel nameLabel = new JLabel("Ime*:");
-		JTextField nameField = new JTextField();
-		fieldsPanel.add(nameLabel);
-		fieldsPanel.add(nameField);
+		JTextField nameField = new JTextField();		
 		
 		JLabel lastnameLabel = new JLabel("Prezime*:");
 		JTextField lastnameField = new JTextField();
-		fieldsPanel.add(lastnameLabel);
-		fieldsPanel.add(lastnameField);
+		
 		
 		JLabel dateobLabel = new JLabel("Datum rođenja*:");
 		JTextField dateobField = new JTextField();
-		fieldsPanel.add(dateobLabel);
-		fieldsPanel.add(dateobField);
+		
 		
 		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
 		JTextField adressField = new JTextField();
-		fieldsPanel.add(adressLabel);
-		fieldsPanel.add(adressField);
+		
 		
 		JLabel phoneLabel = new JLabel("Broj telefona*:");
 		JTextField phoneField = new JTextField();
-		fieldsPanel.add(phoneLabel);
-		fieldsPanel.add(phoneField);
+		
 		
 		JLabel emailLabel = new JLabel("E-mail adresa*:");
 		JTextField emailField = new JTextField();
-		fieldsPanel.add(emailLabel);
-		fieldsPanel.add(emailField);
+		
 		
 		JLabel indexLabel = new JLabel("Broj indeksa*:");
 		JTextField indexField = new JTextField();
-		fieldsPanel.add(indexLabel);
-		fieldsPanel.add(indexField);
+		
 		
 		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
 		JTextField enrolmentField = new JTextField();
-		fieldsPanel.add(enrolmentLabel);
-		fieldsPanel.add(enrolmentField);
+		
 		
 		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
 		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
-		JComboBox yearOfStudyField = new JComboBox<String>(yearChoices);
-		fieldsPanel.add(yearOfStudyLabel);
-		fieldsPanel.add(yearOfStudyField);
+		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
+		
 		
 		JLabel statusLabel = new JLabel("Način finansiranja*:");
 		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
-		JComboBox statusField = new JComboBox<String>(statusChoices);
+		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
+		
+		
+		// adding stuff to their place
+		fieldsPanel.add(nameLabel);
+		fieldsPanel.add(nameField);
+		fieldsPanel.add(lastnameLabel);
+		fieldsPanel.add(lastnameField);
+		fieldsPanel.add(dateobLabel);
+		fieldsPanel.add(dateobField);
+		fieldsPanel.add(adressLabel);
+		fieldsPanel.add(adressField);
+		fieldsPanel.add(phoneLabel);
+		fieldsPanel.add(phoneField);
+		fieldsPanel.add(emailLabel);
+		fieldsPanel.add(emailField);
+		fieldsPanel.add(indexLabel);
+		fieldsPanel.add(indexField);
+		fieldsPanel.add(enrolmentLabel);
+		fieldsPanel.add(enrolmentField);
+		fieldsPanel.add(yearOfStudyLabel);
+		fieldsPanel.add(yearOfStudyField);
 		fieldsPanel.add(statusLabel);
 		fieldsPanel.add(statusField);
-		
 		
 		mainPanel.setBorder(new EmptyBorder(20,30,20,30));
 		((BorderLayout)mainPanel.getLayout()).setVgap(20);
@@ -128,13 +144,217 @@ public class AddStudentsPanel extends JDialog {
 	
 		cancelButton.addActionListener( e -> { this.dispose(); });
 		
+		// lost focus listeners to check if its time to enable the button
+		nameField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		lastnameField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		dateobField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+						AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});		
+		adressField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		phoneField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		emailField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		indexField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		enrolmentField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+								emailField.getText(), indexField.getText(), enrolmentField.getText());
+						
+						errLabel.setText(text);
+						
+						if(text.equalsIgnoreCase("Sve je dobro")) {
+							acceptButton.setEnabled(true);
+						}
+						else {
+							acceptButton.setEnabled(false);
+						}
+						
+			}
+			
+		});
+		
+		acceptButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+				con.addStudentToData();
+				dispose();
+			}
+			
+		});
 		
 		
+		mainPanel.add(errLabel, BorderLayout.NORTH);
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);
 
 		this.setVisible(true);
 	}
-	
 }
