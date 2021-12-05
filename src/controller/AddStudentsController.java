@@ -92,7 +92,7 @@ public class AddStudentsController {
 		}
 		
 		DataClass data = DataClass.getInstance();
-		List<Student> listStudent = data.getStudentListData();
+		ArrayList<Student> listStudent = data.getStudentListData();
 		if(listStudent != null) {
 			for(Student s : listStudent) {
 				if(index.equalsIgnoreCase(s.getIndex())) {

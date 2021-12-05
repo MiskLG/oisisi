@@ -123,7 +123,6 @@ public class AddStudentsPanel extends JDialog {
 		((GridLayout)fieldsPanel.getLayout()).setVgap(15);
 		((GridLayout)fieldsPanel.getLayout()).setHgap(15);
 		
-		indexField.setPreferredSize(new Dimension(15,100));
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
@@ -154,17 +153,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -178,17 +177,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -200,19 +199,19 @@ public class AddStudentsPanel extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-						AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -226,17 +225,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -250,17 +249,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -274,17 +273,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -298,17 +297,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
@@ -322,17 +321,17 @@ public class AddStudentsPanel extends JDialog {
 			public void focusLost(FocusEvent e) {
 				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-						String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-								emailField.getText(), indexField.getText(), enrolmentField.getText());
-						
-						errLabel.setText(text);
-						
-						if(text.equalsIgnoreCase("Sve je dobro")) {
-							acceptButton.setEnabled(true);
-						}
-						else {
-							acceptButton.setEnabled(false);
-						}
+				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText());
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
 						
 			}
 			
