@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,11 +27,8 @@ public class Student {
 	private Status 	status;
 	private double 	averageGrade;
 	
-	private List<UnfinishedSubjects> 	listUnfinished;
-	private List<Grade> 				listPassed;
-	
-	
-	
+	private ArrayList<UnfinishedSubjects> 	listUnfinished 	= new ArrayList<UnfinishedSubjects>();
+	private ArrayList<Grade> 				listPassed		= new ArrayList<Grade>();
 	
 	
 	
@@ -47,7 +45,7 @@ public class Student {
 		this.enrolmentYear = enrolmentYear;
 		this.yearOfStudy = yearOfStudy;
 		
-		if(status.compareToIgnoreCase("B") == 0) {
+		if(status.equalsIgnoreCase("B")) {
 			this.status = Status.B;
 		}
 		else {
@@ -60,6 +58,28 @@ public class Student {
 		loadPassed();
 		
 	}
+	
+	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
+			String index, int enrolmentYear, int yearOfStudy, int status) {
+		
+		this.lastname = lastname;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.adress = adress;
+		this.phone = phone;
+		this.email = email;
+		this.index = index;
+		this.enrolmentYear = enrolmentYear;
+		this.yearOfStudy = yearOfStudy;
+		
+		if(status == 0) {
+			this.status = Status.B;
+		}
+		else {
+			this.status = Status.S;
+		}
+		
+	}
 
 	private void loadUnfinished() {	
 		try {
@@ -69,7 +89,7 @@ public class Student {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[1].equals(getIndex())) {
 					UnfinishedSubjects us = new UnfinishedSubjects(data[0],data[1]);
@@ -96,7 +116,7 @@ public class Student {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[1].equals(getIndex())) {
 					Grade o = new Grade(data[0],data[1],Integer.parseInt(data[2]),new Date(data[3]));
@@ -216,12 +236,17 @@ public class Student {
 		this.yearOfStudy = yearOfStudy;
 	}
 
-	public Status getStatus() {
-		return status;
+	public String getStatus() {
+		return status.toString();
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus(int status) {
+		if(status == 0) {
+			this.status = Status.B;
+		}
+		else {
+			this.status = Status.S;
+		}
 	}
 
 	public double getAverageGrade() {
@@ -232,25 +257,25 @@ public class Student {
 		this.averageGrade = averageGrade;
 	}
 
-	public List<UnfinishedSubjects> getListUnfinished() {
+	public ArrayList<UnfinishedSubjects> getListUnfinished() {
 		return listUnfinished;
 	}
 
-	public void setListUnfinished(List<UnfinishedSubjects> listUnfinished) {
+	public void setListUnfinished(ArrayList<UnfinishedSubjects> listUnfinished) {
 		this.listUnfinished = listUnfinished;
 	}
 
-	public List<Grade> getListPassed() {
+	public ArrayList<Grade> getListPassed() {
 		return listPassed;
 	}
 
-	public void setListPassed(List<Grade> listPassed) {
+	public void setListPassed(ArrayList<Grade> listPassed) {
 		this.listPassed = listPassed;
 	}
 
 	@Override
 	public String toString() {
-		String splitter = "*\\";
+		String splitter = "*/";
 		return lastname + splitter +  name+ splitter + dateOfBirth.toString() + splitter + adress.toString() + 
 				splitter + phone+ splitter + email + splitter + index+ splitter + enrolmentYear+ splitter +
 				yearOfStudy + splitter + status.toString() + splitter + averageGrade;

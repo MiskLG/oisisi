@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,16 +19,16 @@ import model.UnfinishedSubjects;
 public class DataClass {
 	
 	private String 	professorsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "professors.txt";
-	private String 	chairsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "chairs.txt";
+	private String 	chairsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "chair.txt";
 	private String 	studentsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "students.txt";
 	private String 	subjectsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "subjects.txt";
 	
 	private static DataClass dataClass = null;
 	
-	private List<Chair> chairListData;
-	private List<Professor> professorListData;
-	private List<Student> studentListData;
-	private List<Subject> subjectListData;
+	private ArrayList<Chair> chairListData = new ArrayList<Chair>();
+	private ArrayList<Professor> professorListData = new ArrayList<Professor>();
+	private ArrayList<Student> studentListData = new ArrayList<Student>();
+	private ArrayList<Subject> subjectListData = new ArrayList<Subject>();
 	
 	private DataClass() {
 		// loading from database
@@ -130,7 +131,7 @@ public class DataClass {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				Professor prof = new Professor(data[0], data[1], new Date(data[2]), new Adress( data[3], data[4], data[5], data[6]), data[7], data[8],
 						  new Adress( data[9], data[10], data[11], data[12]),data[13],data[14], Integer.parseInt(data[15]));
@@ -153,7 +154,7 @@ public class DataClass {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				Chair chair = new Chair(data[0], data[1], data[2]);
 						
@@ -174,7 +175,8 @@ public class DataClass {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
+				System.out.println(dataLine);
 				Student st = new Student(data[0], data[1], new Date(data[2]), new Adress(data[3], data[4], data[5], data[6]), data[7], data[8], data[9], 
 						Integer.parseInt(data[10]), Integer.parseInt(data[11]), data[12], Double.parseDouble(data[13]));
 				
@@ -195,7 +197,7 @@ public class DataClass {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				Subject sub = new Subject(data[0], data[1], data[2], Integer.parseInt(data[3]), data[4], Integer.parseInt(data[5]));
 				
@@ -209,39 +211,41 @@ public class DataClass {
 			e.printStackTrace();
 		}
 	}
-	
 
-	public List<Chair> getChairListData() {
+	public ArrayList<Chair> getChairListData() {
 		return chairListData;
 	}
 
-	public void setChairListData(List<Chair> chairListData) {
+	public void setChairListData(ArrayList<Chair> chairListData) {
 		this.chairListData = chairListData;
 	}
 
-	public List<Professor> getProfessorListData() {
+	public ArrayList<Professor> getProfessorListData() {
 		return professorListData;
 	}
 
-	public void setProfessorListData(List<Professor> professorListData) {
+	public void setProfessorListData(ArrayList<Professor> professorListData) {
 		this.professorListData = professorListData;
 	}
 
-	public List<Student> getStudentListData() {
+	public ArrayList<Student> getStudentListData() {
 		return studentListData;
 	}
 
-	public void setStudentListData(List<Student> studentListData) {
+	public void setStudentListData(ArrayList<Student> studentListData) {
 		this.studentListData = studentListData;
 	}
 
-	public List<Subject> getSubjectListData() {
+	public ArrayList<Subject> getSubjectListData() {
 		return subjectListData;
 	}
 
-	public void setSubjectListData(List<Subject> subjectListData) {
+	public void setSubjectListData(ArrayList<Subject> subjectListData) {
 		this.subjectListData = subjectListData;
 	}
+	
+
+	
 	
 	
 	

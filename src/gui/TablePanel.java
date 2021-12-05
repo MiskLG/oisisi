@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,8 +14,17 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import main.DataClass;
+import model.Professor;
+import model.Student;
+import model.Subject;
+
 
 public class TablePanel extends JTabbedPane {
+	
+	private JTable studentsTable;
+	private JTable professorsTable; 
+	private JTable subjectsTable;
 	
 	public TablePanel() {
 		
@@ -29,7 +39,7 @@ public class TablePanel extends JTabbedPane {
 			}
 		};
 		studentModel.setColumnIdentifiers(colHeadingsStudent);
-		JTable studentsTable = new JTable(studentModel) {
+		studentsTable = new JTable(studentModel) {
 			// taken from https://stackhowto.com/how-to-alternate-row-color-of-jtable-in-java/
 			public Component prepareRenderer(TableCellRenderer renderer, 
 		         int row, int column) 
@@ -57,7 +67,7 @@ public class TablePanel extends JTabbedPane {
 			}
 		};
 		professorModel.setColumnIdentifiers(colHeadingsProfessor);
-		JTable professorsTable = new JTable(professorModel) {
+		professorsTable = new JTable(professorModel) {
 			// taken from https://stackhowto.com/how-to-alternate-row-color-of-jtable-in-java/
 			public Component prepareRenderer(TableCellRenderer renderer, 
 		         int row, int column) 
@@ -85,7 +95,7 @@ public class TablePanel extends JTabbedPane {
 			}
 		};
 		subjectModel.setColumnIdentifiers(colHeadingsSubjects);
-		JTable subjectsTable = new JTable(subjectModel) {
+		subjectsTable = new JTable(subjectModel) {
 			// taken from https://stackhowto.com/how-to-alternate-row-color-of-jtable-in-java/
 			public Component prepareRenderer(TableCellRenderer renderer, 
 		         int row, int column) 
@@ -124,34 +134,48 @@ public class TablePanel extends JTabbedPane {
 		
 		this.add("Studenti",studentsTablePanel);
 		this.add("Profesori",professorsTablePanel);
-		this.add("Predmeti",subjectsTablePanel);
-
+		this.add("Predmeti",subjectsTablePanel);	
 		
-		// placeholders
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		studentModel.addRow(colHeadingsStudent);
-		
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		professorModel.addRow(colHeadingsProfessor);
-		
-		subjectModel.addRow(colHeadingsSubjects);
-		subjectModel.addRow(colHeadingsSubjects);
-		subjectModel.addRow(colHeadingsSubjects);
-		subjectModel.addRow(colHeadingsSubjects);
-		subjectModel.addRow(colHeadingsSubjects);
-		subjectModel.addRow(colHeadingsSubjects);
-		
-		
+		updateTable();
 
 	}
+	
+	public void updateTable() {
+		DataClass dc = DataClass.getInstance();
+		
+		ArrayList<Student> list1 = dc.getStudentListData();
+		ArrayList<Professor> list2 = dc.getProfessorListData();
+		ArrayList<Subject> list3 = dc.getSubjectListData();
+		
+		
+		while(studentsTable.getModel().getRowCount() > 0) {
+			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
+		}
+		while(professorsTable.getModel().getRowCount() > 0) {
+			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
+		}
+		while(subjectsTable.getModel().getRowCount() > 0) {
+			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
+		}
+		
+		
+		for(Student st: list1) {
+			String[] studentData = {st.getIndex(),st.getName(),st.getLastname(),Integer.toString(st.getYearOfStudy()), st.getStatus(), Double.toString(st.getAverageGrade())} ;
+			((DefaultTableModel) studentsTable.getModel()).addRow(studentData);
+		}
+		
+		for(Professor pr: list2) {
+			String[] professorData = {pr.getName(), pr.getLastname(), pr.getTitle(), pr.getEmail()};
+			((DefaultTableModel) professorsTable.getModel()).addRow(professorData);
+		}
+		
+		for(Subject sb: list3) {
+			String[] subjectData = {sb.getSubjectCode(),sb.getTitle(),Integer.toString(sb.getNumberECTS()),Integer.toString(sb.getYearOfStudy()),sb.getSemester(),};
+			((DefaultTableModel) subjectsTable.getModel()).addRow(subjectData);
+		}
+		
+		
+		
+	}
+	
 }

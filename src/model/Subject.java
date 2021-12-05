@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,8 +20,8 @@ public class Subject {
 	private String 		subjectProfessor;
 	private int 		numberECTS;
 	
-	private List<String> 	listUnfinishedStudents;
-	private List<String> 	listPassedStudents;
+	private ArrayList<String> 	listUnfinishedStudents	= new ArrayList<String>();
+	private ArrayList<String> 	listPassedStudents 		= new ArrayList<String>();
 	
 	
 	
@@ -55,7 +56,7 @@ public class Subject {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[0].equals(getSubjectCode())) {
 					listUnfinishedStudents.add(data[1]);
@@ -83,7 +84,7 @@ public class Subject {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[0].equals(getSubjectCode())) {
 					listPassedStudents.add(data[1]);
@@ -122,13 +123,18 @@ public class Subject {
 	}
 
 
-	public Semester getSemester() {
-		return semester;
+	public String getSemester() {
+		return semester.toString();
 	}
 
 
-	public void setSemester(Semester semester) {
-		this.semester = semester;
+	public void setSemester(int semester) {
+		if(semester == 0) {
+			this.semester = Semester.WINTER;
+		}
+		else {
+			this.semester = Semester.SUMMER;
+		}
 	}
 
 
@@ -161,30 +167,32 @@ public class Subject {
 		this.numberECTS = numberECTS;
 	}
 
+	
 
-	public List<String> getListUnpassedStudents() {
-		return getListUnpassedStudents();
+
+	public ArrayList<String> getListUnfinishedStudents() {
+		return listUnfinishedStudents;
 	}
 
 
-	public void setListUnpassedStudents(List<String> listUnpassedStudents) {
-		this.listUnfinishedStudents = listUnpassedStudents;
+	public void setListUnfinishedStudents(ArrayList<String> listUnfinishedStudents) {
+		this.listUnfinishedStudents = listUnfinishedStudents;
 	}
 
 
-	public List<String> getListPassedStudents() {
+	public ArrayList<String> getListPassedStudents() {
 		return listPassedStudents;
 	}
 
 
-	public void setListPassedStudents(List<String> listPassedStudents) {
+	public void setListPassedStudents(ArrayList<String> listPassedStudents) {
 		this.listPassedStudents = listPassedStudents;
 	}
 
 
 	@Override
 	public String toString() {
-		String splitter = "*\\";
+		String splitter = "*/";
 		return subjectCode + splitter + title + splitter + semester + splitter + yearOfStudy + splitter + subjectProfessor + splitter +  numberECTS;
 	}
 }

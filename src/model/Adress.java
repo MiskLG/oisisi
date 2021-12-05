@@ -16,6 +16,17 @@ public class Adress {
 			this.country = country;
 		}
 		
+		public Adress(String data) {
+			
+			String[] dataArray = data.split(",");	
+			
+			this.country = dataArray[3];
+			this.city = dataArray[2];
+			this.number = dataArray[1];
+			this.street = dataArray[0];
+			
+		}
+		
 	
 		public String getStreet() {
 			return street;
@@ -56,7 +67,7 @@ public class Adress {
 		// splitter is being used as text file database splitter
 		@Override
 		public String toString() {
-			String splitter = "*\\";
+			String splitter = "*/";
 			return street + splitter + number + splitter + city + splitter + country;
 		}
 		

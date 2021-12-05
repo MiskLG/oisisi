@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.BorderFactory;
@@ -13,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
 
 public class ToolBar extends JPanel {
 	
@@ -27,6 +30,9 @@ public class ToolBar extends JPanel {
 	private JButton buttonDelete = new JButton();
 	private JButton buttonSearch = new JButton();
 	
+	private enum OpenedTab {STUDENT, PROFESSOR, SUBJECT};
+	private OpenedTab current = OpenedTab.STUDENT;
+	
 	public ToolBar() {
 		
 		this.setLayout(new BorderLayout(0,0));
@@ -39,8 +45,6 @@ public class ToolBar extends JPanel {
 				
 		((GridLayout)toolbarLeft.getLayout()).setVgap(0);
 		((GridLayout)toolbarLeft.getLayout()).setHgap(15);
-		
-		
 		
 		
 			
@@ -77,6 +81,26 @@ public class ToolBar extends JPanel {
 		buttonNew.setToolTipText("Dodavanje novog studenta");
 		buttonEdit.setToolTipText("Promena izabranog studenta");
 		buttonDelete.setToolTipText("Brisanje izabranog studenta");
+		
+		// adding action listeners
+		buttonNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					break;
+				case STUDENT:
+					AddStudentsPanel panel = new AddStudentsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+					((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;
+				}
+							
+			}		
+		});
 		
 		
 		// pushing buttons to panel
@@ -141,6 +165,21 @@ public class ToolBar extends JPanel {
 			buttonSearch.setToolTipText("Pretraga predmeta");
 		}
 		return;
+	}
+	public void setIndicator(int number) {
+		switch(number) {
+			case 0:
+				this.current = OpenedTab.STUDENT;
+				return;
+			case 1:
+				this.current = OpenedTab.PROFESSOR;
+				return;
+			case 2:
+				this.current = OpenedTab.SUBJECT;
+				return;
+			default:
+				return;
+		}
 	}
 	
 }

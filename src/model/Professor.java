@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class Professor {
 	private String 	title;
 	private int 	workYears;
 	
-	private List<String> listSubjects;
+	private ArrayList<String> listSubjects = new ArrayList<String>();;
 
 
 
@@ -49,7 +50,7 @@ public class Professor {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[0].equals(getIdNumber())) {
 					listSubjects.add(data[1]);
@@ -67,7 +68,7 @@ public class Professor {
 	public void writeListSubject() {
 		 try {
 		      FileWriter writer = new FileWriter(listSubjectsFile, true);        
-		      String splitter = "*\\";
+		      String splitter = "*/";
 		      for(String s : listSubjects) {
 		    	  String toWrite = getIdNumber() + splitter + s;
 		    	  writer.write(toWrite);
@@ -161,17 +162,17 @@ public class Professor {
 		this.workYears = workYears;
 	}
 
-	public List<String> getListSubjects() {
+	public ArrayList<String> getListSubjects() {
 		return listSubjects;
 	}
 
-	public void setListSubjects(List<String> listSubjects) {
+	public void setListSubjects(ArrayList<String> listSubjects) {
 		this.listSubjects = listSubjects;
 	}
 
 	@Override
 	public String toString() {
-		String splitter = "*\\";
+		String splitter = "*/";
 		return lastname + splitter + name + splitter + dateOfBirth.toString() + splitter +  adressHome.toString() + 
 				splitter + phone + splitter + email + splitter + adressWork.toString() + splitter + idNumber + splitter + title + splitter +
 				workYears;
