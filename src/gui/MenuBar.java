@@ -13,6 +13,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import main.DataClass;
+
 public class MenuBar extends JMenuBar{
 	
 	// Icons made by https://www.flaticon.com/authors/inkubators
@@ -69,6 +71,7 @@ public class MenuBar extends JMenuBar{
 					break;
 				case STUDENT:
 					AddStudentsPanel panel = new AddStudentsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					((MainWindow) getParent().getParent().getParent()).updateTable();
 					break;
 				case SUBJECT:
 					break;
@@ -82,6 +85,15 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				((MainWindow) getParent().getParent().getParent()).dispose();	
+			}		
+		});
+		
+		// save button action listener
+		menuItemSave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DataClass dc = DataClass.getInstance();
+				dc.writeOutData();
 			}		
 		});
 		

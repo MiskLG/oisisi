@@ -71,4 +71,9 @@ public class MainWindow extends JFrame {
 		tablePanel.setSelectedIndex(index);
 		return;
 	}
+	
+	public void updateTable() {
+		tablePanel.updateTable();
+	}
+	
 }

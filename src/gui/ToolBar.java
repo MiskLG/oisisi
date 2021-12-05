@@ -91,6 +91,7 @@ public class ToolBar extends JPanel {
 					break;
 				case STUDENT:
 					AddStudentsPanel panel = new AddStudentsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+					((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
 					break;
 				case SUBJECT:
 					break;
