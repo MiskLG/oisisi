@@ -152,10 +152,10 @@ public class TablePanel extends JTabbedPane {
 			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
 		}
 		while(professorsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
+			((DefaultTableModel) professorsTable.getModel()).removeRow(0);
 		}
 		while(subjectsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
+			((DefaultTableModel) subjectsTable.getModel()).removeRow(0);
 		}
 		
 		
