@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Chair {
 	private String title;
 	private String head;
 	
-	private List<String> professorList;
+	private ArrayList<String> professorList = new ArrayList<String>();;
 	
 
 	public Chair(String chairCode, String title, String head) {
@@ -33,7 +34,7 @@ public class Chair {
 			
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("*\\");
+				String[] data = dataLine.split("[*][/]");
 				
 				if(data[1].equals(getChairCode())) {
 					professorList.add(data[0]);
@@ -51,7 +52,7 @@ public class Chair {
 	public void writeProfessorList() {
 		 try {
 		      FileWriter writer = new FileWriter(professorListFile, true);        
-		      String splitter = "*\\";
+		      String splitter = "*/";
 		      
 		      for(String p : professorList) {
 		    	  String toWrite = p + splitter + getChairCode();
@@ -90,18 +91,20 @@ public class Chair {
 		this.head = head;
 	}
 
-	public List<String> getProfessorList() {
+
+	public ArrayList<String> getProfessorList() {
 		return professorList;
 	}
 
-	public void setProfessorList(List<String> professorList) {
+
+	public void setProfessorList(ArrayList<String> professorList) {
 		this.professorList = professorList;
 	}
 
 
 	@Override
 	public String toString() {
-		String splitter = "*\\";
+		String splitter = "*/";
 		return chairCode + splitter + title + splitter + head;
 		
 	}

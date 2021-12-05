@@ -70,7 +70,7 @@ public class Grade {
 	// toString method for writing to database
 	@Override
 	public String toString() {
-		String splitter = "*\\";
+		String splitter = "*/";
 		return index + splitter + subjectCode + splitter + grade + splitter + gradingDate;
 	}
 }

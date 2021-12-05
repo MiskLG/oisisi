@@ -67,7 +67,7 @@ public class Adress {
 		// splitter is being used as text file database splitter
 		@Override
 		public String toString() {
-			String splitter = "*\\";
+			String splitter = "*/";
 			return street + splitter + number + splitter + city + splitter + country;
 		}
 		
