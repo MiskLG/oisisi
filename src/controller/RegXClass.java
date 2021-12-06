@@ -27,7 +27,7 @@ public class RegXClass {
 		// a big pattern to check kinda valid dates, still needs to go through a check for leap year	
 
 		//Pattern pattern = Pattern.compile("((((([3][0-1])|(([0]?[1-9])|([1-2][0-9])))[.]([13578]|([1][0,2])))|((([3][0])|(([0]?[1-9])|([1-2][0-9])))[.](([0]?[468])|([1][1])))) | ((([0]?[1-9])|([1-2][0-9]))[.][0]?[2]{1}))[.]((19[3-9][0-9])|(20[0-2][0-9]))");	
-		Pattern pattern = Pattern.compile("[0-9]{2}[.][0-9]{2}[.][0-9]{4}[.]");
+		Pattern pattern = Pattern.compile("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}[.]");
 		Matcher matcher = pattern.matcher(date);
 		
 		if(true ==  matcher.matches()) {

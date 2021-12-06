@@ -8,7 +8,7 @@ import model.Adress;
 import model.Date;
 import model.Student;
 
-public class AddStudentsController {
+public class StudentController {
 	
 	private String name;
 	private String lastname;
@@ -24,7 +24,7 @@ public class AddStudentsController {
 	private String err;
 	
 
-	public AddStudentsController(String name, String lastname, String date, String adress,  String phone, String email, String index,
+	public StudentController(String name, String lastname, String date, String adress,  String phone, String email, String index,
 			String year, int yearOfStudy, int status) {
 		this.err = checkData(name,lastname,date,adress,phone,email,index,year);
 		if(err.equals("Sve je dobro")) {
@@ -109,5 +109,9 @@ public class AddStudentsController {
 		
 		
 		return err;
+	}
+	
+	public String getErr() {
+		return this.err;
 	}
 }

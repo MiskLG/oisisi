@@ -176,7 +176,7 @@ public class DataClass {
 			while(reader.hasNextLine()) {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("[*][/]");
-				System.out.println(dataLine);
+
 				Student st = new Student(data[0], data[1], new Date(data[2]), new Adress(data[3], data[4], data[5], data[6]), data[7], data[8], data[9], 
 						Integer.parseInt(data[10]), Integer.parseInt(data[11]), data[12], Double.parseDouble(data[13]));
 				

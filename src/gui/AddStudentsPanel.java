@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import controller.AddStudentsController;
+import controller.StudentController;
 
 public class AddStudentsPanel extends JDialog {
 
@@ -143,204 +143,45 @@ public class AddStudentsPanel extends JDialog {
 	
 		cancelButton.addActionListener( e -> { this.dispose(); });
 		
+		FocusListener focusLostCheck = new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+				String text = con.getErr();
+				
+				errLabel.setText(text);
+				
+				if(text.equalsIgnoreCase("Sve je dobro")) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
+						
+			}
+			
+		};
+		
+		
 		// lost focus listeners to check if its time to enable the button
-		nameField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		lastnameField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		dateobField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});		
-		adressField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		phoneField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		emailField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		indexField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
-		enrolmentField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.checkData(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText());
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		});
+		nameField.addFocusListener(focusLostCheck);
+		lastnameField.addFocusListener(focusLostCheck);
+		dateobField.addFocusListener(focusLostCheck);		
+		adressField.addFocusListener(focusLostCheck);
+		phoneField.addFocusListener(focusLostCheck);
+		emailField.addFocusListener(focusLostCheck);
+		indexField.addFocusListener(focusLostCheck);
+		enrolmentField.addFocusListener(focusLostCheck);
 		
 		acceptButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddStudentsController con = new AddStudentsController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
 				con.addStudentToData();
 				dispose();
