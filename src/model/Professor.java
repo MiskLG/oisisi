@@ -67,7 +67,7 @@ public class Professor {
 
 	public void writeListSubject() {
 		 try {
-		      FileWriter writer = new FileWriter(listSubjectsFile, true);        
+		      FileWriter writer = new FileWriter(listSubjectsFile, false);        
 		      String splitter = "*/";
 		      for(String s : listSubjects) {
 		    	  String toWrite = getIdNumber() + splitter + s;

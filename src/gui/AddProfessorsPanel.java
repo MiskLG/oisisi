@@ -18,11 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.ProfessorController;
 import controller.StudentController;
 
-public class AddStudentsPanel extends JDialog {
-
-	public AddStudentsPanel(Point location, Dimension size) {
+public class AddProfessorsPanel extends JDialog {
+	
+	public AddProfessorsPanel(Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
@@ -41,7 +42,7 @@ public class AddStudentsPanel extends JDialog {
 		setLocation(locationX.intValue() , locationY.intValue() );
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje studenta");
+		this.setTitle("Dodavanje profesora");
 		
 		JLabel errLabel = new JLabel();
 		
@@ -65,8 +66,8 @@ public class AddStudentsPanel extends JDialog {
 		JTextField dateobField = new JTextField();
 		
 		
-		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
-		JTextField adressField = new JTextField();
+		JLabel adressHomeLabel = new JLabel("Adresa stanovanja*:");
+		JTextField adressHomeField = new JTextField();
 		
 		
 		JLabel phoneLabel = new JLabel("Broj telefona*:");
@@ -77,22 +78,20 @@ public class AddStudentsPanel extends JDialog {
 		JTextField emailField = new JTextField();
 		
 		
-		JLabel indexLabel = new JLabel("Broj indeksa*:");
-		JTextField indexField = new JTextField();
+		JLabel adressWorkLabel = new JLabel("Adresa kancelarije*:");
+		JTextField adressWorkField = new JTextField();
 		
 		
-		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
-		JTextField enrolmentField = new JTextField();
+		JLabel idLabel = new JLabel("Broj lične karte*:");
+		JTextField idField = new JTextField();
 		
 		
-		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
-		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
-		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
+		JLabel titleLabel = new JLabel("Zvanje*:");
+		JTextField titleField = new JTextField();
 		
 		
-		JLabel statusLabel = new JLabel("Način finansiranja*:");
-		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
-		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
+		JLabel workYearsLabel = new JLabel("Radni staž*:");
+		JTextField workYearsField = new JTextField();
 		
 		
 		// adding stuff to their place
@@ -102,27 +101,26 @@ public class AddStudentsPanel extends JDialog {
 		fieldsPanel.add(lastnameField);
 		fieldsPanel.add(dateobLabel);
 		fieldsPanel.add(dateobField);
-		fieldsPanel.add(adressLabel);
-		fieldsPanel.add(adressField);
+		fieldsPanel.add(adressHomeLabel);
+		fieldsPanel.add(adressHomeField);
 		fieldsPanel.add(phoneLabel);
 		fieldsPanel.add(phoneField);
 		fieldsPanel.add(emailLabel);
 		fieldsPanel.add(emailField);
-		fieldsPanel.add(indexLabel);
-		fieldsPanel.add(indexField);
-		fieldsPanel.add(enrolmentLabel);
-		fieldsPanel.add(enrolmentField);
-		fieldsPanel.add(yearOfStudyLabel);
-		fieldsPanel.add(yearOfStudyField);
-		fieldsPanel.add(statusLabel);
-		fieldsPanel.add(statusField);
+		fieldsPanel.add(adressWorkLabel);
+		fieldsPanel.add(adressWorkField);
+		fieldsPanel.add(idLabel);
+		fieldsPanel.add(idField);
+		fieldsPanel.add(titleLabel);
+		fieldsPanel.add(titleField);
+		fieldsPanel.add(workYearsLabel);
+		fieldsPanel.add(workYearsField);
 		
 		mainPanel.setBorder(new EmptyBorder(20,30,20,30));
 		((BorderLayout)mainPanel.getLayout()).setVgap(20);
 		
 		((GridLayout)fieldsPanel.getLayout()).setVgap(15);
 		((GridLayout)fieldsPanel.getLayout()).setHgap(15);
-		
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
@@ -143,6 +141,8 @@ public class AddStudentsPanel extends JDialog {
 	
 		cancelButton.addActionListener( e -> { this.dispose(); });
 		
+		
+		// main check for focus lost 
 		FocusListener focusLostCheck = new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {				
@@ -150,8 +150,8 @@ public class AddStudentsPanel extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+				ProfessorController con = new ProfessorController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressHomeField.getText(), phoneField.getText(),
+						emailField.getText(), adressWorkField.getText(), idField.getText(), titleField.getText(), workYearsField.getText());
 				String text = con.getErr();
 				
 				errLabel.setText(text);
@@ -167,23 +167,24 @@ public class AddStudentsPanel extends JDialog {
 			
 		};
 		
-		
 		// lost focus listeners to check if its time to enable the button
 		nameField.addFocusListener(focusLostCheck);
 		lastnameField.addFocusListener(focusLostCheck);
 		dateobField.addFocusListener(focusLostCheck);		
-		adressField.addFocusListener(focusLostCheck);
+		adressHomeField.addFocusListener(focusLostCheck);
 		phoneField.addFocusListener(focusLostCheck);
 		emailField.addFocusListener(focusLostCheck);
-		indexField.addFocusListener(focusLostCheck);
-		enrolmentField.addFocusListener(focusLostCheck);
+		adressWorkField.addFocusListener(focusLostCheck);
+		idField.addFocusListener(focusLostCheck);
+		titleField.addFocusListener(focusLostCheck);
+		workYearsField.addFocusListener(focusLostCheck);
 		
 		acceptButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				con.addStudentToData();
+				ProfessorController con = new ProfessorController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressHomeField.getText(), phoneField.getText(),
+						emailField.getText(), adressWorkField.getText(), idField.getText(), titleField.getText(), workYearsField.getText());
+				con.addProfessorToData();
 				dispose();
 			}
 			
@@ -194,7 +195,7 @@ public class AddStudentsPanel extends JDialog {
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);
-
+		
 		this.setVisible(true);
 	}
 }
