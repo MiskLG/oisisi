@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 import main.DataClass;
 import model.Professor;
@@ -59,13 +60,15 @@ public class TablePanel extends JTabbedPane {
 		studentsTable.setRowHeight(24);
 		
 		// Setting up columns - professors 
-		String[] colHeadingsProfessor = {"Ime","Prezime","Zvanje","E-mail Adresa"};
+		String[] colHeadingsProfessor = {"Ime","Prezime","Zvanje","E-mail Adresa","PIB"};
 		DefaultTableModel professorModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
+			
 		};
+		
 		professorModel.setColumnIdentifiers(colHeadingsProfessor);
 		professorsTable = new JTable(professorModel) {
 			// taken from https://stackhowto.com/how-to-alternate-row-color-of-jtable-in-java/
@@ -114,8 +117,10 @@ public class TablePanel extends JTabbedPane {
 		subjectsTable.setBorder(new LineBorder(Color.black, 1));
 		subjectsTable.setRowHeight(24);
 		
+		// making of the invisible row, useful for getting id from professor table
+		TableColumnModel tcm = professorsTable.getColumnModel();
+		tcm.removeColumn( tcm.getColumn(4));
 		
-		// Load data from database TODO
 		
 		//
 		studentsTable.setAutoCreateRowSorter(true);
@@ -165,16 +170,17 @@ public class TablePanel extends JTabbedPane {
 		}
 		
 		for(Professor pr: list2) {
-			String[] professorData = {pr.getName(), pr.getLastname(), pr.getTitle(), pr.getEmail()};
+			String[] professorData = {pr.getName(), pr.getLastname(), pr.getTitle(), pr.getEmail(), pr.getIdNumber()};
 			((DefaultTableModel) professorsTable.getModel()).addRow(professorData);
+			System.out.println(pr.getIdNumber());
 		}
 		
 		for(Subject sb: list3) {
 			String[] subjectData = {sb.getSubjectCode(),sb.getTitle(),Integer.toString(sb.getNumberECTS()),Integer.toString(sb.getYearOfStudy()),sb.getSemester(),};
 			((DefaultTableModel) subjectsTable.getModel()).addRow(subjectData);
 		}
-		
-		
+			
+			
 		
 	}
 	
