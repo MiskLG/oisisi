@@ -61,7 +61,12 @@ public class Subject {
 
 
 	public String getSemester() {
-		return semester.toString();
+		if(this.semester == Semester.WINTER) {
+			return "Zimski";
+		}
+		else {
+			return "Letnji";
+		}
 	}
 
 

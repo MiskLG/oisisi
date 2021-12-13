@@ -60,7 +60,7 @@ public class TablePanel extends JTabbedPane {
 		studentsTable.setRowHeight(24);
 		
 		// Setting up columns - professors 
-		String[] colHeadingsProfessor = {"Ime","Prezime","Zvanje","E-mail Adresa","PIB"};
+		String[] colHeadingsProfessor = {"Prezime","Ime","Zvanje","E-mail Adresa","PIB"};
 		DefaultTableModel professorModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
