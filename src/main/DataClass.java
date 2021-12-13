@@ -1,5 +1,6 @@
 package main;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -67,11 +68,13 @@ public class DataClass {
 	// methods to write to files
 	private void writeOutProfessors() {
 		 try {
-		      FileWriter writer = new FileWriter(professorsFile, false);        
+		      FileWriter filew = new FileWriter(professorsFile, false);
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(Professor pr : professorListData) {
 		    	  writeListSubjects(pr);
 		    	  writer.write(pr.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -83,11 +86,13 @@ public class DataClass {
 	}
 	private void writeOutChairs() {
 		 try {
-		      FileWriter writer = new FileWriter(chairsFile, false);        
+		      FileWriter filew = new FileWriter(chairsFile, false);       
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(Chair ch : chairListData) {
 		    	  writeProfessorList(ch);
 		    	  writer.write(ch.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -99,12 +104,14 @@ public class DataClass {
 	}
 	private void writeOutStudents() {
 		 try {
-		      FileWriter writer = new FileWriter(studentsFile, false);        
+		      FileWriter filew = new FileWriter(studentsFile, false);       
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(Student st : studentListData) {
 		    	  writePassedSubjects(st);
 		    	  writeUnfinishedSubjects(st);
 		    	  writer.write(st.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -116,10 +123,12 @@ public class DataClass {
 	}
 	private void writeOutSubjects() {
 		 try {
-		      FileWriter writer = new FileWriter(subjectsFile, false);        
+		      FileWriter filew = new FileWriter(subjectsFile, false);
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(Subject sb : subjectListData) {
 		    	  writer.write(sb.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -267,7 +276,8 @@ public class DataClass {
 	// less memory load
 	private ArrayList<String> loadPassedStudents(Subject sub) {
 		ArrayList<String> 	listPassedStudents 		= new ArrayList<String>();
-		try {		
+		try {
+			
 			File file = new File(passedStudentsFile);
 			Scanner reader = new Scanner(file);
 			
@@ -346,10 +356,12 @@ public class DataClass {
 	
 	private void writeUnfinishedSubjects(Student st) {
 		 try {
-		      FileWriter writer = new FileWriter(unfinishedFile, false);        
+			 FileWriter filew = new FileWriter(unfinishedFile, false);
+			 BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(UnfinishedSubjects us : st.getListUnfinished()) {
 		    	  writer.write(us.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -361,10 +373,12 @@ public class DataClass {
 	
 	private void writePassedSubjects(Student st) {
 		 try {
-		      FileWriter writer = new FileWriter(passedFile, false);        
+		      FileWriter filew = new FileWriter(passedFile, false);
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      
 		      for(Grade o : st.getListPassed()) {
 		    	  writer.write(o.toString());
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -401,11 +415,13 @@ public class DataClass {
 
 	private void writeListSubjects(Professor pr) {
 		 try {
-		      FileWriter writer = new FileWriter(listSubjectsFile, false);        
+		      FileWriter filew = new FileWriter(listSubjectsFile, false);
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      String splitter = "*/";
 		      for(String s : pr.getListSubjects()) {
 		    	  String toWrite = pr.getIdNumber() + splitter + s;
 		    	  writer.write(toWrite);
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
@@ -443,12 +459,14 @@ public class DataClass {
 
 	private void writeProfessorList(Chair ch) {
 		 try {
-		      FileWriter writer = new FileWriter(professorListFile, false);        
+		      FileWriter filew = new FileWriter(professorListFile, false);   
+		      BufferedWriter writer = new BufferedWriter(filew);
 		      String splitter = "*/";
 		      
 		      for(String p : ch.getProfessorList()) {
 		    	  String toWrite = p + splitter + ch.getChairCode();
 		    	  writer.write(toWrite);
+		    	  writer.newLine();
 		      }
 		      writer.close();
 		      
