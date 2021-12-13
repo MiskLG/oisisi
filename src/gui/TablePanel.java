@@ -170,7 +170,7 @@ public class TablePanel extends JTabbedPane {
 		}
 		
 		for(Professor pr: list2) {
-			String[] professorData = {pr.getName(), pr.getLastname(), pr.getTitle(), pr.getEmail(), pr.getIdNumber()};
+			String[] professorData = {pr.getLastname(), pr.getName(), pr.getTitle(), pr.getEmail(), pr.getIdNumber()};
 			((DefaultTableModel) professorsTable.getModel()).addRow(professorData);
 			System.out.println(pr.getIdNumber());
 		}
