@@ -22,6 +22,8 @@ import controller.StudentController;
 
 public class AddStudentsPanel extends JDialog {
 
+	private boolean changesMade = false;
+	
 	public AddStudentsPanel(Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
@@ -184,6 +186,7 @@ public class AddStudentsPanel extends JDialog {
 				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
 				con.addStudentToData();
+				changesMade = true;
 				dispose();
 			}
 			
@@ -196,5 +199,9 @@ public class AddStudentsPanel extends JDialog {
 		this.setContentPane(mainPanel);
 
 		this.setVisible(true);
+	}
+	
+	public boolean getChangesMade() {
+		return changesMade;
 	}
 }
