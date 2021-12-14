@@ -4,15 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import main.DataClass;
+
 public class MainWindow extends JFrame {
 
 	private TablePanel tablePanel;
+	private boolean changesMade = false;
 	
 	public MainWindow() {
 		
@@ -31,7 +39,7 @@ public class MainWindow extends JFrame {
 		
 		setTitle("Studenstka služba");
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
 
 		MenuBar menuBar = new MenuBar();
 		this.setJMenuBar(menuBar);
@@ -64,7 +72,20 @@ public class MainWindow extends JFrame {
 		contentPanel.add(tablePanel,BorderLayout.CENTER);
 		
 		
+		// checking if changes were made and displaying option to save them if they were
+		// closing this window does nothing, pressing OK saves, pressing cancel exits program
+		this.addWindowListener(new WindowAdapter() {
+		      public void windowClosing(WindowEvent we) {
+		    	checkDisposability();
+		      }
+		      });
+		
+		
 		setVisible(true);
+	}
+	
+	public void setChangesMade(boolean changes){
+		this.changesMade = changes;
 	}
 	
 	public void changeTab(int index) {
@@ -74,6 +95,28 @@ public class MainWindow extends JFrame {
 	
 	public void updateTable() {
 		tablePanel.updateTable();
+	}
+	
+	// popup window for menubar close button
+	public void checkDisposability() {
+		if(changesMade == true) {
+    		String[] options = {"Da","Ne"};
+    		Icon emptyIcon = new ImageIcon("");
+    		int result = JOptionPane.showOptionDialog((getContentPane()), 
+    				"Da li želite da ih sačuvate?", "Podaci nisu sačuvani!",
+		            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
+		        if (result == JOptionPane.YES_OPTION) {				        	
+		        	DataClass.getInstance().writeOutData();
+		        	this.dispose();
+		        }
+		        else if (result == JOptionPane.NO_OPTION) {
+		        	this.dispose();
+		        }
+		}
+		else {
+			this.dispose();
+		}
+    	
 	}
 	
 }

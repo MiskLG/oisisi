@@ -89,11 +89,17 @@ public class ToolBar extends JPanel {
 				switch(current) {
 				case PROFESSOR:
 					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-					((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					if(panelPr.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}
 					break;
 				case STUDENT:
 					AddStudentsPanel panelSt = new AddStudentsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-					((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					if(panelSt.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}
 					break;
 				case SUBJECT:
 					break;

@@ -23,6 +23,8 @@ import controller.StudentController;
 
 public class AddProfessorsPanel extends JDialog {
 	
+	private boolean changesMade = false;
+	
 	public AddProfessorsPanel(Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
@@ -185,6 +187,7 @@ public class AddProfessorsPanel extends JDialog {
 				ProfessorController con = new ProfessorController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressHomeField.getText(), phoneField.getText(),
 						emailField.getText(), adressWorkField.getText(), idField.getText(), titleField.getText(), workYearsField.getText());
 				con.addProfessorToData();
+				changesMade = true;
 				dispose();
 			}
 			
@@ -198,4 +201,9 @@ public class AddProfessorsPanel extends JDialog {
 		
 		this.setVisible(true);
 	}
+	
+	public boolean getChangesMade() {
+		return changesMade;
+	}
+	
 }

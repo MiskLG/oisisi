@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -69,11 +70,17 @@ public class MenuBar extends JMenuBar{
 				switch(current) {
 				case PROFESSOR:
 					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-					((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					if(panelPr.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}		
 					break;
 				case STUDENT:
 					AddStudentsPanel panelSt = new AddStudentsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
-					((MainWindow) getParent().getParent().getParent()).updateTable();
+					if(panelSt.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}
 					break;
 				case SUBJECT:
 					break;
@@ -86,7 +93,7 @@ public class MenuBar extends JMenuBar{
 		menuItemClose.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((MainWindow) getParent().getParent().getParent()).dispose();	
+				((MainWindow) getParent().getParent().getParent()).checkDisposability();
 			}		
 		});
 		
@@ -94,8 +101,8 @@ public class MenuBar extends JMenuBar{
 		menuItemSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DataClass dc = DataClass.getInstance();
-				dc.writeOutData();
+				DataClass.getInstance().writeOutData();
+				((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(false);
 			}		
 		});
 		
