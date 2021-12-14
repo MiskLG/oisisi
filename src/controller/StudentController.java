@@ -52,7 +52,7 @@ public class StudentController {
 			
 		
 		ArrayList<Student> listStudent = data.getStudentListData();
-		listStudent.add(new Student(this.name, this.lastname, this.date, this.adress, this.phone, this.email, this.index, this.year, this.yearOfStudy+1, this.status));
+		listStudent.add(new Student(this.lastname, this.name, this.date, this.adress, this.phone, this.email, this.index, this.year, this.yearOfStudy+1, this.status));
 		data.setStudentListData(listStudent);
 		
 		return err;
@@ -102,7 +102,7 @@ public class StudentController {
 		}
 		
 		if(false == RegXClass.checkYear(year)) {
-			err = "Loše unesena godina studija";
+			err = "Loše unesena godina upisa";
 			return err;
 		}
 		

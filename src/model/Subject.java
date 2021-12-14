@@ -1,17 +1,10 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 enum Semester{WINTER,SUMMER};
 
 public class Subject {
-
-	private String 		passedStudentsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentGrade.txt";
-	private String 		unfinishedStudentsFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentUnfinished.txt";
 	
 	private String 		subjectCode;
 	private String 		title;
@@ -40,65 +33,9 @@ public class Subject {
 		this.yearOfStudy = yearOfStudy;
 		this.subjectProfessor = subjectProfessor;
 		this.numberECTS = numberECTS;
-		
-		loadPassedStudents();
-		loadUnfinishedStudents();
 	}
 	
 	
-	// loading students that haven't passed the subject yet
-	// less memory load
-	private void loadUnfinishedStudents() {	
-		try {
-			
-			File file = new File(unfinishedStudentsFile);
-			Scanner reader = new Scanner(file);
-			
-			while(reader.hasNextLine()) {
-				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("[*][/]");
-				
-				if(data[0].equals(getSubjectCode())) {
-					listUnfinishedStudents.add(data[1]);
-				}
-			}
-			
-			reader.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("ERROR kod citanja iz fajla");
-			e.printStackTrace();
-		}
-		
-		return;
-	}
-
-
-	// loading students that have passed the subject
-	// less memory load
-	private void loadPassedStudents() {
-		try {
-			
-			File file = new File(passedStudentsFile);
-			Scanner reader = new Scanner(file);
-			
-			while(reader.hasNextLine()) {
-				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("[*][/]");
-				
-				if(data[0].equals(getSubjectCode())) {
-					listPassedStudents.add(data[1]);
-				}
-			}
-			
-			reader.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("ERROR kod citanja iz fajla");
-			e.printStackTrace();
-		}
-		
-	}
 
 	
 
@@ -124,7 +61,12 @@ public class Subject {
 
 
 	public String getSemester() {
-		return semester.toString();
+		if(this.semester == Semester.WINTER) {
+			return "Zimski";
+		}
+		else {
+			return "Letnji";
+		}
 	}
 
 

@@ -66,7 +66,7 @@ public class RegXClass {
 	
 	static boolean checkEmail(String email) {
 		
-		Pattern pattern = Pattern.compile("[a-zA-Z0-9,.+]+@([a-zA-Z0-9]+[.])+[a-zA-Z0-9]");
+		Pattern pattern = Pattern.compile("[a-zA-Z0-9,.+]+@([a-zA-Z0-9]+[.])+[a-zA-Z0-9]+");
 		Matcher matcher = pattern.matcher(email);
 		
 		return matcher.matches();
@@ -89,7 +89,10 @@ public class RegXClass {
 	
 	static boolean checkTitle(String title) {
 		// for now same as the name, dont know any limiters
-		return checkName(title);
+		Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*",Pattern.UNICODE_CHARACTER_CLASS);	
+		Matcher matcher = pattern.matcher(title);
+
+		return matcher.matches();
 	}
 	
 	static boolean checkWorkYears(String years) {

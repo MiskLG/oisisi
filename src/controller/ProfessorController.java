@@ -52,7 +52,7 @@ public class ProfessorController {
 			
 		
 		ArrayList<Professor> listProfessor = data.getProfessorListData();
-		listProfessor.add(new Professor(this.name, this.lastname, this.date, this.adressHome, this.phone, this.email, this.adressWork, this.id, this.title, this.workYears));
+		listProfessor.add(new Professor(this.lastname, this.name, this.date, this.adressHome, this.phone, this.email, this.adressWork, this.id, this.title, this.workYears));
 		data.setProfessorListData(listProfessor);
 		
 		return err;

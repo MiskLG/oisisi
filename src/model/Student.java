@@ -1,19 +1,10 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 enum Status{B,S};
 
 public class Student {
-	
-	private String 	passedFile = System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentGrade.txt";
-	private String 	unfinishedFile= System.getProperty("user.dir") + File.separator + "database" + File.separator + "linkSubjectStudentUnfinished.txt";
 	
 	private String 	lastname;
 	private String 	name;
@@ -54,9 +45,6 @@ public class Student {
 		
 		this.averageGrade = averageGrade;
 		
-		loadUnfinished();
-		loadPassed();
-		
 	}
 	
 	public Student(String lastname, String name, Date dateOfBirth, Adress adress, String phone, String email,
@@ -81,87 +69,6 @@ public class Student {
 		
 	}
 
-	private void loadUnfinished() {	
-		try {
-			
-			File file = new File(unfinishedFile);
-			Scanner reader = new Scanner(file);
-			
-			while(reader.hasNextLine()) {
-				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("[*][/]");
-				
-				if(data[1].equals(getIndex())) {
-					UnfinishedSubjects us = new UnfinishedSubjects(data[0],data[1]);
-					listUnfinished.add(us);
-				}
-				
-			}
-			
-			reader.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("Readfile ERROR");
-			e.printStackTrace();
-		}
-		
-		return;
-	}
-	
-	private void loadPassed() {
-		try {
-			
-			File file = new File(passedFile);
-			Scanner reader = new Scanner(file);
-			
-			while(reader.hasNextLine()) {
-				String dataLine = reader.nextLine();
-				String[] data = dataLine.split("[*][/]");
-				
-				if(data[1].equals(getIndex())) {
-					Grade o = new Grade(data[0],data[1],Integer.parseInt(data[2]),new Date(data[3]));
-					listPassed.add(o);
-				}
-			}
-			
-			reader.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("Readfile ERROR");
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void writeUnfinished() {
-		 try {
-		      FileWriter writer = new FileWriter(unfinishedFile, false);        
-		      
-		      for(UnfinishedSubjects us : listUnfinished) {
-		    	  writer.write(us.toString());
-		      }
-		      writer.close();
-		      
-		    } catch (IOException e) {
-		      System.out.println("ERROR.");
-		      e.printStackTrace();
-		    }
-	}
-	
-	public void writePassed() {
-		 try {
-		      FileWriter writer = new FileWriter(passedFile, false);        
-		      
-		      for(Grade o : listPassed) {
-		    	  writer.write(o.toString());
-		      }
-		      writer.close();
-		      
-		    } catch (IOException e) {
-		      System.out.println("ERROR.");
-		      e.printStackTrace();
-		    }
-	}
 	
 
 	public String getLastname() {
