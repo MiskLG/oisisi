@@ -1,2 +1,4 @@
-A*/A*/22.3.2000*/A*/2*/A*/A*/062123123*/a@a.c*/sw-139-2019*/2019*/3*/B*/0.0
-Č*/Č*/22.2.2000*/A*/2*/A*/A*/062919112*/a@a.c*/ra-1-2019*/2019*/1*/B*/0.0
+Petrović*/Petar*/26.3.1996*/Kiš Erena*/ 53*/ Novi Sad*/ Srbija*/0603311223*/petorvic.p@uns.ac.rs*/ra-123-2017*/2017*/3*/B*/0.0
+Marković*/Marko*/5.6.1996*/Ilirska*/ 26*/ Novi Sad*/ Srbija*/068923478*/markovic.m@uns.ac.rs*/ra-111-2016*/2016*/3*/B*/0.0
+Dušanović*/Dušan*/2.4.1997*/Jastrebačka*/ 1*/ Novi Sad*/ Srbija*/0691482305*/dusanovic.d@uns.ac.rs*/sw-139-2019*/2019*/1*/S*/0.0
+Mirković*/Mirko*/16.12.1997*/Tićanova*/ 98*/ Novi Sad*/ Srbija*/0692145123*/mirkovic.m@uns.ac.rs*/sw-62-2019*/2019*/2*/B*/0.0
