@@ -1,13 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import main.DataClass;
 import model.Adress;
 import model.Date;
 import model.Professor;
-import model.Student;
 
 public class ProfessorController {
 	private String name;
@@ -27,7 +24,7 @@ public class ProfessorController {
 	public ProfessorController(String name, String lastname, String date, String adressHome,  String phone, String email, String adressWork,
 			String id, String title, String workYears) {
 		this.err = checkData(name,lastname,date,adressHome,phone,email,adressWork,id,title,workYears);
-		if(err.equals("Sve je dobro")) {
+		if(err.equals("Sve je dobro!")) {
 			this.name = name;
 			this.lastname = lastname;
 			this.date = new Date(date);
@@ -46,7 +43,7 @@ public class ProfessorController {
 	public String addProfessorToData() {
 		DataClass data = DataClass.getInstance();
 		
-		if(!err.equals("Sve je dobro")) {
+		if(!err.equals("Sve je dobro!")) {
 			return err;
 		}
 			
@@ -60,7 +57,7 @@ public class ProfessorController {
 	
 	
 	public String checkData(String name, String lastname, String date, String adressHome, String phone, String email, String adressWork, String id, String title, String workYears) {
-		 err = "Sve je dobro";
+		 err = "Sve je dobro!";
 		
 		if(false == RegXClass.checkName(name)) {
 			err = "Loše uneseno ime";

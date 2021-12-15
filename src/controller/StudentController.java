@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import main.DataClass;
 import model.Adress;
 import model.Date;
@@ -27,7 +25,7 @@ public class StudentController {
 	public StudentController(String name, String lastname, String date, String adress,  String phone, String email, String index,
 			String year, int yearOfStudy, int status) {
 		this.err = checkData(name,lastname,date,adress,phone,email,index,year);
-		if(err.equals("Sve je dobro")) {
+		if(err.equals("Sve je dobro!")) {
 			this.name = name;
 			this.lastname = lastname;
 			this.date = new Date(date);
@@ -46,7 +44,7 @@ public class StudentController {
 	public String addStudentToData() {
 		DataClass data = DataClass.getInstance();
 		
-		if(!err.equals("Sve je dobro")) {
+		if(!err.equals("Sve je dobro!")) {
 			return err;
 		}
 			
@@ -60,7 +58,7 @@ public class StudentController {
 	
 	
 	public String checkData(String name, String lastname, String date, String adress, String phone, String email, String index, String year) {
-		 err = "Sve je dobro";
+		err = "Sve je dobro!";
 		
 		if(false == RegXClass.checkName(name)) {
 			err = "Loše uneseno ime";
