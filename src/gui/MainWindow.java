@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,6 +31,8 @@ public class MainWindow extends JFrame {
 		
 		this.setMaximumSize(new Dimension(1920,1080));
 		this.setMinimumSize(new Dimension(960,540));
+		
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setSize(screenWidth / 4 * 3, screenHeight / 4 * 3);
 		
