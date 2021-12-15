@@ -1,14 +1,15 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,12 +18,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
+import controller.RegXClass;
 import controller.StudentController;
 
 public class AddStudentsPanel extends JDialog {
 
 	private boolean changesMade = false;
+	private boolean[] validData = {false, false, false, false, false, false, false, false};
 	
 	public AddStudentsPanel(Point location, Dimension size) {
 		this.setModal(true);
@@ -144,50 +148,238 @@ public class AddStudentsPanel extends JDialog {
 		acceptButton.setEnabled(false);
 	
 		cancelButton.addActionListener( e -> { this.dispose(); });
-		
-		FocusListener focusLostCheck = new FocusListener() {
+			
+		nameField.addKeyListener(new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					if(true == RegXClass.checkName(nameField.getText() + e.getKeyChar())) {
+						validData[0] = true;
+						nameField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+					}
+					else {
+						validData[0] = false;
+						nameField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+					}
+					if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+						acceptButton.setEnabled(true);
+					}
+					else {
+						acceptButton.setEnabled(false);
+					}
+				}
+	
+				@Override
+				public void keyPressed(KeyEvent e) {		
+				}
+	
+				@Override
+				public void keyReleased(KeyEvent e) {	
+				}
+		});
+		lastnameField.addKeyListener(new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					if(true == RegXClass.checkLastname(lastnameField.getText() + e.getKeyChar())) {
+						validData[1] = true;
+						lastnameField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+					}
+					else {
+						validData[1] = false;
+						lastnameField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+					}
+					if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+						acceptButton.setEnabled(true);
+					}
+					else {
+						acceptButton.setEnabled(false);
+					}
+				}
+	
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+	
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+		});
+		dateobField.addKeyListener(new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					if(true == RegXClass.checkDate(dateobField.getText() + e.getKeyChar())) {
+						validData[2] = true;
+						dateobField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+					}
+					else {
+						validData[2] = false;
+						dateobField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+					}
+					if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+						acceptButton.setEnabled(true);
+					}
+					else {
+						acceptButton.setEnabled(false);
+					}
+				}
+	
+				@Override
+				public void keyPressed(KeyEvent e) {	
+				}
+	
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+		});
+		adressField.addKeyListener(new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					if(true == RegXClass.checkAdress(adressField.getText() + e.getKeyChar())) {
+						validData[3] = true;
+						adressField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+					}
+					else {
+						validData[3] = false;
+						adressField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+					}
+					if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+						acceptButton.setEnabled(true);
+					}
+					else {
+						acceptButton.setEnabled(false);
+					}
+				}
+	
+				@Override
+				public void keyPressed(KeyEvent e) {	
+				}
+	
+				@Override
+				public void keyReleased(KeyEvent e) {	
+				}
+		});
+		phoneField.addKeyListener(new KeyListener() {
 			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.getErr();
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
+			public void keyTyped(KeyEvent e) {
+				if(true == RegXClass.checkPhone(phoneField.getText() + e.getKeyChar())) {
+					validData[4] = true;
+					phoneField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+				}
+				else {
+					validData[4] = false;
+					phoneField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+				}
+				if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
 					acceptButton.setEnabled(true);
 				}
 				else {
 					acceptButton.setEnabled(false);
 				}
-						
 			}
-			
-		};
-		
-		
-		// lost focus listeners to check if its time to enable the button
-		nameField.addFocusListener(focusLostCheck);
-		lastnameField.addFocusListener(focusLostCheck);
-		dateobField.addFocusListener(focusLostCheck);		
-		adressField.addFocusListener(focusLostCheck);
-		phoneField.addFocusListener(focusLostCheck);
-		emailField.addFocusListener(focusLostCheck);
-		indexField.addFocusListener(focusLostCheck);
-		enrolmentField.addFocusListener(focusLostCheck);
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+		emailField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(true == RegXClass.checkEmail(emailField.getText() + e.getKeyChar())) {
+					validData[5] = true;
+					emailField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+				}
+				else {
+					validData[5] = false;
+					emailField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+				}
+				if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+					acceptButton.setEnabled(true);
+					
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+		indexField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(true == RegXClass.checkIndex(indexField.getText() + e.getKeyChar())) {
+					validData[6] = true;
+					indexField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+				}
+				else {
+					validData[6] = false;
+					indexField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+				}
+				if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {		
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {			
+			}
+		});
+		enrolmentField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(true == RegXClass.checkYear(enrolmentField.getText() + e.getKeyChar())) {
+					validData[7] = true;
+					enrolmentField.setBorder(new MatteBorder(1,1,1,1,Color.GRAY));
+				}
+				else {
+					validData[7] = false;
+					enrolmentField.setBorder(new MatteBorder(1,1,1,1,Color.red));
+				}
+				if(validData[0] && validData[1] && validData[2] && validData[3] && validData[4] && validData[5] && validData[6] && validData[7]) {
+					acceptButton.setEnabled(true);
+				}
+				else {
+					acceptButton.setEnabled(false);
+				}	
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		
 		acceptButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
 				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				con.addStudentToData();
-				changesMade = true;
-				dispose();
+				String err = con.addStudentToData();
+				if(err.equals("Sve je dobro!")) {
+					changesMade = true;
+					dispose();
+				}
+				else {
+					errLabel.setText(err);
+				}
 			}
 			
 		});
