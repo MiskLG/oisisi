@@ -110,6 +110,33 @@ public class ToolBar extends JPanel {
 			}		
 		});
 		
+		buttonEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+//				case PROFESSOR:
+//					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+//					if(panelPr.getChangesMade()) {
+//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+//					}
+//					break;
+				case STUDENT:
+					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+//					if(panelSt.getChangesMade()) {
+//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+//					}
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;
+				}
+							
+			}		
+		});
+		
 		
 		// pushing buttons to panel
 		toolbarLeft.add(buttonNew);

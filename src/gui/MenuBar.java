@@ -103,7 +103,7 @@ public class MenuBar extends JMenuBar{
 				((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(false);
 			}		
 		});
-		
+			
 		
 		// setting icons
 		
@@ -193,6 +193,33 @@ public class MenuBar extends JMenuBar{
 		JMenuItem menuItemEdit = new JMenuItem("Edit");
 		menuItemEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		menuItemEdit.setMnemonic(KeyEvent.VK_E);
+		
+
+		//edit button action listener
+		menuItemEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+//				case PROFESSOR:
+//					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+//					if(panelPr.getChangesMade()) {
+//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+//					}		
+//					break;
+				case STUDENT:
+					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					if(panelEdit.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;}		
+			}		
+		});
 		
 		JMenuItem menuItemDelete = new JMenuItem("Delete");
 		menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
