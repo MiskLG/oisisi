@@ -103,7 +103,7 @@ public class MenuBar extends JMenuBar{
 				((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(false);
 			}		
 		});
-		
+			
 		
 		// setting icons
 		
@@ -194,9 +194,61 @@ public class MenuBar extends JMenuBar{
 		menuItemEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		menuItemEdit.setMnemonic(KeyEvent.VK_E);
 		
+
+		//edit button action listener
+		menuItemEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					EditProfessor profEdit = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					
+					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
+						if(profEdit.getChangesMade()) {
+							((MainWindow) getParent().getParent().getParent()).updateTable();
+							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						}
+					}
+					break;
+				case STUDENT:
+					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					
+					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
+						if(panelEdit.getChangesMade()) {
+							((MainWindow) getParent().getParent().getParent()).updateTable();
+							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						}
+					}
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;}		
+			}		
+		});
+		
 		JMenuItem menuItemDelete = new JMenuItem("Delete");
 		menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		menuItemDelete.setMnemonic(KeyEvent.VK_D);
+		
+		menuItemDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					//treba namestiti da se poziva za oznacenog profesora a ne na klik
+					DeleteProfessor deleteProf = new DeleteProfessor();
+					break;
+				case STUDENT:
+					//ovde takodje
+					DeleteStudent deleteStud = new DeleteStudent();
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;}		
+			}		
+		});
 		
 		// setting up icons	
 		ImageIcon editIcon = new ImageIcon(editIconPNG);

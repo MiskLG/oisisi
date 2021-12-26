@@ -38,7 +38,7 @@ public class MainWindow extends JFrame {
 		
 		setLocation(screenWidth / 8, screenHeight / 8);
 		
-		setTitle("Studenstka služba");
+		setTitle("Studenstka sluÅ¾ba");
 		
 		
 
@@ -104,7 +104,7 @@ public class MainWindow extends JFrame {
     		String[] options = {"Da","Ne"};
     		Icon emptyIcon = new ImageIcon("");
     		int result = JOptionPane.showOptionDialog((getContentPane()), 
-    				"Da li želite da ih sačuvate?", "Podaci nisu sačuvani!",
+    				"Da li Å¾elite da ih saÄ�uvate?", "Podaci nisu saÄ�uvani!",
 		            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
 		        if (result == JOptionPane.YES_OPTION) {				        	
 		        	DataClass.getInstance().writeOutData();
@@ -119,5 +119,15 @@ public class MainWindow extends JFrame {
 		}
     	
 	}
+
+	public TablePanel getTablePanel() {
+		return tablePanel;
+	}
+
+	public void setTablePanel(TablePanel tablePanel) {
+		this.tablePanel = tablePanel;
+	}
+	
+	
 	
 }

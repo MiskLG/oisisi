@@ -110,6 +110,48 @@ public class ToolBar extends JPanel {
 			}		
 		});
 		
+		buttonEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					EditProfessor profEdit = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					break;
+				case STUDENT:
+					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;
+				}
+							
+			}		
+		});
+		
+		buttonDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+					//treba izmeniti da se poziva za oznacenog profesora a ne samo na klik
+					DeleteProfessor deleteProf = new DeleteProfessor();
+					break;
+				case STUDENT:
+					//isto i za studenta
+					DeleteStudent deleteStud = new DeleteStudent();
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;
+				}
+							
+			}		
+		});
+		
+		
+		
 		
 		// pushing buttons to panel
 		toolbarLeft.add(buttonNew);
