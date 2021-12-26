@@ -225,6 +225,23 @@ public class MenuBar extends JMenuBar{
 		menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		menuItemDelete.setMnemonic(KeyEvent.VK_D);
 		
+		menuItemDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:
+							
+					break;
+				case STUDENT:
+					DeleteStudent deleteStud = new DeleteStudent();
+					break;
+				case SUBJECT:
+					break;
+				default:
+					break;}		
+			}		
+		});
+		
 		// setting up icons	
 		ImageIcon editIcon = new ImageIcon(editIconPNG);
 		Image editImage = editIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);

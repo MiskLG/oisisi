@@ -110,23 +110,15 @@ public class ToolBar extends JPanel {
 			}		
 		});
 		
-		buttonEdit.addActionListener(new ActionListener() {
+		buttonDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
-//				case PROFESSOR:
-//					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-//					if(panelPr.getChangesMade()) {
-//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
-//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-//					}
-//					break;
+				case PROFESSOR:
+					
+					break;
 				case STUDENT:
-					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-//					if(panelSt.getChangesMade()) {
-//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
-//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-//					}
+					DeleteStudent deleteStud = new DeleteStudent();
 					break;
 				case SUBJECT:
 					break;
@@ -136,6 +128,8 @@ public class ToolBar extends JPanel {
 							
 			}		
 		});
+		
+		
 		
 		
 		// pushing buttons to panel

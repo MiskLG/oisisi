@@ -27,7 +27,6 @@ public class EditStudent extends JDialog {
 	private EditStudentPanel editTabs;
 	
 	public EditStudent(Point location, Dimension size) {
-		//super(MainWindow.getInstance(), "Izmena studenta", true);
 		this.setResizable(false);
 		setTitle("Izmena studenta");
 		
@@ -47,11 +46,8 @@ public class EditStudent extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		editTabs = new EditStudentPanel();
-//		getContentPane().add(updateTabs, BorderLayout.NORTH);
-		JLabel errLabel = new JLabel();
+		//JLabel errLabel = new JLabel(); NJEGA MORAM DODATI U IZMENU
 		
-		// I ZA CANCEL DUGME ISTO I DA SE NE PRIKAZUJU DUGMICI 
-		// U ONA DVA TABA
 		JPanel buttonsPanel = new JPanel();
 		
 		buttonsPanel.setLayout(new FlowLayout());

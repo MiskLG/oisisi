@@ -67,6 +67,7 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		JLabel nameLabel = new JLabel("Ime*:");
 		JTextField nameField = new JTextField();		
+
 		
 		JLabel lastnameLabel = new JLabel("Prezime*:");
 		JTextField lastnameField = new JTextField();
@@ -106,7 +107,6 @@ public class EditStudentPanel extends JTabbedPane{
 		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
 		
 		
-		// adding stuff to their place
 		fieldsPanel.add(nameLabel);
 		fieldsPanel.add(nameField);
 		fieldsPanel.add(lastnameLabel);
@@ -135,72 +135,7 @@ public class EditStudentPanel extends JTabbedPane{
 		((GridLayout)fieldsPanel.getLayout()).setHgap(15);
 		
 		
-		/*buttonsPanel.setLayout(new FlowLayout());
-		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
-		
-		acceptButton.setPreferredSize(new Dimension(140,30));
-		cancelButton.setPreferredSize(new Dimension(140,30));
-		
-		JPanel spacer = new JPanel();
-		spacer.setPreferredSize(new Dimension(15,30));
-		
-		buttonsPanel.add(acceptButton);
-		buttonsPanel.add(spacer);
-		buttonsPanel.add(cancelButton);
-		
-		acceptButton.setEnabled(false);
 	
-		cancelButton.addActionListener( e -> { this.dispose(); });
-		
-		FocusListener focusLostCheck = new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {				
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String text = con.getErr();
-				
-				errLabel.setText(text);
-				
-				if(text.equalsIgnoreCase("Sve je dobro")) {
-					acceptButton.setEnabled(true);
-				}
-				else {
-					acceptButton.setEnabled(false);
-				}
-						
-			}
-			
-		};*/
-		
-		
-		// lost focus listeners to check if its time to enable the button
-//		nameField.addFocusListener(focusLostCheck);
-//		lastnameField.addFocusListener(focusLostCheck);
-//		dateobField.addFocusListener(focusLostCheck);		
-//		adressField.addFocusListener(focusLostCheck);
-//		phoneField.addFocusListener(focusLostCheck);
-//		emailField.addFocusListener(focusLostCheck);
-//		indexField.addFocusListener(focusLostCheck);
-//		enrolmentField.addFocusListener(focusLostCheck);
-//		
-//		acceptButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-//				emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-//				con.addStudentToData();
-//				dispose();
-//			}
-//			
-//		});
-//		
-//		
 		nameField.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -421,10 +356,7 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		informations.add(errLabel, BorderLayout.NORTH);
 		informations.add(fieldsPanel, BorderLayout.CENTER);
-		//mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
-		//this.setContentPane(mainPanel);
 		
-		//updateTable();
 	}
 
 	
@@ -436,7 +368,6 @@ public class EditStudentPanel extends JTabbedPane{
 	public void setChangesMade(boolean changesMade) {
 		this.changesMade = changesMade;
 	}
-
 
 	public JButton getAcceptButton() {
 		return acceptButton;
@@ -456,43 +387,7 @@ public class EditStudentPanel extends JTabbedPane{
 		this.informations = informations;
 	}
 	
-	/*public void updateTable() {
-		DataClass dc = DataClass.getInstance();
-		
-		//ArrayList<Student> list1 = dc.getStudentListData();
-		/*ArrayList<Professor> list2 = dc.getProfessorListData();
-		ArrayList<Subject> list3 = dc.getSubjectListData();
-		
-		
-		while(studentsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) studentsTable.getModel()).removeRow(0);
-		}
-		while(professorsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) professorsTable.getModel()).removeRow(0);
-		}
-		while(subjectsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) subjectsTable.getModel()).removeRow(0);
-		}
-		
-		
-		for(Student st: list1) {
-			String[] studentData = {st.getIndex(),st.getName(),st.getLastname(),Integer.toString(st.getYearOfStudy()), st.getStatus(), Double.toString(st.getAverageGrade())} ;
-			((DefaultTableModel) studentsTable.getModel()).addRow(studentData);
-		}
-		
-		for(Professor pr: list2) {
-			String[] professorData = {pr.getName(), pr.getLastname(), pr.getTitle(), pr.getEmail()};
-			((DefaultTableModel) professorsTable.getModel()).addRow(professorData);
-		}
-		
-		for(Subject sb: list3) {
-			String[] subjectData = {sb.getSubjectCode(),sb.getTitle(),Integer.toString(sb.getNumberECTS()),Integer.toString(sb.getYearOfStudy()),sb.getSemester(),};
-			((DefaultTableModel) subjectsTable.getModel()).addRow(subjectData);
-		}	
-		
-		
-		
-	}*/
+	
 	
 	
 }
