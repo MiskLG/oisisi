@@ -25,6 +25,12 @@ public class TablePanel extends JTabbedPane {
 	private JTable professorsTable; 
 	private JTable subjectsTable;
 	
+	private static AbstractTableModelStudents studentsModel = null;
+
+
+	
+	
+
 	public TablePanel() {
 		
 		this.setBorder(new EmptyBorder(15,25,15,25));
@@ -37,6 +43,7 @@ public class TablePanel extends JTabbedPane {
 				return false;
 			}
 		};
+		
 		studentModel.setColumnIdentifiers(colHeadingsStudent);
 		studentsTable = new JTable(studentModel) {
 			// taken from https://stackhowto.com/how-to-alternate-row-color-of-jtable-in-java/
@@ -51,11 +58,16 @@ public class TablePanel extends JTabbedPane {
 		               c.setBackground(coleur);
 		               coleur = null;
 		            }
+		            if(isRowSelected(row)) {
+		            	c.setBackground(Color.RED);
+		            	}
 		            return c;
 		         }
 		};
 		studentsTable.setBorder(new LineBorder(Color.black, 1));
 		studentsTable.setRowHeight(24);
+		
+		
 		
 		// Setting up columns - professors 
 		String[] colHeadingsProfessor = {"Prezime","Ime","Zvanje","E-mail Adresa","PIB"};
@@ -181,5 +193,23 @@ public class TablePanel extends JTabbedPane {
 			
 		
 	}
+
+	public JTable getStudentsTable() {
+		return studentsTable;
+	}
+
+	public void setStudentsTable(JTable studentsTable) {
+		this.studentsTable = studentsTable;
+	}
+
+	public static AbstractTableModelStudents getStudentsModel() {
+		return studentsModel;
+	}
+
+	public static void setStudentsModel(AbstractTableModelStudents studentsModel) {
+		TablePanel.studentsModel = studentsModel;
+	}
+	
+	
 	
 }

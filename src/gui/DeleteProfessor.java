@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,17 +16,12 @@ import javax.swing.JPanel;
 
 import main.DataClass;
 
-public class DeleteStudent extends JDialog{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class DeleteProfessor extends JDialog {
 	
-	public DeleteStudent() {
+	public DeleteProfessor() {
 		super();
 		
-		setTitle("Brisanje studenta");
+		setTitle("Brisanje profesora");
 		setSize(400, 150);
 		setLocationRelativeTo(this.getParent());
 		setResizable(false);
@@ -37,7 +33,7 @@ public class DeleteStudent extends JDialog{
 		delPanel.add(Box.createVerticalStrut(25));
 		
 		JPanel message = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lblMessage = new JLabel("Da li ste sigurni da izbrisete studenta?");
+		JLabel lblMessage = new JLabel("Da li ste sigurni da izbrisete profesora?");
 		Dimension dim = new Dimension(230, 20);
 		lblMessage.setPreferredSize(dim);
 		message.add(lblMessage);
@@ -84,7 +80,6 @@ public class DeleteStudent extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 			int row = AbstractTableModelStudents.getSelectedRowIndex();
 			DataClass.getInstance().deleteStudent(row);
-			//Tabovi.getModelStudenti().fireTableDataChanged();
 			dispose();
 			}
 			});

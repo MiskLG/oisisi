@@ -7,8 +7,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.ObjectInputFilter.Status;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,6 +27,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.RegXClass;
+import controller.StudentController;
 import main.DataClass;
 import model.Professor;
 import model.Student;
@@ -36,9 +40,11 @@ public class EditStudentPanel extends JTabbedPane{
 	private JPanel unpassedExams;
 	
 	private boolean changesMade = false;
-	private boolean[] validData = {false, false, false, false, false, false, false, false};
+	private boolean[] validData = {true, true, true, true, true, true, true, true};
 	
 	private JButton acceptButton;
+	
+	private int currentYear;
 	
 	public EditStudentPanel() {
 		
@@ -66,45 +72,77 @@ public class EditStudentPanel extends JTabbedPane{
 		fieldsPanel.setLayout(new GridLayout(10,2));
 		
 		JLabel nameLabel = new JLabel("Ime*:");
-		JTextField nameField = new JTextField();		
+		JTextField nameField = new JTextField();
+		nameField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getName());
 
 		
 		JLabel lastnameLabel = new JLabel("Prezime*:");
 		JTextField lastnameField = new JTextField();
+		lastnameField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getLastname());
 		
 		
 		JLabel dateobLabel = new JLabel("Datum roÄ‘enja*:");
 		JTextField dateobField = new JTextField();
+		dateobField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getDateOfBirth().toString());
 		
 		
 		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
 		JTextField adressField = new JTextField();
+		adressField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getAdress().toString());
 		
 		
 		JLabel phoneLabel = new JLabel("Broj telefona*:");
 		JTextField phoneField = new JTextField();
+		phoneField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getPhone());
+		
 		
 		
 		JLabel emailLabel = new JLabel("E-mail adresa*:");
 		JTextField emailField = new JTextField();
+		emailField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getEmail());
 		
 		
 		JLabel indexLabel = new JLabel("Broj indeksa*:");
 		JTextField indexField = new JTextField();
+		indexField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getIndex());
 		
 		
 		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
 		JTextField enrolmentField = new JTextField();
+		enrolmentField.setText(String.valueOf(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getEnrolmentYear()));
 		
 		
 		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
 		String  yearChoices[] = {"I (prva)","II (druga)","III (treÄ‡a)","IV (Ä�etvrta)", "V (peta)", "VI (Å¡esta)"};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
+		//yearOfStudyField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getName());
+		//if(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getYearOfStudy() == )
+		currentYear = DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getYearOfStudy();
+		if(currentYear == 1) {
+			yearOfStudyField.setSelectedItem("I (prva)");
+		}
+		else if(currentYear == 2) {
+			yearOfStudyField.setSelectedItem("II (druga)");
+		}
+		else if(currentYear == 3) {
+			yearOfStudyField.setSelectedItem("III (treca)");
+		}
+		else if(currentYear == 4) {
+			yearOfStudyField.setSelectedItem("IV (cetvrta)");
+		}
+		else if(currentYear == 5) {
+			yearOfStudyField.setSelectedItem("V (peta)");
+		}
+		else {
+			yearOfStudyField.setSelectedItem("VI (sesta)");
+		}
 		
 		
 		JLabel statusLabel = new JLabel("NaÄ�in finansiranja*:");
 		String  statusChoices[] = {"BudÅ¾et", "SamofinansirajuÄ‡e"};     
 		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
+		// dodati status naknadno
+		
 		
 		
 		fieldsPanel.add(nameLabel);
@@ -356,6 +394,24 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		informations.add(errLabel, BorderLayout.NORTH);
 		informations.add(fieldsPanel, BorderLayout.CENTER);
+		
+		acceptButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+				String err = con.addStudentToData();
+				if(err.equals("Sve je dobro!")) {
+					changesMade = true;
+				}
+				else {
+					errLabel.setText(err);
+				}
+				
+			}
+			
+		});
 		
 	}
 

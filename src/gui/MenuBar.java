@@ -200,18 +200,24 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
-//				case PROFESSOR:
-//					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
-//					if(panelPr.getChangesMade()) {
-//						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
-//						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-//					}		
-//					break;
+				case PROFESSOR:
+					EditProfessor profEdit = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					
+					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
+						if(profEdit.getChangesMade()) {
+							((MainWindow) getParent().getParent().getParent()).updateTable();
+							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						}
+					}
+					break;
 				case STUDENT:
 					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
-					if(panelEdit.getChangesMade()) {
-						((MainWindow) getParent().getParent().getParent()).updateTable();
-						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					
+					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
+						if(panelEdit.getChangesMade()) {
+							((MainWindow) getParent().getParent().getParent()).updateTable();
+							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						}
 					}
 					break;
 				case SUBJECT:
@@ -230,9 +236,11 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-							
+					//treba namestiti da se poziva za oznacenog profesora a ne na klik
+					DeleteProfessor deleteProf = new DeleteProfessor();
 					break;
 				case STUDENT:
+					//ovde takodje
 					DeleteStudent deleteStud = new DeleteStudent();
 					break;
 				case SUBJECT:
