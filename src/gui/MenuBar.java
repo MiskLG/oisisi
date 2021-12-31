@@ -6,12 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.SubjectController;
 import main.DataClass;
 
 public class MenuBar extends JMenuBar{
@@ -244,6 +247,32 @@ public class MenuBar extends JMenuBar{
 					DeleteStudent deleteStud = new DeleteStudent();
 					break;
 				case SUBJECT:
+					String index  = (((MainWindow) getParent().getParent().getParent()).getTablePanel()).getSelectedSubjectCode();				
+					    		
+		    		if(!index.equals("-1")) {
+		    			String[] options = {"Da","Ne"};
+		    			Icon emptyIcon = new ImageIcon("");
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Da li želite da obrišete izabrani predmet?", "UPOZORENJE!",
+					            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
+					        if (result == JOptionPane.YES_OPTION) {				        	
+					        	SubjectController con = new SubjectController();
+					        	if(con.deleteSubject(index)) {
+					        		((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent()).updateTable();
+					        	}
+					        	
+					        }
+					        else if (result == JOptionPane.NO_OPTION) {
+					        }
+		    		}
+		    		else {
+		    			String[] options = {"OK"};
+		    			Icon emptyIcon = new ImageIcon("");
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+					            JOptionPane.INFORMATION_MESSAGE, 3, emptyIcon, options,"");
+		    		}
 					break;
 				default:
 					break;}		
