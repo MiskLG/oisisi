@@ -69,17 +69,17 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+					AddProfessorsPanel panelPr = new AddProfessorsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
 					if(panelPr.getChangesMade()) {
-						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
-						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
 					}		
 					break;
 				case STUDENT:
 					AddStudentsPanel panelSt = new AddStudentsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
 					if(panelSt.getChangesMade()) {
 						((MainWindow) getParent().getParent().getParent()).updateTable();
-						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
 					}
 					break;
 				case SUBJECT:
