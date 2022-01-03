@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -251,10 +250,9 @@ public class MenuBar extends JMenuBar{
 					    		
 		    		if(!index.equals("-1")) {
 		    			String[] options = {"Da","Ne"};
-		    			Icon emptyIcon = new ImageIcon("");
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
 			    				"Da li želite da obrišete izabrani predmet?", "UPOZORENJE!",
-					            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
+					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	SubjectController con = new SubjectController();
 					        	if(con.deleteSubject(index)) {
@@ -268,10 +266,9 @@ public class MenuBar extends JMenuBar{
 		    		}
 		    		else {
 		    			String[] options = {"OK"};
-		    			Icon emptyIcon = new ImageIcon("");
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
 			    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
-					            JOptionPane.INFORMATION_MESSAGE, 3, emptyIcon, options,"");
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
 				default:

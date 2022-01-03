@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.BorderFactory;
@@ -150,10 +151,9 @@ public class ToolBar extends JPanel {
 		    		
 		    		if(!index.equals("-1")) {
 		    			String[] options = {"Da","Ne"};
-		    			Icon emptyIcon = new ImageIcon("");
 		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
 			    				"Da li želite da obrišete izabrani predmet?", "UPOZORENJE!",
-					            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
+					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	SubjectController con = new SubjectController();
 					        	if(con.deleteSubject(index)) {
@@ -167,10 +167,9 @@ public class ToolBar extends JPanel {
 		    		}
 		    		else {
 		    			String[] options = {"OK"};
-		    			Icon emptyIcon = new ImageIcon("");
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
 			    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
-					            JOptionPane.INFORMATION_MESSAGE, 3, emptyIcon, options,"");
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
 				default:
