@@ -5,6 +5,7 @@ import main.DataClass;
 import model.Adress;
 import model.Date;
 import model.Professor;
+import model.Student;
 
 public class ProfessorController {
 	private String name;
@@ -39,7 +40,8 @@ public class ProfessorController {
 		
 	}
 
-
+	public ProfessorController() {};
+	
 	public String addProfessorToData() {
 		DataClass data = DataClass.getInstance();
 		
@@ -114,6 +116,25 @@ public class ProfessorController {
 		
 		
 		return err;
+	}
+	
+	public boolean deleteProfessor(String emailOfProfessor) {
+		DataClass data = DataClass.getInstance();			
+		
+		ArrayList<Professor> listProfessor = data.getProfessorListData();
+		int i = 0;		
+		for(Professor p: listProfessor) {
+			if(p.getEmail().equals(emailOfProfessor)) {
+				listProfessor.remove(i);
+				data.setProfessorListData(listProfessor);
+			}
+			i++;
+		}
+		//ovde verovatno isti problem kao kod studenta
+		// proveri zbog errora kad se brise poslednji sta je greska
+//		data.setProfessorListData(listProfessor);
+		
+		return true;
 	}
 	
 	public String getErr() {

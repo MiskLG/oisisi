@@ -201,4 +201,11 @@ public class TablePanel extends JTabbedPane {
 		}
 		return "-1";
 	}
+	
+	public String getSelectedProfessorEmail() {
+		if(professorsTable.getSelectedRow() != -1) {
+			return professorsTable.getValueAt(professorsTable.getSelectedRow(), 3).toString(); 
+		}
+		return "-1";
+	}
 }
