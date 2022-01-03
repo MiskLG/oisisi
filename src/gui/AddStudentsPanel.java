@@ -50,8 +50,6 @@ public class AddStudentsPanel extends JDialog {
 		
 		this.setTitle("Dodavanje studenta");
 		
-		JLabel errLabel = new JLabel();
-		
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -389,7 +387,6 @@ public class AddStudentsPanel extends JDialog {
 		});
 		
 		
-		mainPanel.add(errLabel, BorderLayout.NORTH);
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);

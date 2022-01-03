@@ -49,8 +49,6 @@ public class AddProfessorsPanel extends JDialog {
 		
 		this.setTitle("Dodavanje profesora");
 		
-		JLabel errLabel = new JLabel();
-		
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -438,8 +436,6 @@ public class AddProfessorsPanel extends JDialog {
 			
 		});
 		
-		
-		mainPanel.add(errLabel, BorderLayout.NORTH);
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);
