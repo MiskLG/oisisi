@@ -25,10 +25,6 @@ public class TablePanel extends JTabbedPane {
 	private JTable professorsTable; 
 	private JTable subjectsTable;
 	
-	private static AbstractTableModelStudents studentsModel = null;
-
-
-	
 	
 
 	public TablePanel() {
@@ -58,9 +54,6 @@ public class TablePanel extends JTabbedPane {
 		               c.setBackground(coleur);
 		               coleur = null;
 		            }
-		            if(isRowSelected(row)) {
-		            	c.setBackground(Color.RED);
-		            	}
 		            return c;
 		         }
 		};
@@ -201,15 +194,11 @@ public class TablePanel extends JTabbedPane {
 	public void setStudentsTable(JTable studentsTable) {
 		this.studentsTable = studentsTable;
 	}
-
-	public static AbstractTableModelStudents getStudentsModel() {
-		return studentsModel;
+	
+	public String getSelectedStudentIndex() {
+		if(studentsTable.getSelectedRow() != -1) {
+			return studentsTable.getValueAt(studentsTable.getSelectedRow(), 0).toString(); 
+		}
+		return "-1";
 	}
-
-	public static void setStudentsModel(AbstractTableModelStudents studentsModel) {
-		TablePanel.studentsModel = studentsModel;
-	}
-	
-	
-	
 }

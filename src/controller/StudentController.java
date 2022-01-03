@@ -21,7 +21,7 @@ public class StudentController {
 	
 	private String err;
 	
-
+	
 	public StudentController(String name, String lastname, String date, String adress,  String phone, String email, String index,
 			String year, int yearOfStudy, int status) {
 		this.err = checkData(name,lastname,date,adress,phone,email,index,year);
@@ -40,6 +40,7 @@ public class StudentController {
 		
 	}
 
+	public StudentController() {};
 
 	public String addStudentToData() {
 		DataClass data = DataClass.getInstance();
@@ -107,6 +108,23 @@ public class StudentController {
 		
 		
 		return err;
+	}
+	
+	public boolean deleteStudent(String indexOfStudent) {		
+		DataClass data = DataClass.getInstance();			
+		
+		ArrayList<Student> listStudent = data.getStudentListData();
+		int i = 0;
+		for(Student s: listStudent) {
+			if(s.getIndex().equals(indexOfStudent)) {
+				listStudent.remove(i);
+				data.setStudentListData(listStudent);
+			}
+			i++;
+		}
+		// proveri zbog errora kad se brise poslednji sta je greska
+//		data.setStudentListData(listStudent);
+		return true;
 	}
 	
 	public String getErr() {

@@ -78,9 +78,9 @@ public class DeleteProfessor extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			int row = AbstractTableModelStudents.getSelectedRowIndex();
-			DataClass.getInstance().deleteStudent(row);
-			dispose();
+//			int row = AbstractTableModelStudents.getSelectedRowIndex();
+//			DataClass.getInstance().deleteStudent(row);
+//			dispose();
 			}
 			});
 		this.setVisible(true);
