@@ -3,15 +3,21 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Comparator;
 
+import javax.swing.DefaultRowSorter;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.RowSorter;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 
 import main.DataClass;
 import model.Professor;
@@ -27,9 +33,9 @@ public class TablePanel extends JTabbedPane {
 	
 	private static AbstractTableModelStudents studentsModel = null;
 
-
-	
-	
+	TableRowSorter<DefaultTableModel> subjectSorter = new TableRowSorter<DefaultTableModel>();
+	TableRowSorter<DefaultTableModel> professorSorter = new TableRowSorter<DefaultTableModel>();
+	TableRowSorter<DefaultTableModel> studentSorter = new TableRowSorter<DefaultTableModel>();
 
 	public TablePanel() {
 		
@@ -129,10 +135,40 @@ public class TablePanel extends JTabbedPane {
 		tcm.removeColumn( tcm.getColumn(4));
 		
 		
-		//
-		studentsTable.setAutoCreateRowSorter(true);
-		professorsTable.setAutoCreateRowSorter(true);
-		subjectsTable.setAutoCreateRowSorter(true);
+		// sorters
+		//professorsTable.setAutoCreateRowSorter(true);
+	//	subjectsTable.setAutoCreateRowSorter(true);
+		
+		
+		// overriding sorter for student index
+		Comparator<String> comparator = new Comparator<String>() {
+		    public int compare(String s1, String s2) {
+		        String[] strings1 = s1.split("[-]");
+		        String[] strings2 = s2.split("[-]");
+		        if(strings1[0].equals(strings2[0])) {
+		        	if(Integer.parseInt(strings1[2]) == Integer.parseInt(strings2[2])) {
+			        	return Integer.parseInt(strings1[1]) - Integer.parseInt(strings2[1]);
+			        }
+		        	else {
+		        		 return Integer.parseInt(strings1[2]) - Integer.parseInt(strings2[2]);
+		        	}		       
+		        }
+		        return strings1[0].compareTo(strings2[0]);
+		    }
+		};
+		
+
+		studentsTable.setRowSorter(studentSorter);
+		studentSorter.setModel(studentModel);
+		studentSorter.setComparator(0, comparator);
+		
+
+		professorsTable.setRowSorter(professorSorter);
+		professorSorter.setModel(professorModel);
+		
+
+		subjectsTable.setRowSorter(subjectSorter);
+		subjectSorter.setModel(subjectModel);
 		
 		// Linking tables with scrollPanes
 		JScrollPane studentsTablePanel = new JScrollPane(studentsTable);
@@ -186,8 +222,6 @@ public class TablePanel extends JTabbedPane {
 			String[] subjectData = {sb.getSubjectCode(),sb.getTitle(),Integer.toString(sb.getNumberECTS()),Integer.toString(sb.getYearOfStudy()),sb.getSemester(),};
 			((DefaultTableModel) subjectsTable.getModel()).addRow(subjectData);
 		}
-			
-			
 		
 	}
 
@@ -214,5 +248,52 @@ public class TablePanel extends JTabbedPane {
 		return "-1";
 	}
 	
+	public void setFilterProfessor(String filterString) {
+	    
+	    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>> a = new    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>>();
+	    try {
+	    	String[] filters = filterString.split("[,]");
+	    	int i = 0;
+	    	for(String filter: filters) {
+	    		String correctedFilter = "(?i)"+filter.trim();
+	    		RowFilter<? super DefaultTableModel, ? super Integer> rf  = RowFilter.regexFilter(correctedFilter, i);
+	    		a.add(rf);
+	    		i++;
+	    		if(i == 3) {
+	    			String[] options = {"OK"};
+	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+		    				"Previše unesenih parametara za pretragu!", "GREŠKA!",
+				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+	    			return;
+	    		}
+	    	}        
+	    } catch (java.util.regex.PatternSyntaxException e) {
+	    	System.out.println(e);
+	    }
+	    professorSorter.setRowFilter(RowFilter.andFilter(a));
+	}
+	public void setFilterSubject(String filterString) {
+		 ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>> a = new    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>>();
+		    try {
+		    	String[] filters = filterString.split("[,]");
+		    	int i = 1;
+		    	for(String filter: filters) {
+		    		String correctedFilter = "(?i)"+filter.trim();
+		    		RowFilter<? super DefaultTableModel, ? super Integer> rf  = RowFilter.regexFilter(correctedFilter, i);
+		    		a.add(rf);
+		    		i--;
+		    		if(i == -2) {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Previše unesenih parametara za pretragu!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    			return;
+		    		}
+		    	}        
+		    } catch (java.util.regex.PatternSyntaxException e) {
+		    	System.out.println(e);
+		    }
+		    subjectSorter.setRowFilter(RowFilter.andFilter(a));
+	}
 	
 }
