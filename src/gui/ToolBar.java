@@ -7,14 +7,19 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.SubjectController;
 
 
 public class ToolBar extends JPanel {
@@ -142,6 +147,30 @@ public class ToolBar extends JPanel {
 					DeleteStudent deleteStud = new DeleteStudent();
 					break;
 				case SUBJECT:
+					String index  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedSubjectCode();		
+		    		
+		    		if(!index.equals("-1")) {
+		    			String[] options = {"Da","Ne"};
+		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
+			    				"Da li želite da obrišete izabrani predmet?", "UPOZORENJE!",
+					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
+					        if (result == JOptionPane.YES_OPTION) {				        	
+					        	SubjectController con = new SubjectController();
+					        	if(con.deleteSubject(index)) {
+					        		((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					        	}
+					        	
+					        }
+					        else if (result == JOptionPane.NO_OPTION) {
+					        }
+		    		}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				default:
 					break;

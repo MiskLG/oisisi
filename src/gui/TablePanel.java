@@ -58,9 +58,6 @@ public class TablePanel extends JTabbedPane {
 		               c.setBackground(coleur);
 		               coleur = null;
 		            }
-		            if(isRowSelected(row)) {
-		            	c.setBackground(Color.RED);
-		            	}
 		            return c;
 		         }
 		};
@@ -210,6 +207,12 @@ public class TablePanel extends JTabbedPane {
 		TablePanel.studentsModel = studentsModel;
 	}
 	
+	public String getSelectedSubjectCode() {
+		if(subjectsTable.getSelectedRow() != -1) {
+			return subjectsTable.getValueAt(subjectsTable.getSelectedRow(), 0).toString(); 
+		}
+		return "-1";
+	}
 	
 	
 }

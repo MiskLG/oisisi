@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -48,8 +49,6 @@ public class AddStudentsPanel extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		this.setTitle("Dodavanje studenta");
-		
-		JLabel errLabel = new JLabel();
 		
 		
 		JPanel mainPanel = new JPanel();
@@ -378,14 +377,16 @@ public class AddStudentsPanel extends JDialog {
 					dispose();
 				}
 				else {
-					errLabel.setText(err);
+					String[] options = {"OK"};
+	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+		    				"Broj lične karte je već zauzet!", "GREŠKA!",
+				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}
 			
 		});
 		
 		
-		mainPanel.add(errLabel, BorderLayout.NORTH);
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);

@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -47,8 +48,6 @@ public class AddProfessorsPanel extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		this.setTitle("Dodavanje profesora");
-		
-		JLabel errLabel = new JLabel();
 		
 		
 		JPanel mainPanel = new JPanel();
@@ -428,14 +427,15 @@ public class AddProfessorsPanel extends JDialog {
 					dispose();
 				}
 				else {
-					errLabel.setText(err);
+					String[] options = {"OK"};
+	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+		    				"Indeks je već zauzet!", "GREŠKA!",
+				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}
 			
 		});
 		
-		
-		mainPanel.add(errLabel, BorderLayout.NORTH);
 		mainPanel.add(fieldsPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		this.setContentPane(mainPanel);
