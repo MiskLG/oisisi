@@ -115,15 +115,19 @@ public class StudentController {
 		
 		ArrayList<Student> listStudent = data.getStudentListData();
 		int i = 0;
+		int studentRemoveNumber = -1;
 		for(Student s: listStudent) {
 			if(s.getIndex().equals(indexOfStudent)) {
-				listStudent.remove(i);
-				data.setStudentListData(listStudent);
+				studentRemoveNumber = i;
 			}
 			i++;
 		}
-		// proveri zbog errora kad se brise poslednji sta je greska
-//		data.setStudentListData(listStudent);
+		
+		if(studentRemoveNumber != -1) {
+			listStudent.remove(studentRemoveNumber);
+		}
+		
+		data.setStudentListData(listStudent);
 		return true;
 	}
 	

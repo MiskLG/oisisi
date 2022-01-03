@@ -249,8 +249,8 @@ public class MenuBar extends JMenuBar{
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	ProfessorController con = new ProfessorController();
 					        	if(con.deleteProfessor(email)) {
-					        		((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-					        		((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					        		((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent()).updateTable();
 					        	}
 					        	
 					        }
@@ -275,8 +275,8 @@ public class MenuBar extends JMenuBar{
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	StudentController con = new StudentController();
 					        	if(con.deleteStudent(index)) {
-					        		((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-					        		((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					        		((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent()).updateTable();
 					        	}
 					        	
 					        }
