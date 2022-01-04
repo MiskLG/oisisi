@@ -194,6 +194,14 @@ public class TablePanel extends JTabbedPane {
 	public void setStudentsTable(JTable studentsTable) {
 		this.studentsTable = studentsTable;
 	}
+
+	
+	public String getSelectedSubjectCode() {
+		if(subjectsTable.getSelectedRow() != -1) {
+			return subjectsTable.getValueAt(subjectsTable.getSelectedRow(), 0).toString(); 
+		}
+		return "-1";
+	}
 	
 	public String getSelectedStudentIndex() {
 		if(studentsTable.getSelectedRow() != -1) {

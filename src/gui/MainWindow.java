@@ -6,8 +6,6 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +36,7 @@ public class MainWindow extends JFrame {
 		
 		setLocation(screenWidth / 8, screenHeight / 8);
 		
-		setTitle("Studenstka sluÅ¾ba");
+		setTitle("Studenstka služba");
 		
 		
 
@@ -79,7 +77,7 @@ public class MainWindow extends JFrame {
 		      public void windowClosing(WindowEvent we) {
 		    	checkDisposability();
 		      }
-		      });
+		});
 		
 		
 		setVisible(true);
@@ -98,15 +96,24 @@ public class MainWindow extends JFrame {
 		tablePanel.updateTable();
 	}
 	
+	// for getting selected values from table in different dialogs
+	public TablePanel getTablePanel() {
+		return tablePanel;
+	}
+	
+	
 	// popup window for menubar close button
 	public void checkDisposability() {
 		if(changesMade == true) {
     		String[] options = {"Da","Ne"};
-    		Icon emptyIcon = new ImageIcon("");
     		int result = JOptionPane.showOptionDialog((getContentPane()), 
-    				"Da li Å¾elite da ih saÄ�uvate?", "Podaci nisu saÄ�uvani!",
-		            JOptionPane.YES_NO_OPTION, 3, emptyIcon, options,"");
-		        if (result == JOptionPane.YES_OPTION) {				        	
+    				"Da li želite da ih sačuvate?", "Podaci nisu sačuvani!",
+		            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,"");
+		        if (result == JOptionPane.YES_OPTION) {			
+		        	String[] list = {"OK"};
+		        	int confimed = JOptionPane.showOptionDialog((getRootPane()), 
+		        			"Podaci su uspešno sačuvani!", "Informacija",
+				            JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, list,"");
 		        	DataClass.getInstance().writeOutData();
 		        	this.dispose();
 		        }
@@ -120,14 +127,6 @@ public class MainWindow extends JFrame {
     	
 	}
 
-	public TablePanel getTablePanel() {
-		return tablePanel;
-	}
-
-	public void setTablePanel(TablePanel tablePanel) {
-		this.tablePanel = tablePanel;
-	}
-	
 	
 	
 }
