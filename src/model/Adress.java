@@ -71,7 +71,10 @@ public class Adress {
 			return street + splitter + number + splitter + city + splitter + country;
 		}
 		
-		
+		public String writeAsString() {
+			String splitter = ",";
+			return street + splitter + number + splitter + city + splitter + country; 
+		}
 		
 
 }

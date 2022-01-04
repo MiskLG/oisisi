@@ -118,14 +118,14 @@ public class ProfessorController {
 		return err;
 	}
 	
-	public boolean deleteProfessor(String emailOfProfessor) {
+	public boolean deleteProfessor(String idOfProfessor) {
 		DataClass data = DataClass.getInstance();			
 		
 		ArrayList<Professor> listProfessor = data.getProfessorListData();
 		int i = 0;	
 		int professorRemoveNumber = -1;
 		for(Professor p: listProfessor) {
-			if(p.getEmail().equals(emailOfProfessor)) {
+			if(p.getIdNumber().equals(idOfProfessor)) {
 				professorRemoveNumber = i;
 			}
 			i++;

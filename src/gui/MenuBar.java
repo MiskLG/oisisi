@@ -218,14 +218,20 @@ public class MenuBar extends JMenuBar{
 //					}
 					break;
 				case STUDENT:
-//					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
-//					
-//					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
-//						if(panelEdit.getChangesMade()) {
-//							((MainWindow) getParent().getParent().getParent()).updateTable();
-//							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-//						}
-//					}
+					String idx  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();
+					
+					if(!idx.equals("-1")) {
+						EditStudent panelEditStudent = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), idx);
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);			
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali studenta kojeg želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case SUBJECT:
 					break;
@@ -243,16 +249,16 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-					String email  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedProfessorEmail();		
+					String id  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();		
 		    		
-		    		if(!email.equals("-1")) {
+		    		if(!id.equals("-1")) {
 		    			String[] options = {"Da","Ne"};
 		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
 			    				"Da li želite da obrišete izabranog profesora?", "UPOZORENJE!",
 					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	ProfessorController con = new ProfessorController();
-					        	if(con.deleteProfessor(email)) {
+					        	if(con.deleteProfessor(id)) {
 					        		((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
 					        		((MainWindow) getParent().getParent().getParent()).updateTable();
 					        	}
