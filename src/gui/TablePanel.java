@@ -31,8 +31,6 @@ public class TablePanel extends JTabbedPane {
 	private JTable professorsTable; 
 	private JTable subjectsTable;
 	
-	private static AbstractTableModelStudents studentsModel = null;
-
 	TableRowSorter<DefaultTableModel> subjectSorter = new TableRowSorter<DefaultTableModel>();
 	TableRowSorter<DefaultTableModel> professorSorter = new TableRowSorter<DefaultTableModel>();
 	TableRowSorter<DefaultTableModel> studentSorter = new TableRowSorter<DefaultTableModel>();
@@ -288,6 +286,7 @@ public class TablePanel extends JTabbedPane {
 		    	System.out.println(e);
 		    }
 		    subjectSorter.setRowFilter(RowFilter.andFilter(a));
+	}
 
 	public String getSelectedStudentIndex() {
 		if(studentsTable.getSelectedRow() != -1) {
