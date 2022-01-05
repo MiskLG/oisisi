@@ -46,7 +46,6 @@ public class EditStudentPanel extends JTabbedPane{
 	
 	private JButton acceptButton;
 	
-	private int currentYear;
 	
 	public EditStudentPanel(Student s) {
 		
@@ -69,47 +68,67 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		JPanel fieldsPanel = new JPanel();
 		
-		fieldsPanel.setLayout(new GridLayout(10,2));
+		Dimension d = new Dimension(400, 400);
+		fieldsPanel.setLayout(new FlowLayout());
+		fieldsPanel.setPreferredSize(d);
+		
+		Dimension d2 = new Dimension(180, 25);
 		
 		JLabel nameLabel = new JLabel("Ime*:");
 		JTextField nameField = new JTextField();
 		nameField.setText(s.getName());
+		nameLabel.setPreferredSize(d2);
+		nameField.setPreferredSize(d2);
 		
 		JLabel lastnameLabel = new JLabel("Prezime*:");
 		JTextField lastnameField = new JTextField();
 		lastnameField.setText(s.getLastname());
+		lastnameLabel.setPreferredSize(d2);
+		lastnameField.setPreferredSize(d2);
 		
 		
 		JLabel dateobLabel = new JLabel("Datum rođenja*:");
 		JTextField dateobField = new JTextField();
 		dateobField.setText(s.getDateOfBirth().writeAsString());
+		dateobLabel.setPreferredSize(d2);
+		dateobField.setPreferredSize(d2);
 		
 		
 		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
 		JTextField adressField = new JTextField();
 		adressField.setText(s.getAdress().writeAsString());
+		adressLabel.setPreferredSize(d2);
+		adressField.setPreferredSize(d2);
 		
 		
 		JLabel phoneLabel = new JLabel("Broj telefona*:");
 		JTextField phoneField = new JTextField();
 		phoneField.setText(s.getPhone());
+		phoneLabel.setPreferredSize(d2);
+		phoneField.setPreferredSize(d2);
 		
 		
 		JLabel emailLabel = new JLabel("E-mail adresa*:");
 		JTextField emailField = new JTextField();
 		emailField.setText(s.getEmail());
+		emailLabel.setPreferredSize(d2);
+		emailField.setPreferredSize(d2);
 		
 		
 		JLabel indexLabel = new JLabel("Broj indeksa*:");
 		JTextField indexField = new JTextField();
 		indexField.setText(s.getIndex());
+		indexLabel.setPreferredSize(d2);
+		indexField.setPreferredSize(d2);
 		
 		
 		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
 		JTextField enrolmentField = new JTextField();
 		enrolmentField.setText(Integer.toString(s.getEnrolmentYear()));
+		enrolmentLabel.setPreferredSize(d2);
+		enrolmentField.setPreferredSize(d2);
 		
-
+		
 		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
 		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
@@ -131,6 +150,8 @@ public class EditStudentPanel extends JTabbedPane{
 		else if(s.getYearOfStudy() == 6) {
 			yearOfStudyField.setSelectedIndex(5);
 		}
+		yearOfStudyLabel.setPreferredSize(d2);
+		yearOfStudyField.setPreferredSize(d2);
 		
 		
 		JLabel statusLabel = new JLabel("Način finansiranja*:");
@@ -140,7 +161,9 @@ public class EditStudentPanel extends JTabbedPane{
 			statusField.setSelectedIndex(0);
 		}else if(s.getStatus().equals("S")) {
 			statusField.setSelectedIndex(1);
-		}	
+		}
+		statusLabel.setPreferredSize(d2);
+		statusField.setPreferredSize(d2);
 
 		
 		fieldsPanel.add(nameLabel);
@@ -167,8 +190,8 @@ public class EditStudentPanel extends JTabbedPane{
 		mainPanel.setBorder(new EmptyBorder(20,30,20,30));
 		((BorderLayout)mainPanel.getLayout()).setVgap(20);
 		
-		((GridLayout)fieldsPanel.getLayout()).setVgap(15);
-		((GridLayout)fieldsPanel.getLayout()).setHgap(15);
+		((FlowLayout)fieldsPanel.getLayout()).setVgap(15);
+		((FlowLayout)fieldsPanel.getLayout()).setHgap(15);
 		
 		
 	
