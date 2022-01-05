@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -33,6 +34,7 @@ import model.Professor;
 import model.Student;
 import model.Subject;
 
+
 public class EditStudentPanel extends JTabbedPane{
 	
 	private JPanel informations;
@@ -44,9 +46,8 @@ public class EditStudentPanel extends JTabbedPane{
 	
 	private JButton acceptButton;
 	
-	private int currentYear;
 	
-	public EditStudentPanel() {
+	public EditStudentPanel(Student s) {
 		
 		informations = new JPanel();
 		passedExams = new JPanel();
@@ -60,90 +61,110 @@ public class EditStudentPanel extends JTabbedPane{
 		acceptButton = new JButton("Potvrdi");
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		
-		JLabel errLabel = new JLabel();
 		
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		
 		JPanel fieldsPanel = new JPanel();
-		//JPanel buttonsPanel = new JPanel();
 		
-		fieldsPanel.setLayout(new GridLayout(10,2));
+		Dimension d = new Dimension(400, 400);
+		fieldsPanel.setLayout(new FlowLayout());
+		fieldsPanel.setPreferredSize(d);
+		
+		Dimension d2 = new Dimension(180, 25);
 		
 		JLabel nameLabel = new JLabel("Ime*:");
 		JTextField nameField = new JTextField();
-		nameField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getName());
-
+		nameField.setText(s.getName());
+		nameLabel.setPreferredSize(d2);
+		nameField.setPreferredSize(d2);
 		
 		JLabel lastnameLabel = new JLabel("Prezime*:");
 		JTextField lastnameField = new JTextField();
-		lastnameField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getLastname());
+		lastnameField.setText(s.getLastname());
+		lastnameLabel.setPreferredSize(d2);
+		lastnameField.setPreferredSize(d2);
 		
 		
-		JLabel dateobLabel = new JLabel("Datum roÄ‘enja*:");
+		JLabel dateobLabel = new JLabel("Datum rođenja*:");
 		JTextField dateobField = new JTextField();
-		dateobField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getDateOfBirth().toString());
+		dateobField.setText(s.getDateOfBirth().writeAsString());
+		dateobLabel.setPreferredSize(d2);
+		dateobField.setPreferredSize(d2);
 		
 		
 		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
 		JTextField adressField = new JTextField();
-		adressField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getAdress().toString());
+		adressField.setText(s.getAdress().writeAsString());
+		adressLabel.setPreferredSize(d2);
+		adressField.setPreferredSize(d2);
 		
 		
 		JLabel phoneLabel = new JLabel("Broj telefona*:");
 		JTextField phoneField = new JTextField();
-		phoneField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getPhone());
-		
+		phoneField.setText(s.getPhone());
+		phoneLabel.setPreferredSize(d2);
+		phoneField.setPreferredSize(d2);
 		
 		
 		JLabel emailLabel = new JLabel("E-mail adresa*:");
 		JTextField emailField = new JTextField();
-		emailField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getEmail());
+		emailField.setText(s.getEmail());
+		emailLabel.setPreferredSize(d2);
+		emailField.setPreferredSize(d2);
 		
 		
 		JLabel indexLabel = new JLabel("Broj indeksa*:");
 		JTextField indexField = new JTextField();
-		indexField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getIndex());
+		indexField.setText(s.getIndex());
+		indexLabel.setPreferredSize(d2);
+		indexField.setPreferredSize(d2);
 		
 		
 		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
 		JTextField enrolmentField = new JTextField();
-		enrolmentField.setText(String.valueOf(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getEnrolmentYear()));
+		enrolmentField.setText(Integer.toString(s.getEnrolmentYear()));
+		enrolmentLabel.setPreferredSize(d2);
+		enrolmentField.setPreferredSize(d2);
 		
 		
 		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
-		String  yearChoices[] = {"I (prva)","II (druga)","III (treÄ‡a)","IV (Ä�etvrta)", "V (peta)", "VI (Å¡esta)"};     
+		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
-		//yearOfStudyField.setText(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getName());
-		//if(DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getYearOfStudy() == )
-		currentYear = DataClass.getInstance().getSelectedStudent(AbstractTableModelStudents.getSelectedRowIndex()).getYearOfStudy();
-		if(currentYear == 1) {
-			yearOfStudyField.setSelectedItem("I (prva)");
+		if(s.getYearOfStudy() == 1) {
+			yearOfStudyField.setSelectedIndex(0);
 		}
-		else if(currentYear == 2) {
-			yearOfStudyField.setSelectedItem("II (druga)");
+		else if(s.getYearOfStudy() == 2) {
+			yearOfStudyField.setSelectedIndex(1);
 		}
-		else if(currentYear == 3) {
-			yearOfStudyField.setSelectedItem("III (treca)");
+		else if(s.getYearOfStudy() == 3) {
+			yearOfStudyField.setSelectedIndex(2);
 		}
-		else if(currentYear == 4) {
-			yearOfStudyField.setSelectedItem("IV (cetvrta)");
+		else if(s.getYearOfStudy() == 4) {
+			yearOfStudyField.setSelectedIndex(3);
 		}
-		else if(currentYear == 5) {
-			yearOfStudyField.setSelectedItem("V (peta)");
+		else if(s.getYearOfStudy() == 5) {
+			yearOfStudyField.setSelectedIndex(4);
 		}
-		else {
-			yearOfStudyField.setSelectedItem("VI (sesta)");
+		else if(s.getYearOfStudy() == 6) {
+			yearOfStudyField.setSelectedIndex(5);
 		}
+		yearOfStudyLabel.setPreferredSize(d2);
+		yearOfStudyField.setPreferredSize(d2);
 		
 		
-		JLabel statusLabel = new JLabel("NaÄ�in finansiranja*:");
-		String  statusChoices[] = {"BudÅ¾et", "SamofinansirajuÄ‡e"};     
+		JLabel statusLabel = new JLabel("Način finansiranja*:");
+		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
 		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
-		// dodati status naknadno
-		
-		
+		if(s.getStatus().equals("B")) {
+			statusField.setSelectedIndex(0);
+		}else if(s.getStatus().equals("S")) {
+			statusField.setSelectedIndex(1);
+		}
+		statusLabel.setPreferredSize(d2);
+		statusField.setPreferredSize(d2);
+
 		
 		fieldsPanel.add(nameLabel);
 		fieldsPanel.add(nameField);
@@ -169,8 +190,8 @@ public class EditStudentPanel extends JTabbedPane{
 		mainPanel.setBorder(new EmptyBorder(20,30,20,30));
 		((BorderLayout)mainPanel.getLayout()).setVgap(20);
 		
-		((GridLayout)fieldsPanel.getLayout()).setVgap(15);
-		((GridLayout)fieldsPanel.getLayout()).setHgap(15);
+		((FlowLayout)fieldsPanel.getLayout()).setVgap(15);
+		((FlowLayout)fieldsPanel.getLayout()).setHgap(15);
 		
 		
 	
@@ -192,11 +213,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-
+	
 			@Override
 			public void keyPressed(KeyEvent e) {		
 			}
-
+	
 			@Override
 			public void keyReleased(KeyEvent e) {	
 			}
@@ -219,16 +240,16 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-
+	
 			@Override
 			public void keyPressed(KeyEvent e) {
 			}
-
+	
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
-	});
-	dateobField.addKeyListener(new KeyListener() {
+		});
+		dateobField.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if(true == RegXClass.checkDate(dateobField.getText() + e.getKeyChar())) {
@@ -246,11 +267,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-
+	
 			@Override
 			public void keyPressed(KeyEvent e) {	
 			}
-
+	
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
@@ -273,11 +294,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-
+	
 			@Override
 			public void keyPressed(KeyEvent e) {	
 			}
-
+	
 			@Override
 			public void keyReleased(KeyEvent e) {	
 			}
@@ -300,11 +321,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-	
+		
 			@Override
 			public void keyPressed(KeyEvent e) {
 			}
-	
+		
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
@@ -328,11 +349,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-	
+		
 			@Override
 			public void keyPressed(KeyEvent e) {
 			}
-	
+		
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
@@ -355,11 +376,11 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}
 			}
-	
+		
 			@Override
 			public void keyPressed(KeyEvent e) {		
 			}
-	
+		
 			@Override
 			public void keyReleased(KeyEvent e) {			
 			}
@@ -382,33 +403,53 @@ public class EditStudentPanel extends JTabbedPane{
 					acceptButton.setEnabled(false);
 				}	
 			}
-	
+		
 			@Override
 			public void keyPressed(KeyEvent e) {
 			}
-	
+		
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
 		});
 		
-		informations.add(errLabel, BorderLayout.NORTH);
 		informations.add(fieldsPanel, BorderLayout.CENTER);
 		
 		acceptButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
-						emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
-				String err = con.addStudentToData();
-				if(err.equals("Sve je dobro!")) {
-					changesMade = true;
+				if(s.getIndex().equals(indexField.getText())) {
+					StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+					emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex(), true);
+					String err = con.editStudent(s.getIndex());
+					if(err.equals("Sve je dobro!")) {
+						changesMade = true;
+						
+					}
+					else {
+						String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+					}
 				}
-				else {
-					errLabel.setText(err);
-				}
-				
+				else if(!s.getIndex().equals(indexField.getText())) {
+					StudentController con = new StudentController(nameField.getText(), lastnameField.getText(), dateobField.getText(), adressField.getText(), phoneField.getText(),
+					emailField.getText(), indexField.getText(), enrolmentField.getText(), yearOfStudyField.getSelectedIndex(), statusField.getSelectedIndex());
+					String err = con.editStudent(s.getIndex());
+					if(err.equals("Sve je dobro!")) {
+						changesMade = true;
+						
+						
+					}
+					else {
+						String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+					}
+				}		
 			}
 			
 		});

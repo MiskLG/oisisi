@@ -11,13 +11,32 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import controller.ProfessorController;
+import model.Professor;
+
 public class EditProfessor extends JDialog {
 
 	private EditProfessorPanel editProfTabs;
 	
-	public EditProfessor(Point location, Dimension size) {
+	public EditProfessor(Point location, Dimension size, String id) {
 		this.setResizable(false);
+		this.setModal(true);
 		setTitle("Izmena profesora");
+		
+//		double widthRatio = 40./100;
+//		double heightRatio = 95./100;
+//		
+//		Double minX = 1200 * widthRatio;
+//		Double minY = 600 * heightRatio;
+//	
+//		Double locationX = location.x + size.getWidth() / 2 - minX /2 ;
+//		Double locationY = location.y + size.getHeight() / 2 - minY / 2;
+//		
+//		Double sizeX = minX;
+//		Double sizeY = minY;
+//		
+//		setLocation(locationX.intValue() , locationY.intValue() );
+//		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		double widthRatio = 40./100;
 		double heightRatio = 95./100;
@@ -31,8 +50,10 @@ public class EditProfessor extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		setLocationRelativeTo(this.getParent());
 		
-		editProfTabs = new EditProfessorPanel();
-		//JLabel errLabel = new JLabel(); NJEGA MORAM DODATI U IZMENU
+		ProfessorController con = new ProfessorController();
+		Professor p = con.findProfessorById(id);
+		
+		editProfTabs = new EditProfessorPanel(p);
 		
 		JPanel buttonsPanel = new JPanel();
 		
@@ -51,7 +72,7 @@ public class EditProfessor extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TablePanel.getStudentModel().fireTableDataChanged();
+				
 				dispose();
 				
 			}
@@ -75,7 +96,6 @@ public class EditProfessor extends JDialog {
 		
 		editProfTabs.getInformations().add(buttonsPanel);
 		getContentPane().add(editProfTabs, BorderLayout.CENTER);
-		
 
 		this.setVisible(true);
 	}

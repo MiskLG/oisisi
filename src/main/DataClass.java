@@ -475,38 +475,6 @@ public class DataClass {
 		      e.printStackTrace();
 		    }
 	}
-	
-	public String getValueAt(int row, int column) {
-		Student student = studentListData.get(row);
-		switch(column) {
-			case 0:
-				return student.getIndex();
-			case 1:
-				return student.getName();
-			case 2:
-				return student.getLastname();
-			case 3:
-				return Integer.toString(student.getYearOfStudy());
-			case 4:
-				return student.getStatus();
-			case 5:
-				return Double.toString(student.getAverageGrade());
-			default:
-				return null;
-		}
-	}
-	
-	public void deleteStudent(int idx) {
-		studentListData.remove(idx);
-	}
-	
-	public Student getSelectedStudent(int i) {
-		return DataClass.getInstance().getStudentListData().get(i);
-	}
-	
-	public Professor getSelectedProfessor(int i) {
-		return DataClass.getInstance().getProfessorListData().get(i);
-	}
 
 
 	public ArrayList<Chair> getChairListData() {

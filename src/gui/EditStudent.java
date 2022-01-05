@@ -21,13 +21,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.StudentController;
+import model.Student;
 
 public class EditStudent extends JDialog {
 	
 	private EditStudentPanel editTabs;
 	
-	public EditStudent(Point location, Dimension size) {
+	public EditStudent(Point location, Dimension size, String index) {
 		this.setResizable(false);
+		this.setModal(true);
 		setTitle("Izmena studenta");
 		
 		double widthRatio = 40./100;
@@ -42,8 +44,10 @@ public class EditStudent extends JDialog {
 		setSize(sizeX.intValue(), sizeY.intValue());
 		setLocationRelativeTo(this.getParent());
 		
-		editTabs = new EditStudentPanel();
-		//JLabel errLabel = new JLabel(); NJEGA MORAM DODATI U IZMENU
+		StudentController con = new StudentController();
+		Student s = con.findStudentByIdx(index);
+		
+		editTabs = new EditStudentPanel(s);
 		
 		JPanel buttonsPanel = new JPanel();
 		
@@ -62,7 +66,7 @@ public class EditStudent extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TablePanel.getStudentModel().fireTableDataChanged();
+				
 				dispose();
 				
 			}

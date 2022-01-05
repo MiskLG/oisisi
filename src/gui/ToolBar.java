@@ -19,7 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+
+import controller.ProfessorController;
+import controller.StudentController;
+
 import controller.SubjectController;
+
 
 
 public class ToolBar extends JPanel {
@@ -120,10 +125,36 @@ public class ToolBar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-					EditProfessor profEdit = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					String id  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();
+					
+					if(!id.equals("-1")) {
+						EditProfessor panelEditProfessor = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), id); 
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali profesora kojeg želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case STUDENT:
-					EditStudent panelEdit = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					String idx  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();
+					
+					if(!idx.equals("-1")) {
+						EditStudent panelEditStudent = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), idx); 
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali studenta kojeg želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case SUBJECT:
 					break;
@@ -139,12 +170,56 @@ public class ToolBar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-					//treba izmeniti da se poziva za oznacenog profesora a ne samo na klik
-					DeleteProfessor deleteProf = new DeleteProfessor();
+					String id  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();		
+		    		
+		    		if(!id.equals("-1")) {
+		    			String[] options = {"Da","Ne"};
+		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
+			    				"Da li želite da obrišete izabranog profesora?", "UPOZORENJE!",
+					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
+					        if (result == JOptionPane.YES_OPTION) {				        	
+					        	ProfessorController con = new ProfessorController();
+					        	if(con.deleteProfessor(id)) {
+					        		((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					        	}
+					        	
+					        }
+					        else if (result == JOptionPane.NO_OPTION) {
+					        }
+		    		}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali profesora kojeg želite da obrišete!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case STUDENT:
-					//isto i za studenta
-					DeleteStudent deleteStud = new DeleteStudent();
+					String idx  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();		
+		    		
+		    		if(!idx.equals("-1")) {
+		    			String[] options = {"Da","Ne"};
+		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
+			    				"Da li želite da obrišete izabranog studenta?", "UPOZORENJE!",
+					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
+					        if (result == JOptionPane.YES_OPTION) {				        	
+					        	StudentController con = new StudentController();
+					        	if(con.deleteStudent(idx)) {
+					        		((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					        		((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+					        	}
+					        	
+					        }
+					        else if (result == JOptionPane.NO_OPTION) {
+					        }
+		    		}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali studenta kojeg želite da obrišete!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case SUBJECT:
 					String index  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedSubjectCode();		

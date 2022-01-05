@@ -20,8 +20,9 @@ public class StudentController {
 	private int status;
 	
 	private String err;
+	private boolean sameIndex = false;
 	
-
+	
 	public StudentController(String name, String lastname, String date, String adress,  String phone, String email, String index,
 			String year, int yearOfStudy, int status) {
 		this.err = checkData(name,lastname,date,adress,phone,email,index,year);
@@ -40,6 +41,26 @@ public class StudentController {
 		
 	}
 
+	public StudentController() {};
+	
+	public StudentController(String name, String lastname, String date, String adress,  String phone, String email, String index,
+			String year, int yearOfStudy, int status, boolean sameIndex) {
+		this.sameIndex = sameIndex;
+		this.err = checkData(name,lastname,date,adress,phone,email,index,year);
+		if(err.equals("Sve je dobro!")) {
+			this.name = name;
+			this.lastname = lastname;
+			this.date = new Date(date);
+			this.adress = new Adress(adress);
+			this.phone = phone;
+			this.index = index;
+			this.year = Integer.parseInt(year);
+			this.yearOfStudy = yearOfStudy;
+			this.status = status;
+			this.email = email;
+		}
+		
+	}
 
 	public String addStudentToData() {
 		DataClass data = DataClass.getInstance();
@@ -89,12 +110,15 @@ public class StudentController {
 			return err;
 		}
 		
-		DataClass data = DataClass.getInstance();
-		ArrayList<Student> listStudent = data.getStudentListData();
-		if(listStudent != null) {
-			for(Student s : listStudent) {
-				if(index.equalsIgnoreCase(s.getIndex())) {
-					return "Indeks je zauzet!";
+		
+		if(!sameIndex) {
+			DataClass data = DataClass.getInstance();
+			ArrayList<Student> listStudent = data.getStudentListData();
+			if(listStudent != null) {
+				for(Student s : listStudent) {
+					if(index.equalsIgnoreCase(s.getIndex())) {
+						return "Indeks je zauzet!";
+					}
 				}
 			}
 		}
@@ -107,6 +131,70 @@ public class StudentController {
 		
 		
 		return err;
+	}
+	
+	public String editStudent(String indexOfStudent) {
+		DataClass data = DataClass.getInstance();
+		
+		if(!err.equals("Sve je dobro!")) {
+			return err;
+		}
+			
+		ArrayList<Student> listStudent = data.getStudentListData();
+		for(Student s: listStudent) {
+			if(s.getIndex().equals(indexOfStudent)) {
+
+				s.setName(this.name);
+				s.setLastname(this.lastname);
+				s.setDateOfBirth(this.date);
+				s.setAdress(this.adress);
+				s.setPhone(this.phone);
+				s.setEmail(this.email);
+				s.setIndex(this.index);
+				s.setEnrolmentYear(this.year);
+				s.setYearOfStudy(this.yearOfStudy+1);
+				s.setStatus(this.status);
+		
+			}
+		}
+		data.setStudentListData(listStudent);
+		
+		return err;
+		
+	}
+	
+	public Student findStudentByIdx(String index) {
+		DataClass data = DataClass.getInstance();
+		
+		ArrayList<Student> listStudent = data.getStudentListData();
+		for(Student s: listStudent) {
+			if(s.getIndex().equals(index)) {
+				return s;
+			}
+		}
+		return null;
+		
+	}
+	
+	public boolean deleteStudent(String indexOfStudent) {		
+		DataClass data = DataClass.getInstance();			
+		
+		ArrayList<Student> listStudent = data.getStudentListData();
+		int i = 0;
+		int studentRemoveNumber = -1;
+		for(Student s: listStudent) {
+			if(s.getIndex().equals(indexOfStudent)) {
+				studentRemoveNumber = i;
+			}
+			i++;
+		}
+		
+		if(studentRemoveNumber != -1) {
+			listStudent.remove(studentRemoveNumber);
+		}
+		
+		data.setStudentListData(listStudent);
+		return true;
 	}
 	
 	public String getErr() {

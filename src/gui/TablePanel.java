@@ -233,13 +233,6 @@ public class TablePanel extends JTabbedPane {
 		this.studentsTable = studentsTable;
 	}
 
-	public static AbstractTableModelStudents getStudentsModel() {
-		return studentsModel;
-	}
-
-	public static void setStudentsModel(AbstractTableModelStudents studentsModel) {
-		TablePanel.studentsModel = studentsModel;
-	}
 	
 	public String getSelectedSubjectCode() {
 		if(subjectsTable.getSelectedRow() != -1) {
@@ -248,6 +241,7 @@ public class TablePanel extends JTabbedPane {
 		return "-1";
 	}
 	
+
 	public void setFilterProfessor(String filterString) {
 	    
 	    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>> a = new    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>>();
@@ -294,6 +288,19 @@ public class TablePanel extends JTabbedPane {
 		    	System.out.println(e);
 		    }
 		    subjectSorter.setRowFilter(RowFilter.andFilter(a));
+
+	public String getSelectedStudentIndex() {
+		if(studentsTable.getSelectedRow() != -1) {
+			return studentsTable.getValueAt(studentsTable.getSelectedRow(), 0).toString(); 
+		}
+		return "-1";
 	}
+    
 	
+	public String getSelectedProfessorId() {
+		if(professorsTable.getSelectedRow() != -1) {
+			return professorsTable.getModel().getValueAt(professorsTable.getSelectedRow(), 4).toString(); 
+		}
+		return "-1";
+	}
 }
