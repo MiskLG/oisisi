@@ -208,14 +208,20 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				switch(current) {
 				case PROFESSOR:
-//					EditProfessor profEdit = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
-//					
-//					if( ((MainWindow) getParent().getParent().getParent()).getTablePanel().getStudentsTable().isRowSelected(AbstractTableModelStudents.getSelectedRowIndex())) {
-//						if(profEdit.getChangesMade()) {
-//							((MainWindow) getParent().getParent().getParent()).updateTable();
-//							((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
-//						}
-//					}
+					String id  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();
+					
+					if(!id.equals("-1")) {
+						EditProfessor panelEditProfessor = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), id); 
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali profesora kojeg želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				case STUDENT:
 					String idx  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();

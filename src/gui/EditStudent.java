@@ -29,6 +29,7 @@ public class EditStudent extends JDialog {
 	
 	public EditStudent(Point location, Dimension size, String index) {
 		this.setResizable(false);
+		this.setModal(true);
 		setTitle("Izmena studenta");
 		
 		double widthRatio = 40./100;
@@ -66,8 +67,6 @@ public class EditStudent extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
 				dispose();
 				
 			}
@@ -91,7 +90,6 @@ public class EditStudent extends JDialog {
 		
 		editTabs.getInformations().add(buttonsPanel);
 		getContentPane().add(editTabs, BorderLayout.CENTER);
-		//pack();
 		
 
 		this.setVisible(true);

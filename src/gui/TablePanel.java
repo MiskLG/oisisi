@@ -212,7 +212,7 @@ public class TablePanel extends JTabbedPane {
 	
 	public String getSelectedProfessorId() {
 		if(professorsTable.getSelectedRow() != -1) {
-			return professorsTable.getValueAt(professorsTable.getSelectedRow(), 4).toString(); 
+			return professorsTable.getModel().getValueAt(professorsTable.getSelectedRow(), 4).toString(); 
 		}
 		return "-1";
 	}

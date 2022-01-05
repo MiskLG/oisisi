@@ -68,7 +68,6 @@ public class EditStudentPanel extends JTabbedPane{
 		mainPanel.setLayout(new BorderLayout());
 		
 		JPanel fieldsPanel = new JPanel();
-		JPanel buttonsPanel = new JPanel();
 		
 		fieldsPanel.setLayout(new GridLayout(10,2));
 		

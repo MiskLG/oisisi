@@ -20,7 +20,7 @@ public class ProfessorController {
 	private int workYears;
 	
 	private String err;
-	
+	private boolean sameId = false;
 
 	public ProfessorController(String name, String lastname, String date, String adressHome,  String phone, String email, String adressWork,
 			String id, String title, String workYears) {
@@ -41,6 +41,25 @@ public class ProfessorController {
 	}
 
 	public ProfessorController() {};
+	
+	public ProfessorController(String name, String lastname, String date, String adressHome,  String phone, String email, String adressWork,
+			String id, String title, String workYears, boolean sameId) {
+		this.sameId = sameId;
+		this.err = checkData(name,lastname,date,adressHome,phone,email,adressWork,id,title,workYears);
+		if(err.equals("Sve je dobro!")) {
+			this.name = name;
+			this.lastname = lastname;
+			this.date = new Date(date);
+			this.adressHome = new Adress(adressHome);
+			this.phone = phone;
+			this.id = id;
+			this.workYears = Integer.parseInt(workYears);
+			this.title = title;
+			this.adressWork = new Adress(adressWork);
+			this.email = email;
+		}
+		
+	}
 	
 	public String addProfessorToData() {
 		DataClass data = DataClass.getInstance();
@@ -94,15 +113,18 @@ public class ProfessorController {
 			return err;
 		}
 		
-		DataClass data = DataClass.getInstance();
-		ArrayList<Professor> listProfessor = data.getProfessorListData();
-		if(listProfessor != null) {
-			for(Professor p : listProfessor) {
-				if(id.equalsIgnoreCase(p.getIdNumber())) {
-					return "Postoji vec taj lični broj u bazi!";
+		if(!sameId) {
+			DataClass data = DataClass.getInstance();
+			ArrayList<Professor> listProfessor = data.getProfessorListData();
+			if(listProfessor != null) {
+				for(Professor p : listProfessor) {
+					if(id.equalsIgnoreCase(p.getIdNumber())) {
+						return "Postoji vec taj lični broj u bazi!";
+					}
 				}
 			}
-		}
+		}	
+			
 		if(false == RegXClass.checkTitle(title)) {
 			err = "Loše unesena titula";
 			return err;
@@ -138,6 +160,50 @@ public class ProfessorController {
 		data.setProfessorListData(listProfessor);
 		
 		return true;
+	}
+	
+	public Professor findProfessorById(String id) {
+		DataClass data = DataClass.getInstance();
+		
+		ArrayList<Professor> listProfessor = data.getProfessorListData();
+		for(Professor p: listProfessor) {
+			if(p.getIdNumber().equals(id)) {
+				return p;
+			}
+		}
+		return null;
+		
+	}
+	
+	public String editProfessor(String idOfProfessor) {
+		DataClass data = DataClass.getInstance();
+		
+		if(!err.equals("Sve je dobro!")) {
+			return err;
+		}
+			
+		ArrayList<Professor> listProfessor = data.getProfessorListData();
+		for(Professor p: listProfessor) {
+			if(p.getIdNumber().equals(idOfProfessor)) {
+				
+				p.setName(this.name);
+				p.setLastname(this.lastname);
+				p.setDateOfBirth(this.date);
+				p.setAdressHome(this.adressHome);
+				p.setPhone(this.phone);
+				p.setEmail(this.email);
+				p.setAdressWork(this.adressWork);
+				p.setIdNumber(this.id);
+				p.setTitle(this.title);
+				p.setWorkYears(this.workYears);
+				
+		
+			}
+		}
+		data.setProfessorListData(listProfessor);
+		
+		return err;
+		
 	}
 	
 	public String getErr() {
