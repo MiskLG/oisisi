@@ -210,9 +210,9 @@ public class TablePanel extends JTabbedPane {
 		return "-1";
 	}
 	
-	public String getSelectedProfessorEmail() {
+	public String getSelectedProfessorId() {
 		if(professorsTable.getSelectedRow() != -1) {
-			return professorsTable.getValueAt(professorsTable.getSelectedRow(), 3).toString(); 
+			return professorsTable.getModel().getValueAt(professorsTable.getSelectedRow(), 4).toString(); 
 		}
 		return "-1";
 	}
