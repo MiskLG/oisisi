@@ -273,6 +273,8 @@ public class ToolBar extends JPanel {
 		JTextField textSearch = new JTextField();
 		
 		
+		
+		
 		textSearch.setPreferredSize(new Dimension(300,24));
 		
 		
@@ -286,6 +288,27 @@ public class ToolBar extends JPanel {
 		buttonSearch.setFocusPainted(false); 
 		
 		buttonSearch.setToolTipText("Pretrega studenta");
+		
+		buttonSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(current) {
+				case PROFESSOR:		
+					String filterString = textSearch.getText();
+					((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().setFilterProfessor(filterString);			
+					break;
+				case STUDENT:
+					break;
+				case SUBJECT:
+					String filterString1 = textSearch.getText();
+					((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().setFilterSubject(filterString1);	
+					break;
+				default:
+					break;
+				}
+							
+			}		
+		});
 		
 		toolbarRight.add(textSearch);
 		toolbarRight.add(buttonSearch);
