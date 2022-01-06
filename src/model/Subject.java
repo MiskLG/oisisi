@@ -35,7 +35,20 @@ public class Subject {
 		this.numberECTS = numberECTS;
 	}
 	
-	
+	public Subject(String subjectCode, String title, int semester, int yearOfStudy, int numberECTS) {
+		this.subjectCode = subjectCode;
+		this.title = title;
+		
+		if(semester == 0) {
+			this.semester = Semester.WINTER;
+		}
+		else {
+			this.semester = Semester.SUMMER;
+		}
+		
+		this.yearOfStudy = yearOfStudy;
+		this.numberECTS = numberECTS;
+	}
 
 	
 

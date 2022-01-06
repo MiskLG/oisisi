@@ -103,4 +103,38 @@ public class RegXClass {
 		return matcher.matches();
 	}
 	
+	public static boolean checkSubjectCode(String code) {
+		
+		Pattern pattern = Pattern.compile("[A-Z0-9]{1,8}");	
+		Matcher matcher = pattern.matcher(code);
+
+		return matcher.matches();
+
+	}
+	
+	public static boolean checkSubjectTitle(String title) {
+		Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*([ ][0-9])?",Pattern.UNICODE_CHARACTER_CLASS);	
+		Matcher matcher = pattern.matcher(title);
+
+		return matcher.matches();
+	}
+	
+	public static boolean checkSubjectYearOfStudy(String year) {
+		
+		Pattern pattern = Pattern.compile("[1-6]");	
+		Matcher matcher = pattern.matcher(year);
+
+		return matcher.matches();
+
+	}
+	
+	public static boolean checkNumberECTS(String number) {
+		
+		Pattern pattern = Pattern.compile("[1-9][0-9]?");	
+		Matcher matcher = pattern.matcher(number);
+
+		return matcher.matches();
+
+	}
+	
 }

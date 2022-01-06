@@ -88,6 +88,11 @@ public class MenuBar extends JMenuBar{
 					}
 					break;
 				case SUBJECT:
+					AddSubjectsPanel panelSu = new AddSubjectsPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+					if(panelSu.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
+					}
 					break;
 				default:
 					break;}		
