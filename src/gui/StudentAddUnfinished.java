@@ -102,7 +102,7 @@ public class StudentAddUnfinished extends JDialog{
 	    			String[] options = {"Da","Ne"};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
 		    				"Da li želite da dodate izabrani predmet?", "Potvrditi!",
-				            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
+				            JOptionPane.WARNING_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
 				        	SubjectController con = new SubjectController();
 				        	if(con.addUnfinishedSubject(index, ableToAdd.getValueAt(ableToAdd.getSelectedRow(), 0).toString())) {

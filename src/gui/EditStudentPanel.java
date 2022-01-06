@@ -89,7 +89,7 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		JLabel dateobLabel = new JLabel("Datum rođenja*:");
 		JTextField dateobField = new JTextField();
-		dateobField.setText(s.getDateOfBirth().writeAsString());
+		dateobField.setText(s.getDateOfBirth().toString());
 		dateobLabel.setPreferredSize(d2);
 		dateobField.setPreferredSize(d2);
 		

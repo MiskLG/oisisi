@@ -106,6 +106,10 @@ public class MenuBar extends JMenuBar{
 		menuItemSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String[] list = {"OK"};
+				int confimed = JOptionPane.showOptionDialog((getRootPane()), 
+	        			"Podaci su uspešno sačuvani!", "Informacija",
+			            JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, list,"");
 				DataClass.getInstance().writeOutData();
 				((MainWindow) getParent().getParent().getParent()).setChangesMade(false);
 			}		
