@@ -10,6 +10,69 @@ import model.Subject;
 import model.UnfinishedSubjects;
 
 public class SubjectController {
+	
+	private String 		subjectCode;
+	private String 		title;
+	private int		 	semester;
+	private int 		yearOfStudy;
+	private String 		subjectProfessor;
+	private int 		numberECTS;
+	
+	private String err;
+	
+	public SubjectController() {}
+	
+	public SubjectController(String subjectCode, String title, int semester, int yearOfStudy, String numberECTS) {
+		this.err = checkData(subjectCode, title, numberECTS);
+		this.subjectCode = subjectCode;
+		this.title = title;
+		this.semester = semester;
+		this.yearOfStudy = yearOfStudy;
+		this.numberECTS = Integer.parseInt(numberECTS);
+	}
+	
+	public String checkData(String subjectCode, String title, String numberECTS) {
+		err = "Sve je dobro!";
+		
+		if(false == RegXClass.checkSubjectCode(subjectCode)) {
+			err = "Loše unesena šifra predmeta";
+			return err;
+		}
+		
+		DataClass data = DataClass.getInstance();
+		ArrayList<Subject> listSubject = data.getSubjectListData();
+		if(listSubject != null) {
+			for(Subject s : listSubject) {
+				if(subjectCode.equalsIgnoreCase(s.getSubjectCode())) {
+					return "Šifra predmeta je zauzeta!";
+				}
+			}
+		}
+		if(false == RegXClass.checkSubjectTitle(title)) {
+			err = "Loše unesen naziv predmeta";
+			return err;
+		}
+		if(false == RegXClass.checkNumberECTS(numberECTS)) {
+			err = "Loše unesen broj ESPB";
+			return err;
+		}
+		
+		return err;
+	}
+	
+	public String addSubjectToData() {
+		DataClass data = DataClass.getInstance();
+		
+		if(!err.equals("Sve je dobro!")) {
+			return err;
+		}
+			
+		ArrayList<Subject> listSubject = data.getSubjectListData();
+		listSubject.add(new Subject(this.subjectCode, this.title, this.semester, this.yearOfStudy+1, this.numberECTS));
+		data.setSubjectListData(listSubject);
+		
+		return err;
+	}
 
 	public boolean deleteSubject(String code) {
 		

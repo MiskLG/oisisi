@@ -112,6 +112,11 @@ public class ToolBar extends JPanel {
 					}
 					break;
 				case SUBJECT:
+					AddSubjectsPanel panelSu = new AddSubjectsPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize());
+					if(panelSu.getChangesMade()) {
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+					}
 					break;
 				default:
 					break;
