@@ -41,8 +41,11 @@ public class EditStudent extends JDialog {
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
+		Double locationX = location.x + size.getWidth() / 2 - minX /2 ;
+		Double locationY = location.y + size.getHeight() / 2 - minY / 2;
+		
 		setSize(sizeX.intValue(), sizeY.intValue());
-		setLocationRelativeTo(this.getParent());
+		setLocation(locationX.intValue() , locationY.intValue());
 		
 		StudentController con = new StudentController();
 		Student s = con.findStudentByIdx(index);
@@ -66,8 +69,9 @@ public class EditStudent extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
+				if(getChangesMade()) {
+					dispose();
+				}
 				
 			}
 			

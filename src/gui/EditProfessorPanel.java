@@ -469,7 +469,6 @@ public class EditProfessorPanel extends JTabbedPane {
 		});
 		
 		
-		//this.setVisible(true);
 	}
 
 	public JPanel getInformations() {

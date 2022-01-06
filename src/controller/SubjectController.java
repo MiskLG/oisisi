@@ -19,16 +19,31 @@ public class SubjectController {
 	private int 		numberECTS;
 	
 	private String err;
+	private boolean sameCode = false;
 	
 	public SubjectController() {}
 	
-	public SubjectController(String subjectCode, String title, int semester, int yearOfStudy, String numberECTS) {
+	public SubjectController(String subjectCode, String title, int semester, int yearOfStudy, String numberECTS, String subjectProfessor) {
 		this.err = checkData(subjectCode, title, numberECTS);
 		this.subjectCode = subjectCode;
 		this.title = title;
 		this.semester = semester;
 		this.yearOfStudy = yearOfStudy;
 		this.numberECTS = Integer.parseInt(numberECTS);
+		this.subjectProfessor = subjectProfessor;
+	}
+	
+	public SubjectController(String subjectCode, String title, int semester, int yearOfStudy, String numberECTS, String subjectProfessor,
+			boolean sameCode) {
+		
+		this.sameCode = sameCode;
+		this.err = checkData(subjectCode, title, numberECTS);
+		this.subjectCode = subjectCode;
+		this.title = title;
+		this.semester = semester;
+		this.yearOfStudy = yearOfStudy;
+		this.numberECTS = Integer.parseInt(numberECTS);
+		this.subjectProfessor = subjectProfessor;
 	}
 	
 	public String checkData(String subjectCode, String title, String numberECTS) {
@@ -39,15 +54,19 @@ public class SubjectController {
 			return err;
 		}
 		
-		DataClass data = DataClass.getInstance();
-		ArrayList<Subject> listSubject = data.getSubjectListData();
-		if(listSubject != null) {
-			for(Subject s : listSubject) {
-				if(subjectCode.equalsIgnoreCase(s.getSubjectCode())) {
-					return "Šifra predmeta je zauzeta!";
+		
+		if(!sameCode) {
+			DataClass data = DataClass.getInstance();
+			ArrayList<Subject> listSubject = data.getSubjectListData();
+			if(listSubject != null) {
+				for(Subject s : listSubject) {
+					if(subjectCode.equalsIgnoreCase(s.getSubjectCode())) {
+						return "Šifra predmeta je zauzeta!";
+					}
 				}
 			}
 		}
+		
 		if(false == RegXClass.checkSubjectTitle(title)) {
 			err = "Loše unesen naziv predmeta";
 			return err;
@@ -69,6 +88,42 @@ public class SubjectController {
 			
 		ArrayList<Subject> listSubject = data.getSubjectListData();
 		listSubject.add(new Subject(this.subjectCode, this.title, this.semester, this.yearOfStudy+1, this.numberECTS));
+		data.setSubjectListData(listSubject);
+		
+		return err;
+	}
+	
+	public Subject findSubjectByCode(String subjectCode) {
+		DataClass data = DataClass.getInstance();
+		
+		ArrayList<Subject> listSubject = data.getSubjectListData();
+		for(Subject s: listSubject) {
+			if(s.getSubjectCode().equals(subjectCode)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public String editSubject(String subjectCode) {
+		DataClass data = DataClass.getInstance();
+		System.out.println(err);
+		if(!err.equals("Sve je dobro!")) {
+			return err;
+		}
+		
+		ArrayList<Subject> listSubject = data.getSubjectListData();
+		for(Subject s: listSubject) {
+			if(s.getSubjectCode().equals(subjectCode)) {
+				s.setSubjectCode(this.subjectCode);
+				s.setTitle(this.title);
+				s.setSemester(this.semester);
+				s.setYearOfStudy(this.yearOfStudy+1);
+				s.setNumberECTS(this.numberECTS);
+				//Ovde verovatno nece funkcionisati odmah
+				s.setSubjectProfessor(this.subjectProfessor);
+			}
+		}
 		data.setSubjectListData(listSubject);
 		
 		return err;

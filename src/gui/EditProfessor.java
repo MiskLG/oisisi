@@ -23,20 +23,6 @@ public class EditProfessor extends JDialog {
 		this.setModal(true);
 		setTitle("Izmena profesora");
 		
-//		double widthRatio = 40./100;
-//		double heightRatio = 95./100;
-//		
-//		Double minX = 1200 * widthRatio;
-//		Double minY = 600 * heightRatio;
-//	
-//		Double locationX = location.x + size.getWidth() / 2 - minX /2 ;
-//		Double locationY = location.y + size.getHeight() / 2 - minY / 2;
-//		
-//		Double sizeX = minX;
-//		Double sizeY = minY;
-//		
-//		setLocation(locationX.intValue() , locationY.intValue() );
-//		setSize(sizeX.intValue(), sizeY.intValue());
 		
 		double widthRatio = 40./100;
 		double heightRatio = 95./100;
@@ -47,8 +33,11 @@ public class EditProfessor extends JDialog {
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
+		Double locationX = location.x + size.getWidth() / 2 - minX /2 ;
+		Double locationY = location.y + size.getHeight() / 2 - minY / 2;
+		
 		setSize(sizeX.intValue(), sizeY.intValue());
-		setLocationRelativeTo(this.getParent());
+		setLocation(locationX.intValue() , locationY.intValue());
 		
 		ProfessorController con = new ProfessorController();
 		Professor p = con.findProfessorById(id);
@@ -72,8 +61,9 @@ public class EditProfessor extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
+				if(getChangesMade()) {
+					dispose();
+				}
 				
 			}
 			
