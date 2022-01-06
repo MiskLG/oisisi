@@ -317,6 +317,8 @@ public class ToolBar extends JPanel {
 					((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().setFilterProfessor(filterString);			
 					break;
 				case STUDENT:
+					String filterString2 = textSearch.getText();
+					((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().setFilterStudent(filterString2);
 					break;
 				case SUBJECT:
 					String filterString1 = textSearch.getText();
