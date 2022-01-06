@@ -287,6 +287,43 @@ public class TablePanel extends JTabbedPane {
 		    }
 		    subjectSorter.setRowFilter(RowFilter.andFilter(a));
 	}
+	
+	public void setFilterStudent(String filterString) {
+	    
+	    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>> a = new    ArrayList< RowFilter<? super DefaultTableModel, ? super Integer>>();
+	    try {
+	    	String[] filters = filterString.split("[,]");
+	    	if(filters.length == 3) {
+	    		int i = 0;
+		    	for(String filter: filters) {
+		    		String correctedFilter = "(?i)"+filter.trim();
+		    		RowFilter<? super DefaultTableModel, ? super Integer> rf  = RowFilter.regexFilter(correctedFilter, i);
+		    		a.add(rf);
+		    		i++;
+		    	}
+	    	}
+	    	else if(filters.length < 3) {
+	    		int i = 2;
+		    	for(String filter: filters) {
+		    		String correctedFilter = "(?i)"+filter.trim();
+		    		RowFilter<? super DefaultTableModel, ? super Integer> rf  = RowFilter.regexFilter(correctedFilter, i);
+		    		a.add(rf);
+		    		i--;
+		    	}
+	    	}
+	    	else {
+    			String[] options = {"OK"};
+    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+	    				"Previše unesenih parametara za pretragu!", "GREŠKA!",
+			            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+    			return;	    		
+	    	}
+	    	        
+	    } catch (java.util.regex.PatternSyntaxException e) {
+	    	System.out.println(e);
+	    }
+	    studentSorter.setRowFilter(RowFilter.andFilter(a));
+	}
 
 	public String getSelectedStudentIndex() {
 		if(studentsTable.getSelectedRow() != -1) {
