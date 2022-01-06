@@ -112,10 +112,7 @@ public class Date {
 	// toString method
 	@Override
 	public String toString() {
-		return day + "." + month + "." + year ;
-	}
-	
-	public String writeAsString() {
 		return day + "." + month + "." + year + "." ;
 	}
+	
 }
