@@ -379,7 +379,7 @@ public class AddStudentsPanel extends JDialog {
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Broj lične karte je već zauzet!", "GREŠKA!",
+		    				"Indeks je već zauzet!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}
