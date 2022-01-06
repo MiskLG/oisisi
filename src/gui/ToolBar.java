@@ -133,7 +133,7 @@ public class ToolBar extends JPanel {
 					String id  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();
 					
 					if(!id.equals("-1")) {
-						EditProfessor panelEditProfessor = new EditProfessor(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), id); 
+						EditProfessor panelEditProfessor = new EditProfessor(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize(), id); 
 						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
 						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
 						
@@ -149,7 +149,7 @@ public class ToolBar extends JPanel {
 					String idx  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();
 					
 					if(!idx.equals("-1")) {
-						EditStudent panelEditStudent = new EditStudent(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), idx); 
+						EditStudent panelEditStudent = new EditStudent(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize(), idx); 
 						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
 						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
 						
@@ -162,6 +162,20 @@ public class ToolBar extends JPanel {
 		    		}
 					break;
 				case SUBJECT:
+					String subjectCode  = ((MainWindow) getParent().getParent().getParent().getParent()).getTablePanel().getSelectedSubjectCode();
+					
+					if(!subjectCode.equals("-1")) {
+						EditSubjectPanel panelEditSubject = new EditSubjectPanel(getParent().getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getParent().getSize(), subjectCode); 
+						((MainWindow) getParent().getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(true);
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali predmet koji želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}					
 					break;
 				default:
 					break;

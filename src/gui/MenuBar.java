@@ -249,6 +249,20 @@ public class MenuBar extends JMenuBar{
 		    		}
 					break;
 				case SUBJECT:
+					String subjectCode  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedSubjectCode();
+					
+					if(!subjectCode.equals("-1")) {
+						EditSubjectPanel panelEditSubject = new EditSubjectPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize(), subjectCode);
+						((MainWindow) getParent().getParent().getParent()).updateTable();
+						((MainWindow) getParent().getParent().getParent()).setChangesMade(true);			
+						
+					}
+		    		else {
+		    			String[] options = {"OK"};
+		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+			    				"Niste izabrali predmet koji želite da izmenite!", "GREŠKA!",
+					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+		    		}
 					break;
 				default:
 					break;}		
