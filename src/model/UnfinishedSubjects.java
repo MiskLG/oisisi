@@ -30,7 +30,7 @@ public class UnfinishedSubjects {
 	@Override
 	public String toString() {
 		String splitter = "*/";
-		return subjectCode + splitter + index;
+		return index + splitter + subjectCode;
 	}
 	
 }

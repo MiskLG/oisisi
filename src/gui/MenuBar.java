@@ -107,7 +107,7 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				DataClass.getInstance().writeOutData();
-				((MainWindow) getParent().getParent().getParent().getParent()).setChangesMade(false);
+				((MainWindow) getParent().getParent().getParent()).setChangesMade(false);
 			}		
 		});
 			
