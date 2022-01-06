@@ -35,7 +35,7 @@ public class EditStudent extends JDialog {
 		double widthRatio = 40./100;
 		double heightRatio = 95./100;
 		
-		Double minX = 1200 * widthRatio;
+		Double minX = 1600 * widthRatio;
 		Double minY = 600 * heightRatio;
 		
 		Double sizeX = minX;

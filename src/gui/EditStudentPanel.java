@@ -51,7 +51,7 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		informations = new JPanel();
 		passedExams = new JPanel();
-		unpassedExams = new JPanel();
+		unpassedExams = new StudentUnfinishedPanel(s);
 		
 		
 		add("Informacije", informations);

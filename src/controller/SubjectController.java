@@ -87,4 +87,81 @@ public class SubjectController {
 		
 		return true;
 	}
+	
+	public boolean deleteUnfinishedSubject(String index, String subCode) {
+		ArrayList<Student> studList = DataClass.getInstance().getStudentListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+
+		// deleting from student
+		int numberStudent = -1;
+		int numberSubject = -1;
+		int i = 0;
+		int j = 0;
+		for(Student s: studList) {
+			if(s.getIndex().equals(index)){
+				numberStudent = i;
+				for(UnfinishedSubjects us: s.getListUnfinished()) {
+					if(us.getSubjectCode().equals(subCode)) {
+						numberSubject = j;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		if(numberStudent != -1 && numberSubject != -1) {
+			studList.get(numberStudent).getListUnfinished().remove(numberSubject);
+		}
+		
+		i = 0;
+		j = 0;
+		int numberSub = -1;
+		int numberStud = -1;
+		
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)){
+				numberStudent = i;
+				for(String st: s.getListUnfinishedStudents()){
+					if(st.equals(index)) {
+						numberSubject = j;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		if(numberSub != -1 && numberStud != -1) {
+			subList.get(numberSub).getListUnfinishedStudents().remove(numberStud);
+		}
+		
+		DataClass.getInstance().setStudentListData(studList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	}
+	
+	public boolean addUnfinishedSubject(String index, String subCode) {
+		ArrayList<Student> studList = DataClass.getInstance().getStudentListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+
+		
+		for(Student s: studList) {
+			if(s.getIndex().equals(index)) {
+				s.getListUnfinished().add(new UnfinishedSubjects(index, subCode));
+			}
+		}
+	 
+		
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)) {
+				s.getListUnfinishedStudents().add(index);
+			}
+		}
+		
+		
+		DataClass.getInstance().setStudentListData(studList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	}
 }
