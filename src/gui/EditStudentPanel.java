@@ -25,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.RegXClass;
@@ -38,19 +40,30 @@ import model.Subject;
 public class EditStudentPanel extends JTabbedPane{
 	
 	private JPanel informations;
-	private JPanel passedExams; 
-	private JPanel unpassedExams;
+	private StudentFinishedPanel passedExams; 
+	private StudentUnfinishedPanel unpassedExams;
 	
 	private boolean changesMade = false;
 	private boolean[] validData = {true, true, true, true, true, true, true, true};
 	
 	private JButton acceptButton;
 	
+	private int currentTab = 0;
 	
+	public int getCurrentTab() {
+		return currentTab;
+	}
+	
+	public void setCurrentTab(int currentTab) {
+		this.currentTab = currentTab;
+	}
+
+
 	public EditStudentPanel(Student s) {
 		
+		
 		informations = new JPanel();
-		passedExams = new JPanel();
+		passedExams = new StudentFinishedPanel(s);
 		unpassedExams = new StudentUnfinishedPanel(s);
 		
 		
@@ -61,7 +74,22 @@ public class EditStudentPanel extends JTabbedPane{
 		acceptButton = new JButton("Potvrdi");
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		
-		
+		this.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				currentTab = getSelectedIndex();
+				switch(currentTab) {
+				case 0:
+					break;
+				case 1:
+					passedExams.updateFinished();
+				case 2:
+					unpassedExams.updateUnfinished();
+				}
+				
+			}
+		});
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());

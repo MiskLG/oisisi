@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import main.DataClass;
+import model.Date;
 import model.Grade;
 import model.Professor;
 import model.Student;
@@ -276,6 +277,88 @@ public class SubjectController {
 			}
 		}
 		
+		
+		DataClass.getInstance().setStudentListData(studList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	}
+	
+	
+	public boolean deleteFinishedSubject(String index, String subCode) {
+		ArrayList<Student> studList = DataClass.getInstance().getStudentListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+		
+		addUnfinishedSubject(index, subCode);
+		
+		// deleting from student
+		int numberStudent = -1;
+		int numberSubject = -1;
+		int i = 0;
+		int j = 0;
+		for(Student s: studList) {
+			if(s.getIndex().equals(index)){
+				numberStudent = i;
+				for(Grade gradedSubjects: s.getListPassed()) {
+					if(gradedSubjects.getSubjectCode().equals(subCode)) {
+						numberSubject = j;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		if(numberStudent != -1 && numberSubject != -1) {
+			studList.get(numberStudent).getListPassed().remove(numberSubject);
+		}
+		
+		i = 0;
+		j = 0;
+		int numberSub = -1;
+		int numberStud = -1;
+		
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)){
+				numberStudent = i;
+				for(String st: s.getListPassedStudents()){
+					if(st.equals(index)) {
+						numberSubject = j;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		if(numberSub != -1 && numberStud != -1) {
+			subList.get(numberSub).getListPassedStudents().remove(numberStud);
+		}
+		
+		DataClass.getInstance().setStudentListData(studList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	}
+	
+	public boolean addFinishedSubject(String index, String subCode, int grade, String gradingDate) {
+		ArrayList<Student> studList = DataClass.getInstance().getStudentListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+		
+		
+		for(Student s: studList) {
+			if(s.getIndex().equals(index)) {
+				s.getListPassed().add(new Grade(index, subCode, grade+6, new Date(gradingDate)));
+			}
+		}
+		
+		
+	 
+		
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)) {
+				s.getListPassedStudents().add(index);
+
+			}
+		}
 		
 		DataClass.getInstance().setStudentListData(studList);
 		DataClass.getInstance().setSubjectListData(subList);
