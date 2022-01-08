@@ -26,6 +26,8 @@ import javax.swing.border.MatteBorder;
 import controller.ProfessorController;
 import controller.RegXClass;
 import controller.SubjectController;
+import main.DataClass;
+import model.Professor;
 import model.Subject;
 
 public class EditSubjectPanel extends JDialog {
@@ -126,13 +128,26 @@ public class EditSubjectPanel extends JDialog {
 		
 		Dimension d4 = new Dimension(162, 33);
 		JLabel professorLabel = new JLabel("Profesor*:");
+				
 		JTextField professorField = new JTextField();
+		
 		
 		professorLabel.setPreferredSize(d2);
 		professorField.setPreferredSize(d4);
 		
 		JButton addButton = new JButton();
 		JButton deleteButton = new JButton();
+		
+		deleteButton.setEnabled(false);
+		for(Professor pr: DataClass.getInstance().getProfessorListData()) {
+			if(pr.getIdNumber().equals(s.getSubjectProfessor())) {
+				professorField.setText(pr.getName() + " " + pr.getLastname() );
+				addButton.setEnabled(false);
+				deleteButton.setEnabled(true);
+				break;
+			}
+		}
+		
 		
 		addButton.setPreferredSize(new Dimension(33,33));
 		deleteButton.setPreferredSize(new Dimension(33,33));
@@ -141,6 +156,37 @@ public class EditSubjectPanel extends JDialog {
 		Image newImage = newIcon.getImage().getScaledInstance(33, 33, Image.SCALE_DEFAULT);
 		addButton.setIcon(new ImageIcon(newImage));
 		
+		professorField.setFocusable(false);
+		addButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddProfessorToSubject(s);
+				
+				for(Professor pr: DataClass.getInstance().getProfessorListData()) {
+					if(pr.getIdNumber().equals(s.getSubjectProfessor())) {
+						professorField.setText(pr.getName() + " " + pr.getLastname() );
+						addButton.setEnabled(false);
+						deleteButton.setEnabled(true);
+						break;
+					}
+				}
+				
+			}
+			
+		});
+		
+		deleteButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				s.setSubjectProfessor("");
+				professorField.setText("");
+				addButton.setEnabled(true);
+				deleteButton.setEnabled(false);
+			}
+			
+		});
 		
 		ImageIcon deleteIcon = new ImageIcon(deleteIconPNG);
 		Image deleteImage = deleteIcon.getImage().getScaledInstance(33, 33, Image.SCALE_DEFAULT);
@@ -275,7 +321,7 @@ public class EditSubjectPanel extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(s.getSubjectCode().equals(subjectCodeField.getText())) {
 					SubjectController con = new SubjectController(subjectCodeField.getText(), titleField.getText(), semesterField.getSelectedIndex(),
-							yearOfStudyField.getSelectedIndex(), numberECTSField.getText(), null, true);
+							yearOfStudyField.getSelectedIndex(), numberECTSField.getText(), s.getSubjectProfessor(), true);
 					String err = con.editSubject(s.getSubjectCode());
 					if(err.equals("Sve je dobro!")) {
 						changesMade = true;
@@ -291,7 +337,7 @@ public class EditSubjectPanel extends JDialog {
 				}
 				else if(!s.getSubjectCode().equals(subjectCodeField.getText())) {
 					SubjectController con = new SubjectController(subjectCodeField.getText(), titleField.getText(), semesterField.getSelectedIndex(),
-							yearOfStudyField.getSelectedIndex(), numberECTSField.getText(), null);
+							yearOfStudyField.getSelectedIndex(), numberECTSField.getText(), s.getSubjectProfessor());
 					String err = con.editSubject(s.getSubjectCode());
 					if(err.equals("Sve je dobro!")) {
 						changesMade = true;

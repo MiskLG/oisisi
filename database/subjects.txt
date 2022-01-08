@@ -1,17 +1,17 @@
-EJ1Z*/Engleski jezik - Osnovni*/WINTER*/1*/*/3
-E214*/Programski jezici i strukture podataka*/WINTER*/1*/*/9
-E213A*/Algebra*/WINTER*/1*/*/9
-E212*/Matematička analiza 1*/WINTER*/1*/*/9
+EJ1Z*/Engleski jezik - Osnovni*/WINTER*/1*/618711388*/3
+E214*/Programski jezici i strukture podataka*/WINTER*/1*/692423165*/9
+E213A*/Algebra*/WINTER*/1*/347471413*/9
+E212*/Matematička analiza 1*/WINTER*/1*/735938043*/9
 E217*/Arhitektura računara*/SUMMER*/1*/*/9
-EJ2L*/Engleski jezik - srednji*/SUMMER*/1*/*/3
+EJ2L*/Engleski jezik - srednji*/WINTER*/1*/618711388*/3
 E216*/Osnovi elektrotehnike*/SUMMER*/1*/*/9
 E215*/Fizika*/SUMMER*/1*/*/9
-E227A*/Logičko projektovanje računarskih sistema 1*/WINTER*/2*/*/6
+E227A*/Logičko projektovanje računarskih sistema 1*/WINTER*/2*/692423165*/6
 E223A*/Objektno programiranje*/WINTER*/2*/*/8
 E226*/Sistemi automatskog upravljanja*/SUMMER*/2*/*/8
 E251A*/Sociološki aspekti tehničkog razvoja*/SUMMER*/2*/*/3
 E225*/Operativni sistemi*/SUMMER*/2*/*/8
 E23A2*/Sistemska programska podrška u realnom vremenu 1*/SUMMER*/2*/*/6
-E221A*/Matematička analiza 2*/WINTER*/2*/*/8
+E221A*/Matematička analiza 2*/WINTER*/2*/735938043*/8
 E224A*/Verovatnoća i slučajni procesi*/SUMMER*/2*/*/5
 E232*/Modeliranje i simulacija sistema*/WINTER*/2*/*/8
