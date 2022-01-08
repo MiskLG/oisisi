@@ -181,8 +181,10 @@ public class StudentAddUnfinished extends JDialog{
 				}
 			}
 			if(indicator == 0) {
-				String[] subjectData = {sb.getSubjectCode(),sb.getTitle()};
-				((DefaultTableModel) ableToAdd.getModel()).addRow(subjectData);
+				if(students.get(number).getYearOfStudy() >= sb.getYearOfStudy()) {
+					String[] subjectData = {sb.getSubjectCode(),sb.getTitle()};
+					((DefaultTableModel) ableToAdd.getModel()).addRow(subjectData);
+				}
 			}	
 		}
 			

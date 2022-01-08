@@ -58,7 +58,7 @@ public class EditStudentPanel extends JTabbedPane{
 		this.currentTab = currentTab;
 	}
 
-
+	
 	public EditStudentPanel(Student s) {
 		
 		
@@ -84,6 +84,8 @@ public class EditStudentPanel extends JTabbedPane{
 					break;
 				case 1:
 					passedExams.updateFinished();
+					passedExams.calculateAverageGrade();
+					passedExams.calculateECTS();
 				case 2:
 					unpassedExams.updateUnfinished();
 				}
