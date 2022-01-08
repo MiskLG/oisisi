@@ -336,7 +336,7 @@ public class DataClass {
 				String dataLine = reader.nextLine();
 				String[] data = dataLine.split("[*][/]");
 				
-				if(data[1].equals(st.getIndex())) {
+				if(data[0].equals(st.getIndex())) {
 					Grade o = new Grade(data[0],data[1],Integer.parseInt(data[2]),new Date(data[3]));
 					listPassed.add(o);
 				}

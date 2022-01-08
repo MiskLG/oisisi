@@ -114,6 +114,26 @@ public class StudentUnfinishedPanel extends JPanel{
 			
 		});
 		
+
+		finishButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(unfinishedTable.getSelectedRow() != -1){	  
+					String subCode = unfinishedTable.getModel().getValueAt(unfinishedTable.getSelectedRow(), 0).toString();
+					StudentAddFinished stAddFinished = new StudentAddFinished(studentIndex, subCode, unfinishedTable);
+					updateUnfinished();				        
+	    		}
+				else {
+	    			String[] options = {"OK"};
+	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+		    				"Niste izabrali predmet za koji želite da upišete ocenu!", "GREŠKA!",
+				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+	    		}				
+			}
+			
+		});
+		
 		
 		JScrollPane unfinishedTablePane = new JScrollPane(unfinishedTable);
 
