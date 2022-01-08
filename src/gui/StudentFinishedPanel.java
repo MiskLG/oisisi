@@ -86,7 +86,6 @@ public class StudentFinishedPanel extends JPanel{
 							SubjectController con = new SubjectController();
 							if(con.deleteFinishedSubject(indexOfStudent, finishedSubjectsTable.getValueAt(finishedSubjectsTable.getSelectedRow(), 0).toString())) {
 				        		updateFinished();
-				        		//fillData();
 				        	}
 						}
 						else if (result == JOptionPane.NO_OPTION) {
@@ -104,17 +103,13 @@ public class StudentFinishedPanel extends JPanel{
 		
 		JScrollPane finishedSubjectsTablePane = new JScrollPane(finishedSubjectsTable);
 		
-		//Ovde pogledati sta to znaci ali imam neku pretpostavku
-		//da ne bude verovatno pribijen uz pane
-		//Borders for tables to make them not glued to pane
+		
 		finishedSubjectsTablePane.setBorder(new EmptyBorder(15, 25, 25, 25));
 		
 		this.add(buttonPanel, BorderLayout.NORTH);
 		this.add(finishedSubjectsTablePane, BorderLayout.CENTER);
 		
 		updateFinished();
-		//garant je caka u ovom fill data
-		//fillData();
 		
 		this.setVisible(true);
 	}
@@ -154,49 +149,5 @@ public class StudentFinishedPanel extends JPanel{
 	}
 	
 	
-//	private void fillData() {
-//		ArrayList<Student> students = DataClass.getInstance().getStudentListData();
-//		
-//		//updateUnfinished();
-//		updateFinished();
-//		
-//		int number = 0;
-//		for(Student st : students) {
-//			if(st.getIndex().equals(indexOfStudent)) {
-//				break;
-//			}
-//			number++;
-//		}
-//		
-//		while(finishedSubjectsTable.getModel().getRowCount() > 0) {
-//			((DefaultTableModel) finishedSubjectsTable.getModel()).removeRow(0);
-//		}
-//		
-//		
-//		for(Subject sb: DataClass.getInstance().getSubjectListData()) {
-//			int indicator = 0;
-//			for(UnfinishedSubjects sub: students.get(number).getListUnfinished()) {
-//				if(sub.getSubjectCode().equals(sb.getSubjectCode())) {
-//					indicator = 1;
-//					break;
-//				}
-//			}
-//			if(indicator == 1) {
-//				continue;
-//			}
-//			for(Grade sub: students.get(number).getListPassed()) {
-//				if(sub.getSubjectCode().equals(sb.getSubjectCode())) {
-//					indicator = 1;
-//					break;
-//				}
-//			}
-//			if(indicator == 0) {
-//				String[] subjectData = {sb.getSubjectCode(),sb.getTitle()};
-//				((DefaultTableModel) finishedSubjectsTable.getModel()).addRow(subjectData);
-//			}	
-//		}
-//			
-//		
-//	}
 	
 }

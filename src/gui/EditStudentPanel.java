@@ -68,8 +68,8 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		
 		add("Informacije", informations);
-		add("Polozeni", passedExams);
-		add("Nepolozeni", unpassedExams);
+		add("Položeni", passedExams);
+		add("Nepoloženi", unpassedExams);
 		
 		acceptButton = new JButton("Potvrdi");
 		acceptButton.setPreferredSize(new Dimension(140,30));
