@@ -137,4 +137,20 @@ public class RegXClass {
 
 	}
 	
+	public static boolean checkChairCode(String number) {
+		
+		Pattern pattern = Pattern.compile("[0-9]{6}");	
+		Matcher matcher = pattern.matcher(number);
+
+		return matcher.matches();
+
+	}
+	
+	public static boolean checkChairTitle(String title) {
+		Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*",Pattern.UNICODE_CHARACTER_CLASS);	
+		Matcher matcher = pattern.matcher(title);
+
+		return matcher.matches();
+	}
+	
 }

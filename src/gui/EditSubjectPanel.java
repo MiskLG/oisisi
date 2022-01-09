@@ -87,9 +87,9 @@ public class EditSubjectPanel extends JDialog {
 		JLabel semesterLabel = new JLabel("Semestar*:");
 		String  semesterChoices[] = {"Zimski", "Letnji"};     
 		JComboBox<String> semesterField = new JComboBox<String>(semesterChoices);
-		if(s.getSemester().equals("B")) {
+		if(s.getSemester().equals("Zimski")) {
 			semesterField.setSelectedIndex(0);
-		}else if(s.getSemester().equals("S")) {
+		}else if(s.getSemester().equals("Letnji")) {
 			semesterField.setSelectedIndex(1);
 		}
 		semesterLabel.setPreferredSize(d2);

@@ -5,9 +5,7 @@ import main.DataClass;
 import model.Adress;
 import model.Date;
 import model.Professor;
-import model.Student;
 import model.Subject;
-import model.UnfinishedSubjects;
 
 public class ProfessorController {
 	private String name;

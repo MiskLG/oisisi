@@ -178,6 +178,13 @@ public class MenuBar extends JMenuBar{
 			}
 			
 			});
+		menuItemChairs.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ChairPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());				
+			}
+		});
 		
 		
 		menuItemStudents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
