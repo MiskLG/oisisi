@@ -60,6 +60,7 @@ public class ProfessorAddTeachingSubject extends JDialog{
 		
 		JPanel labelPanel = new JPanel(new BorderLayout());
 		JLabel subjectLabel = new JLabel("Predmeti:");
+		labelPanel.setBorder(new EmptyBorder(15, 25, 0, 0));
 		labelPanel.add(subjectLabel, BorderLayout.WEST);
 		
 		JButton acceptButton = new JButton("Potvrdi");
@@ -144,6 +145,7 @@ public class ProfessorAddTeachingSubject extends JDialog{
 		});
 		
 		tablePane.setBorder(new EmptyBorder(15,25,15,25));
+		
 		
 		this.add(labelPanel, BorderLayout.NORTH);
 		this.add(tablePane,BorderLayout.CENTER);

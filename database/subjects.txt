@@ -3,9 +3,9 @@ E214*/Programski jezici i strukture podataka*/WINTER*/1*/692423165*/9
 E213A*/Algebra*/WINTER*/1*/347471413*/9
 E212*/Matematička analiza 1*/WINTER*/1*/735938043*/9
 E217*/Arhitektura računara*/SUMMER*/1*/*/9
-EJ2L*/Engleski jezik - srednji*/WINTER*/1*/618711388*/3
+EJ2L*/Engleski jezik - srednji*/SUMMER*/1*/618711388*/3
 E216*/Osnovi elektrotehnike*/SUMMER*/1*/*/9
-E215*/Fizika*/WINTER*/1*/618711388*/9
+E215*/Fizika*/SUMMER*/1*/618711388*/9
 E227A*/Logičko projektovanje računarskih sistema 1*/WINTER*/2*/692423165*/6
 E223A*/Objektno programiranje*/WINTER*/2*/*/8
 E226*/Sistemi automatskog upravljanja*/SUMMER*/2*/*/8
