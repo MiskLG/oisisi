@@ -20,6 +20,7 @@ import javax.swing.table.TableCellRenderer;
 import controller.ProfessorController;
 import controller.SubjectController;
 import main.DataClass;
+import model.Grade;
 import model.Student;
 import model.Subject;
 import model.UnfinishedSubjects;
@@ -122,7 +123,8 @@ public class StudentUnfinishedPanel extends JPanel{
 				if(unfinishedTable.getSelectedRow() != -1){	  
 					String subCode = unfinishedTable.getModel().getValueAt(unfinishedTable.getSelectedRow(), 0).toString();
 					StudentAddFinished stAddFinished = new StudentAddFinished(studentIndex, subCode, unfinishedTable);
-					updateUnfinished();				        
+					updateUnfinished();	
+	        		calculateAverageGrade(s);
 	    		}
 				else {
 	    			String[] options = {"OK"};
@@ -180,5 +182,34 @@ public class StudentUnfinishedPanel extends JPanel{
 		}
 		
 	}
+	
+public void calculateAverageGrade(Student s) {
+		ArrayList<Grade> listFinishedSubjects = s.getListPassed();
+	
+		double sum = 0;
+		int numberOfPassedSubjects = 0;
+	
+		for(Grade g: listFinishedSubjects) {
+			sum = sum + g.getGrade();
+			numberOfPassedSubjects++;
+		}
+		
+		double avgGrade;
+		if(numberOfPassedSubjects == 0) {
+			avgGrade = 0;
+		}
+		else {
+			avgGrade = sum/numberOfPassedSubjects;
+		}
+		
+		
+		// taken from https://mkyong.com/java/how-to-round-double-float-value-to-2-decimal-points-in-java/#mathround
+		avgGrade = Math.round(avgGrade * 100.0) / 100.0;
+		
+		
+		s.setAverageGrade(avgGrade);
+		
+		
+	};
 	
 }

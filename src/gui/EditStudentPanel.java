@@ -84,7 +84,7 @@ public class EditStudentPanel extends JTabbedPane{
 					break;
 				case 1:
 					passedExams.updateFinished();
-					passedExams.calculateAverageGrade();
+					passedExams.calculateAverageGrade(s);
 					passedExams.calculateECTS();
 				case 2:
 					unpassedExams.updateUnfinished();

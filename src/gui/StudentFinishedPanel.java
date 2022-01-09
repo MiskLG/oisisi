@@ -102,7 +102,7 @@ public class StudentFinishedPanel extends JPanel{
 							SubjectController con = new SubjectController();
 							if(con.deleteFinishedSubject(indexOfStudent, finishedSubjectsTable.getValueAt(finishedSubjectsTable.getSelectedRow(), 0).toString())) {
 				        		updateFinished();
-				        		calculateAverageGrade();
+				        		calculateAverageGrade(s);
 				        		calculateECTS();
 				        	}
 						}
@@ -128,7 +128,7 @@ public class StudentFinishedPanel extends JPanel{
 		Dimension d = new Dimension(100, 24);
 		Dimension d2 = new Dimension(30, 24);
 		
-		calculateAverageGrade();
+		calculateAverageGrade(s);
 		
 		JLabel averageGradeLabel = new JLabel("Prosečna ocena:");
 		averageGradeField.setEditable(false);
@@ -194,7 +194,7 @@ public class StudentFinishedPanel extends JPanel{
 		}
 	}
 	
-	public void calculateAverageGrade() {
+	public void calculateAverageGrade(Student s) {
 		
 		double sum = 0;
 		int numberOfPassedSubjects = 0;
@@ -219,6 +219,7 @@ public class StudentFinishedPanel extends JPanel{
 		
 		setAverageGrade(avgGrade);
 		setAvgGradeField();
+		s.setAverageGrade(avgGrade);
 		
 		
 	};
