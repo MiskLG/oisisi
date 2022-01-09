@@ -38,7 +38,7 @@ public class EditProfessorPanel extends JTabbedPane {
 	public EditProfessorPanel(Professor p) {
 		
 		informations = new JPanel();
-		subjectsTought = new JPanel();
+		subjectsTought = new ProfessorTeachingSubjects(p);
 		
 		add("Informacije", informations);
 		add("Predmeti na kojima predaje", subjectsTought);

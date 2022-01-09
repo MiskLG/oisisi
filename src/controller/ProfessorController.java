@@ -6,6 +6,8 @@ import model.Adress;
 import model.Date;
 import model.Professor;
 import model.Student;
+import model.Subject;
+import model.UnfinishedSubjects;
 
 public class ProfessorController {
 	private String name;
@@ -206,7 +208,69 @@ public class ProfessorController {
 		
 	}
 	
+	public boolean addTeachingSubject(String idOfProf, String subCode) {
+		ArrayList<Professor> profList = DataClass.getInstance().getProfessorListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+		
+		for(Professor p: profList) {
+			if(p.getIdNumber().equals(idOfProf)) {
+				p.getListSubjects().add(subCode);
+			}
+		}
+		
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)) {
+				s.setSubjectProfessor(idOfProf);
+			}
+		}
+		
+		DataClass.getInstance().setProfessorListData(profList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	}
+	
 	public String getErr() {
 		return this.err;
+	}
+	
+	public boolean deleteTeachingSubject(String idOfProf, String subCode) {
+		ArrayList<Professor> profList = DataClass.getInstance().getProfessorListData();
+		ArrayList<Subject> subList = DataClass.getInstance().getSubjectListData();
+		
+		//deleting subjec from prof
+		int numberProfessor = -1;
+		int numberSubject = -1;
+		int i = 0;
+		int j = 0;
+		for(Professor p: profList) {
+			if(p.getIdNumber().equals(idOfProf)){
+				numberProfessor = i;
+				for(String subId: p.getListSubjects()) {
+					if(subId.equals(subCode)) {
+						numberSubject = j;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		if(numberProfessor != -1 && numberSubject != -1) {
+			profList.get(numberProfessor).getListSubjects().remove(numberSubject);
+		}
+		
+		//deleting professor from subject
+		for(Subject s: subList) {
+			if(s.getSubjectCode().equals(subCode)){
+				s.setSubjectProfessor("");
+			}
+		}
+		
+		
+		DataClass.getInstance().setProfessorListData(profList);
+		DataClass.getInstance().setSubjectListData(subList);
+		
+		return true;
+	
 	}
 }
