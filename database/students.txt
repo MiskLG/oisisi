@@ -1,4 +1,27 @@
-Petrović*/Petar*/26.3.1996.*/Kiš Erena*/ 53*/ Novi Sad*/ Srbija*/0603311223*/petorvic.p@uns.ac.rs*/ra-123-2017*/2017*/3*/B*/8.33
-Marković*/Marko*/5.6.1996.*/Ilirska*/ 26*/ Novi Sad*/ Srbija*/068923478*/markovic.m@uns.ac.rs*/ra-111-2016*/2016*/3*/B*/8.0
-Dušanović*/Dušan*/2.4.1997.*/Jastrebačka*/ 1*/ Novi Sad*/ Srbija*/0691482305*/dusanovic.d@uns.ac.rs*/sw-139-2019*/2019*/1*/S*/8.5
-Mirković*/Mirko*/16.12.1997.*/Tićanova*/ 98*/ Novi Sad*/ Srbija*/0692145123*/mirkovic.m@uns.ac.rs*/sw-62-2019*/2019*/2*/B*/8.67
+Milosevic*/Marko*/12.3.2001.*/Šafarikova*/ 2*/Novi Sad*/Srbija*/021/333-555*/marko.milosevic@mailinator.com*/RA-2-2020*/2020*/1*/B*/0.0
+Milić*/Marija*/12.1.2000.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/021/555-2222*/marija.milic@mailinator.com*/RA-3-2019*/2019*/2*/S*/0.0
+Nikolic*/Nikola*/30.8.2001.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/135-463*/nikola.nikolic@mailinator.com*/RA-3-2017*/2017*/1*/B*/0.0
+Peric*/Pera*/7.6.1995.*/Stražilovska*/6a*/Novi Sad*/Srbija*/021/903-463*/pera.peric@mailinator.com*/RA-134-2015*/2015*/3*/S*/0.0
+Ilic*/Sofija*/6.5.1999.*/Nikole Pašića*/2d*/Kikinda*/Srbija*/021/731-067*/sofija.ilic@mailinator.com*/RA-5-2019*/2019*/3*/S*/0.0
+Lukic*/Martina*/16.5.1999.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/011/4333-800*/martina.lukic@mailinator.com*/RA-8-2018*/2018*/3*/S*/0.0
+Stojakovic*/Stojan*/19.10.2001.*/Tolstojeva*/31*/Novi Sad*/Srbija*/011/3130-007*/stojan.stojakovic@mailinator.com*/RA-10-2017*/2017*/1*/B*/0.0
+Milanovic*/Milan*/2.11.2000.*/Marićeva*/11*/Kragujevac*/Srbija*/015/313-061*/milan.milanovic@mailinator.com*/RA-12-2017*/2017*/2*/S*/0.0
+Milic*/Miroslav*/11.10.2000.*/Stražilovska*/3*/Beograd*/Srbija*/021/351-091*/miroslav.milic@mailinator.com*/RA-16-2019*/2019*/2*/B*/0.0
+Gojic*/Stefan*/1.5.1999.*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/015/324-500*/stefan.gojic@mailinator.com*/RA-21-2015*/2015*/3*/S*/0.0
+Jokic*/Anastasija*/11.7.1999.*/Bulevar Kralja Petra*/2d*/Niš*/Srbija*/011/2333-900*/anastasija.jokic@mailinator.com*/RA-9-2020*/2020*/3*/B*/0.0
+Bogdanovic*/Bogdan*/23.7.1999.*/Knez Mihajlova*/22*/Beograd*/Srbija*/021/231-231*/bogdan.bogdanovic@mailinator.com*/RA-4-2017*/2017*/3*/S*/0.0
+Dabovic*/Ana*/12.12.2001.*/NULL*/null*/null*/null*/014/303-007*/ana.dabovic@mailinator.com*/RA-30-2019*/2019*/1*/B*/0.0
+Mikic*/Mika*/5.11.2001.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/015/101-909*/mika.mikic@mailinator.com*/RA-1-2020*/2020*/1*/S*/0.0
+Deretic*/Jovan*/10.9.1998.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/002/200-300*/jovan.deretic@mailinator.com*/RA-11-2018*/2018*/4*/B*/0.0
+Miskovic*/Nikola*/3.8.1998.*/Stražilovska*/6a*/Novi Sad*/Srbija*/022/123-456*/nikola.miskovic@mailinator.com*/RA-12-2018*/2018*/4*/S*/0.0
+Stojanovic*/Martin*/1.5.1998.*/NULL*/null*/null*/null*/024/321-775*/martin.stojanovic@mailinator.com*/RA-13-2018*/2018*/4*/S*/0.0
+Novakovic*/Tomislav*/25.2.1996.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/011/1188-379*/tomislav.novakovic@mailinator.com*/RA-14-2018*/2018*/4*/B*/0.0
+Ivic*/Lena*/11.5.1998.*/Tolstojeva*/31*/Novi Sad*/Srbija*/024/333-555*/lena.ivic@mailinator.com*/RA-154-2016*/2016*/4*/B*/0.0
+Lazic*/Jovan*/22.1.2001.*/Marićeva*/11*/Kragujevac*/Srbija*/025/1189-479*/jovan.lazic@mailinator.com*/RA-23-2020*/2020*/1*/B*/0.0
+Mikic*/Isidora*/31.12.2000.*/Stražilovska*/3*/Beograd*/Srbija*/011/1122-366*/isidora.mikic@mailinator.com*/RA-1-2019*/2019*/2*/B*/0.0
+Ilic*/Vladimir*/31.8.1998.*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/021/1122-367*/vladimir.ilic@mailinator.com*/SW-4-2014*/2014*/4*/B*/0.0
+Alicic*/Mirko*/21.7.1999.*/Bulevar Kralja Petra*/2d*/Niš*/Srbija*/012/1122-368*/mirko.alicic@mailinator.com*/SW-17-2015*/2015*/3*/S*/0.0
+Djordjević*/Purisa*/29.2.2000.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/011/1543-370*/purisa.djordjevic@mailinator.com*/SW-27-2018*/2018*/2*/B*/0.0
+Kovacević*/Mikica*/23.3.1999.*/Nikole Pašića*/2d*/Kikinda*/Srbija*/011/1992-371*/mikica.kovacevic@mailinator.com*/RA-226-2017*/2017*/3*/S*/0.0
+Perković*/Milisav*/28.9.1998.*/Knez Mihajlova*/22*/Beograd*/Srbija*/012/1122-369*/milisav.pejkovic@mailinator.com*/SW-17-2016*/2016*/4*/S*/0.0
+Milić*/Miloš*/21.10.2001.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/011/8172-372*/milos.milic@mailinator.com*/SW-12-2021*/2021*/1*/S*/0.0
