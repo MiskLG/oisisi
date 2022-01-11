@@ -55,14 +55,17 @@ public class ChairPanel extends JDialog{
 		
 		this.setTitle("Katedre");
 		
-		JButton addButton = new JButton("Dodaj");
+		JButton addButton = new JButton("Dodaj katedru");
 		JButton editButton = new JButton("Promeni šefa");
 		JButton deleteButton = new JButton("Obriši");
+		JButton addProfessor = new JButton("Dodaj na katedru");
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(addButton);
+		buttonPanel.add(addProfessor);
 		buttonPanel.add(editButton);
 		buttonPanel.add(deleteButton);
+		
 		
 		String[] colHeadingsToAdd = {"Šifra", "Naziv", "Šef"};
 		DefaultTableModel chairModel = new DefaultTableModel() {
@@ -153,6 +156,24 @@ public class ChairPanel extends JDialog{
 			
 		});
 		
+		addProfessor.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(chairsTable.getSelectedRow() != -1){	  
+					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
+					String chName = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 1).toString();
+					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName);	        		
+	    		}
+				else {
+	    			String[] options = {"OK"};
+	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+		    				"Niste izabrali katedru na koju želite da dodate profesora!", "GREŠKA!",
+				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
+	    		}				
+			}
+			
+		});
 		
 		
 		tablePane.setBorder(new EmptyBorder(15,25,15,25));

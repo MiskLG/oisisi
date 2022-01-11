@@ -1,6 +1,6 @@
 EJ1Z*/Engleski jezik - Osnovni*/WINTER*/1*/618711388*/3
 E214*/Programski jezici i strukture podataka*/WINTER*/1*/692423165*/9
-E213A*/Algebra*/WINTER*/1*/347471413*/9
+E213A*/Algebra*/WINTER*/1*/692423165*/9
 E212*/Matematička analiza 1*/WINTER*/1*/735938043*/9
 E217*/Arhitektura računara*/SUMMER*/1*/*/9
 EJ2L*/Engleski jezik - srednji*/SUMMER*/1*/618711388*/3

@@ -82,7 +82,7 @@ public class DataClass {
 	private void writeOutChairs() {
 		 try {    
 		      BufferedWriter writer = new BufferedWriter(new FileWriter(chairsFile, false));
-		      BufferedWriter writerProf = new BufferedWriter(new FileWriter(passedStudentsFile, false));
+		      BufferedWriter writerProf = new BufferedWriter(new FileWriter(professorListFile, false));
 		      
 		      for(Chair ch : chairListData) {
 		    	  writeProfessorList(ch,writerProf);
@@ -90,6 +90,7 @@ public class DataClass {
 		    	  writer.newLine();
 		      }
 		      writer.close();
+		      writerProf.close();
 		      
 		    } catch (IOException e) {
 		      System.out.println("ERROR.");

@@ -102,9 +102,57 @@ public class ChairController {
 				break;
 			}
 		}
+	
+	}
+	
+	public void addProfessorToChair(String chCode, String profID) {
+		ArrayList<Chair> chairs = DataClass.getInstance().getChairListData();
 		
 		
+		// brisanje iz druge katedre ako postoji
+		for(Chair c: chairs) {
+			int i = 0;
+			boolean ind = false;
+			for(String prof : c.getProfessorList()) {
+				if(prof.equals(profID)) {
+					ind = true;
+					break;
+				}
+				i++;
+			}
+			if(true == ind) {
+				c.getProfessorList().remove(i);
+				break;
+			}	
+		}
+		
+		// dodavanje u trenutnu
+		for(Chair c: chairs) {
+			if(c.getChairCode().equals(chCode)) {
+				c.getProfessorList().add(profID);
+			}
+		}
+	}
+	
+	public void removeProfessorFromChair(String chCode, String profID) {
+		ArrayList<Chair> chairs = DataClass.getInstance().getChairListData();
 		
 		
+		// brisanje iz katedre ako postoji
+		for(Chair c: chairs) {
+			int i = 0;
+			boolean ind = false;
+			for(String prof : c.getProfessorList()) {
+				if(prof.equals(profID)) {
+					ind = true;
+					break;
+				}
+				i++;
+			}
+			if(true == ind) {
+				c.getProfessorList().remove(i);
+				break;
+			}	
+		}
 	}
 }
