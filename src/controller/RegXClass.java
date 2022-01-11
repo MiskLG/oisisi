@@ -114,7 +114,7 @@ public class RegXClass {
 	
 	public static boolean checkSubjectTitle(String title) {
 		//Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*([ ][0-9])?",Pattern.UNICODE_CHARACTER_CLASS);	
-		Pattern pattern = Pattern.compile("[A-ZŽĐŠĆČa-zžđšćč0-9]+",Pattern.UNICODE_CHARACTER_CLASS);	
+		Pattern pattern = Pattern.compile("[A-ZŽĐŠĆČa-zžđšćč0-9 ]+",Pattern.UNICODE_CHARACTER_CLASS);	
 		Matcher matcher = pattern.matcher(title);
 
 		return matcher.matches();

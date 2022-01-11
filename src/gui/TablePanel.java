@@ -157,16 +157,47 @@ public class TablePanel extends JTabbedPane {
 		
 
 		studentsTable.setRowSorter(studentSorter);
+		
 		studentSorter.setModel(studentModel);
 		studentSorter.setComparator(0, comparator);
+		
+		
+		// overriding sorter for student index
+		Comparator<String> comparator2 = new Comparator<String>() {
+		    public int compare(String s1, String s2) {
+		    	ArrayList<String> strings1 = new ArrayList<String>();
+		    	ArrayList<String> strings2 = new ArrayList<String>();
+		        
+		    	for(int i = 0; i< s1.length(); i++) {
+		    		if(Character.isDigit(s1.charAt(i))) {
+		    			strings1.add(s1.substring(0,i));
+		    			strings1.add(s1.substring(i,s1.length()));
+		    		}
+		    	}
+		    	for(int i = 0; i< s2.length(); i++) {
+		    		if(Character.isDigit(s2.charAt(i))) {
+		    			strings2.add(s2.substring(0,i));
+		    			strings2.add(s2.substring(i,s2.length()));
+		    		}
+		    	}
+		        
+		        
+		        if(strings1.get(0).equals(strings2.get(0))) {
+			        return Integer.parseInt(strings1.get(1)) - Integer.parseInt(strings2.get(1));	       
+		        }
+		        return strings1.get(0).compareTo(strings2.get(0));
+		    }
+		};
+		
+
+		subjectsTable.setRowSorter(subjectSorter);
+		subjectSorter.setModel(subjectModel);
+		subjectSorter.setComparator(0, comparator2);
 		
 
 		professorsTable.setRowSorter(professorSorter);
 		professorSorter.setModel(professorModel);
 		
-
-		subjectsTable.setRowSorter(subjectSorter);
-		subjectSorter.setModel(subjectModel);
 		
 		// Linking tables with scrollPanes
 		JScrollPane studentsTablePanel = new JScrollPane(studentsTable);
