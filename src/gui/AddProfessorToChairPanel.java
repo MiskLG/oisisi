@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,13 +22,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import controller.ChairController;
-import controller.SubjectController;
 import main.DataClass;
 import model.Chair;
 import model.Professor;
-import model.Student;
-import model.Subject;
-import model.UnfinishedSubjects;
 
 public class AddProfessorToChairPanel extends JDialog{
 
@@ -35,7 +33,7 @@ public class AddProfessorToChairPanel extends JDialog{
 	//private ArrayList<UnfinishedSubjects> listUnfinished = new ArrayList<UnfinishedSubjects>();
 	private String chairCode = "";
 	
-	public AddProfessorToChairPanel(String chairCode, String chairName) {
+	public AddProfessorToChairPanel(String chairCode, String chairName, Point location, Dimension size) {
 		
 		this.setLayout(new BorderLayout());
 		
@@ -52,7 +50,10 @@ public class AddProfessorToChairPanel extends JDialog{
 		
 		this.setModal(true);
 		
-		this.setLocationRelativeTo(this.getParent());
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		
+		setLocation(locationX.intValue() , locationY.intValue() );
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
@@ -123,7 +124,7 @@ public class AddProfessorToChairPanel extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddProfessorToChairWindow(chairCode,professorTable);
+				new AddProfessorToChairWindow(chairCode,professorTable,getLocation(),getSize());
 				updateProfessors();
 			}
 			

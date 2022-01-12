@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,25 +14,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import controller.SubjectController;
 import main.DataClass;
-import model.Grade;
 import model.Professor;
 import model.Subject;
-import model.UnfinishedSubjects;
 
 public class AddProfessorToSubject extends JDialog{
 	
 	JTable professorTable;
 	
-	public AddProfessorToSubject(Subject s) {
+	public AddProfessorToSubject(Subject s, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
@@ -45,7 +43,10 @@ public class AddProfessorToSubject extends JDialog{
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
-		this.setLocationRelativeTo(this.getParent());
+
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		setLocation(locationX.intValue() , locationY.intValue() );
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		

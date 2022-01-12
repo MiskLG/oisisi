@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import controller.ChairController;
-import controller.SubjectController;
 import main.DataClass;
 import model.Chair;
 import model.Professor;
@@ -104,7 +102,7 @@ public class ChairPanel extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddChairPanel();
+				new AddChairPanel(getLocation(), getSize());
 				updateChairs();
 			}
 		});
@@ -142,7 +140,7 @@ public class ChairPanel extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(chairsTable.getSelectedRow() != -1){	  
 					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
-					ChairEditHead chairEdit = new ChairEditHead(chCode);
+					ChairEditHead chairEdit = new ChairEditHead(chCode,getLocation(),getSize());
 //					StudentAddFinished stAddFinished = new StudentAddFinished(studentIndex, subCode, unfinishedTable);
 					updateChairs();		        		
 	    		}
@@ -163,7 +161,7 @@ public class ChairPanel extends JDialog{
 				if(chairsTable.getSelectedRow() != -1){	  
 					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
 					String chName = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 1).toString();
-					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName);	        		
+					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName,getLocation(),getSize());	        		
 	    		}
 				else {
 	    			String[] options = {"OK"};

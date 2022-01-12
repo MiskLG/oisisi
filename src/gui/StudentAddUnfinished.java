@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class StudentAddUnfinished extends JDialog{
 	private String index;
 	private JTable unfinishedTable;
 	
-	public StudentAddUnfinished(String index, JTable tab) {
+	public StudentAddUnfinished(String index, JTable tab, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
@@ -49,7 +51,10 @@ public class StudentAddUnfinished extends JDialog{
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
-		this.setLocationRelativeTo(this.getParent());
+
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		setLocation(locationX.intValue() , locationY.intValue() );
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
@@ -115,7 +120,7 @@ public class StudentAddUnfinished extends JDialog{
 	    		}
 				else {
 	    			String[] options = {"OK"};
-	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+	    			JOptionPane.showOptionDialog((getRootPane()), 
 		    				"Niste izabrali predmet koji želite da dodate!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}

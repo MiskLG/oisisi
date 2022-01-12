@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,21 +22,16 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import controller.ChairController;
-import controller.SubjectController;
 import main.DataClass;
 import model.Chair;
-import model.Grade;
 import model.Professor;
-import model.Student;
-import model.Subject;
-import model.UnfinishedSubjects;
 
 public class AddProfessorToChairWindow extends JDialog {
 	private JTable ableToAdd;
 	private String chairCode;
 	private JTable professorTable;
 	
-	public AddProfessorToChairWindow(String chairCode, JTable tab) {
+	public AddProfessorToChairWindow(String chairCode, JTable tab, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
@@ -52,7 +49,10 @@ public class AddProfessorToChairWindow extends JDialog {
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
-		this.setLocationRelativeTo(this.getParent());
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		
+		setLocation(locationX.intValue() , locationY.intValue() );
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
@@ -165,17 +165,8 @@ public class AddProfessorToChairWindow extends JDialog {
 		
 		
 		for(Professor pr: profs) {
-			int ind = 1;
-			for(Chair ch: chairs) {
-				if(ch.getHead().equals(pr.getIdNumber())) {
-					ind = 0;
-					break;
-				}
-			}
-			if(ind == 1) {
-				String[] data = {pr.getName(),pr.getLastname(), pr.getEmail(), pr.getTitle(), pr.getIdNumber()};
-				((DefaultTableModel) ableToAdd.getModel()).addRow(data);
-			}
+			String[] data = {pr.getName(),pr.getLastname(), pr.getEmail(), pr.getTitle(), pr.getIdNumber()};
+			((DefaultTableModel) ableToAdd.getModel()).addRow(data);		
 		}
 			
 		

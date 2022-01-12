@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,8 +20,6 @@ import javax.swing.border.MatteBorder;
 
 import controller.ProfessorController;
 import controller.RegXClass;
-import controller.StudentController;
-import main.DataClass;
 import model.Professor;
 
 public class EditProfessorPanel extends JTabbedPane {
@@ -35,10 +32,10 @@ public class EditProfessorPanel extends JTabbedPane {
 	
 	private JButton acceptButton;
 	
-	public EditProfessorPanel(Professor p) {
+	public EditProfessorPanel(Professor p, EditProfessor pan) {
 		
 		informations = new JPanel();
-		subjectsTought = new ProfessorTeachingSubjects(p);
+		subjectsTought = new ProfessorTeachingSubjects(p,pan);
 		
 		add("Informacije", informations);
 		add("Predmeti na kojima predaje", subjectsTought);

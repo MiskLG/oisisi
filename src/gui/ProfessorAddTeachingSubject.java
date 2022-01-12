@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,13 +22,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import controller.ProfessorController;
-import controller.SubjectController;
 import main.DataClass;
-import model.Grade;
 import model.Professor;
-import model.Student;
 import model.Subject;
-import model.UnfinishedSubjects;
 
 public class ProfessorAddTeachingSubject extends JDialog{
 	
@@ -34,7 +32,7 @@ public class ProfessorAddTeachingSubject extends JDialog{
 	private JTable teachingSubjectsTable;
 	private String professorId;
 	
-	public ProfessorAddTeachingSubject(String id, JTable table) {
+	public ProfessorAddTeachingSubject(String id, JTable table, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
@@ -52,7 +50,10 @@ public class ProfessorAddTeachingSubject extends JDialog{
 		Double sizeX = minX;
 		Double sizeY = minY;
 		
-		this.setLocationRelativeTo(this.getParent());
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		
+		setLocation(locationX.intValue() , locationY.intValue() );
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		

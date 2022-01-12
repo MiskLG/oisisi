@@ -23,7 +23,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import controller.ProfessorController;
 import controller.RegXClass;
 import controller.SubjectController;
 import main.DataClass;
@@ -161,7 +160,7 @@ public class EditSubjectPanel extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddProfessorToSubject(s);
+				new AddProfessorToSubject(s, getLocation(),getSize());
 				
 				for(Professor pr: DataClass.getInstance().getProfessorListData()) {
 					if(pr.getIdNumber().equals(s.getSubjectProfessor())) {
@@ -180,10 +179,20 @@ public class EditSubjectPanel extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				s.setSubjectProfessor("");
-				professorField.setText("");
-				addButton.setEnabled(true);
-				deleteButton.setEnabled(false);
+				String[] options = {"Da","Ne"};
+    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
+	    				"Da li želite da uklonite profesora?", "UPOZORENJE!",
+			            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
+			        if (result == JOptionPane.YES_OPTION) {				        	
+			        	s.setSubjectProfessor("");
+						professorField.setText("");
+						addButton.setEnabled(true);
+						deleteButton.setEnabled(false);
+			        	
+			        }
+			        else if (result == JOptionPane.NO_OPTION) {
+			        }
+				
 			}
 			
 		});
