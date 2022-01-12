@@ -1,18 +1,18 @@
 Nikolic*/Milos*/12.12.1965.*/Šafarikova*/2*/Novi Sad*/Srbija*/021/356-785*/milos.nikolic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/123123123*/Redovni profesor*/30
 Mirkovic*/Nikola*/1.1.1978.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/021/368-456*/nikola.mirkovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/321321321*/Redovni profesor*/22
-Petkovic*/Ilija*/3.9.1988.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/215-314*/ilija.petkovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/456456456*/Vandredni profesor*/22
-Petrovic*/Mitar*/25.7.1976.*/Stražilovska*/6a*/Novi Sad*/Srbija*/021/884-640*/mitar.petrovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/789789789*/Vandredni profesor*/27
+Petkovic*/Ilija*/3.9.1988.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/215-314*/ilija.petkovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/456456456*/Vanredni profesor*/22
+Petrovic*/Mitar*/25.7.1976.*/Stražilovska*/6a*/Novi Sad*/Srbija*/021/884-640*/mitar.petrovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/789789789*/Vanredni profesor*/27
 Micic*/Vasa*/14.2.1970.*/Nikole Pašića*/2d*/Kikinda*/Srbija*/021/212-114*/vasa.micic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/100100144*/Docent*/24
 Miletic*/Srdjan*/20.4.1966.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/021/978-225*/srdjan.miletic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/200020244*/Docent*/31
 Mihajlovic*/Branislav*/28.6.1980.*/Tolstojeva*/31*/Novi Sad*/Srbija*/021/778-323*/branislav.mihajlovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/559585632*/Redovni profesor*/13
 Marković*/Marko*/31.1.1985.*/Marićeva*/11*/Kragujevac*/Srbija*/021/899-659*/marko.markovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/334968855*/Redovni profesor*/17
-Milaković*/Miloš*/21.9.1975.*/Stražilovska*/3*/Beograd*/Srbija*/021/122-326*/milos.milakovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/730703654*/Vandredni profesor*/12
-Bratić*/Lazar*/13.11.1973.*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/021/156-326*/lazar.bratic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/600378644*/Vandredni profesor*/25
+Milaković*/Miloš*/21.9.1975.*/Stražilovska*/3*/Beograd*/Srbija*/021/122-326*/milos.milakovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/730703654*/Vanredni profesor*/12
+Bratić*/Lazar*/13.11.1973.*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/021/156-326*/lazar.bratic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/600378644*/Vanredni profesor*/25
 Dražić*/Ljeposava*/11.8.1964.*/Bulevar Kralja Petra*/2d*/Niš*/Srbija*/021/888-156*/ljeposava.drazic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/158496152*/Docent*/31
 Dragić*/Miroljub*/2.3.1959.*/Knez Mihajlova*/22*/Beograd*/Srbija*/021/456-125*/miroljub.dragic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/777348595*/Docent*/42
-Rekavić*/Bogdan*/23.6.1977.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/021/886-455*/bogdan.rekavic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/721254363*/Vandredni profesor*/18
+Rekavić*/Bogdan*/23.6.1977.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/021/886-455*/bogdan.rekavic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/721254363*/Vanredni profesor*/18
 Milić*/Stanka*/3.3.1991.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/945-155*/stanka.milic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/225533448*/Docent*/7
-Vuković*/Milica*/18.10.1967.*/Marićeva*/11*/Kragujevac*/Srbija*/021/746-659*/milica.vukovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/111555888*/Vandredni profesor*/14
+Vuković*/Milica*/18.10.1967.*/Marićeva*/11*/Kragujevac*/Srbija*/021/746-659*/milica.vukovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/111555888*/Vanredni profesor*/14
 Mišić*/Miša*/20.10.1969.*/Šafarikova*/2*/Novi Sad*/Srbija*/021/489-326*/misa.misic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/300300344*/Docent*/19
 Maricić*/Branko*/18.1.1973.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/021/487-265*/branko.maricic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/400400444*/Docent*/22
 Lukovic*/Branislav*/8.4.1982.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/159-478*/branislav.lukovic@mailinator.com*/Nikole Pašića*/6a*/Novi Sad*/Srbija*/500500544*/Redovni profesor*/9

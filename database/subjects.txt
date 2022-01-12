@@ -1,19 +1,19 @@
-p1*/osnove programiranja*/WINTER*/1*/null*/7
-p2*/statistika*/SUMMER*/3*/null*/8
-p3*/algoritmi i strukture podataka*/SUMMER*/2*/null*/9
-p4*/LPRS*/WINTER*/3*/null*/7
+p1*/osnove programiranja*/WINTER*/1*/321321321*/7
+p2*/statistika*/SUMMER*/3*/321321321*/8
+p3*/algoritmi i strukture podataka*/SUMMER*/2*/321321321*/9
+p4*/LPRS*/WINTER*/3*/321321321*/7
 p5*/matematika*/SUMMER*/1*/null*/11
-p10*/Filozofija*/WINTER*/1*/null*/4
 p6*/xml i web servisi*/SUMMER*/4*/null*/6
 p7*/Metode optimizacije*/WINTER*/3*/null*/6
-p8*/osnove elektortehnike*/SUMMER*/1*/null*/11
-p9*/Sociologija*/WINTER*/1*/null*/10
+p8*/osnove elektortehnike*/SUMMER*/1*/100100144*/11
+p9*/Sociologija*/WINTER*/1*/100100144*/10
+p10*/Filozofija*/WINTER*/1*/100100144*/4
 p11*/ORT*/SUMMER*/2*/null*/7
-p12*/NANS*/SUMMER*/2*/null*/5
-p13*/Organizacija podataka*/WINTER*/2*/null*/7
-p14*/Baze podataka*/WINTER*/2*/null*/6
-p15*/paralelno programiranje*/WINTER*/2*/null*/8
-p16*/konkurentno programiranje*/SUMMER*/2*/null*/9
+p12*/NANS*/SUMMER*/2*/200020244*/5
+p13*/Organizacija podataka*/WINTER*/2*/200020244*/7
+p14*/Baze podataka*/WINTER*/2*/200020244*/6
+p15*/paralelno programiranje*/WINTER*/2*/559585632*/8
+p16*/konkurentno programiranje*/SUMMER*/2*/559585632*/9
 p17*/Operativni sistemi*/SUMMER*/2*/null*/8
 p18*/Algebra*/WINTER*/1*/null*/15
 p19*/Diskretna matematika*/SUMMER*/3*/null*/14
@@ -22,9 +22,9 @@ ps21*/Osnovi elektronike*/WINTER*/2*/null*/7
 ps22*/Slucajni procesi*/SUMMER*/4*/null*/9
 ps23*/Racunarstvo visokih performansi*/SUMMER*/4*/null*/10
 p24*/Analiza 1*/WINTER*/1*/null*/20
-it25*/Informaciona bezbednost*/SUMMER*/4*/null*/9
-it26*/Elektronsko placanje*/WINTER*/3*/null*/8
-it27*/Distribuirani sistemi*/SUMMER*/4*/null*/6
-p28*/Projektovanje softvera*/WINTER*/3*/null*/5
-p29*/Informacioni sistemi*/WINTER*/4*/null*/6
+it25*/Informaciona bezbednost*/SUMMER*/4*/400400444*/9
+it26*/Elektronsko placanje*/WINTER*/3*/500500544*/8
+it27*/Distribuirani sistemi*/SUMMER*/4*/600600644*/6
+p28*/Projektovanje softvera*/WINTER*/3*/500500544*/5
+p29*/Informacioni sistemi*/WINTER*/4*/400400444*/6
 p30*/Masinsko ucenje*/SUMMER*/4*/null*/7
