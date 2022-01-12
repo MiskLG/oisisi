@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -19,35 +18,25 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableModel;
-
 import controller.RegXClass;
 import controller.SubjectController;
-import main.DataClass;
-import model.Grade;
-import model.Student;
 import model.Subject;
-import model.UnfinishedSubjects;
 
 public class StudentAddFinished extends JDialog{
-	private String index;
-	private String subjectCode;
-	private JTable unfinishedTable;
-	
 	private boolean validData = false;
 	
-	public StudentAddFinished(String index, String subjectCode, JTable table) {
+	public StudentAddFinished(String index, String subjectCode, JTable table, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
-		this.index = index;
-		this.subjectCode = subjectCode;
-		this.unfinishedTable = table;
-		
 		setTitle("Unos ocene");
 		
-		setLocationRelativeTo(this.getParent());
+		int minX = 450;
+		int minY = 350;
 		
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		setLocation(locationX.intValue() , locationY.intValue() );
 
 		setSize(450, 350);
 		

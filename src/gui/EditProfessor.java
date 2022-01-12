@@ -42,7 +42,7 @@ public class EditProfessor extends JDialog {
 		ProfessorController con = new ProfessorController();
 		Professor p = con.findProfessorById(id);
 		
-		editProfTabs = new EditProfessorPanel(p);
+		editProfTabs = new EditProfessorPanel(p,this);
 		
 		JPanel buttonsPanel = new JPanel();
 		

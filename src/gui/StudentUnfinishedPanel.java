@@ -17,7 +17,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-import controller.ProfessorController;
 import controller.SubjectController;
 import main.DataClass;
 import model.Grade;
@@ -29,12 +28,11 @@ public class StudentUnfinishedPanel extends JPanel{
 
 	private JTable unfinishedTable;
 	
-	private ArrayList<UnfinishedSubjects> listUnfinished = new ArrayList<UnfinishedSubjects>();
 	private String studentIndex = "";
 	
-	public StudentUnfinishedPanel(Student s) {
+	public StudentUnfinishedPanel(Student s, EditStudent pan) {
 		
-		listUnfinished = s.getListUnfinished();
+		s.getListUnfinished();
 		this.setLayout(new BorderLayout());
 		
 		studentIndex = s.getIndex();
@@ -96,7 +94,7 @@ public class StudentUnfinishedPanel extends JPanel{
 	    		}
 				else {
 	    			String[] options = {"OK"};
-	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+	    			JOptionPane.showOptionDialog((getRootPane()), 
 		    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
@@ -109,7 +107,7 @@ public class StudentUnfinishedPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new StudentAddUnfinished(studentIndex,unfinishedTable);
+				new StudentAddUnfinished(studentIndex,unfinishedTable, pan.getLocation(), pan.getSize());
 				updateUnfinished();
 			}
 			
@@ -122,13 +120,13 @@ public class StudentUnfinishedPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(unfinishedTable.getSelectedRow() != -1){	  
 					String subCode = unfinishedTable.getModel().getValueAt(unfinishedTable.getSelectedRow(), 0).toString();
-					StudentAddFinished stAddFinished = new StudentAddFinished(studentIndex, subCode, unfinishedTable);
+					new StudentAddFinished(studentIndex, subCode, unfinishedTable, pan.getLocation(), pan.getSize());
 					updateUnfinished();	
 	        		calculateAverageGrade(s);
 	    		}
 				else {
 	    			String[] options = {"OK"};
-	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
+	    			JOptionPane.showOptionDialog((getRootPane()), 
 		    				"Niste izabrali predmet za koji želite da upišete ocenu!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}				

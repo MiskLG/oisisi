@@ -20,10 +20,15 @@ public class Adress {
 			
 			String[] dataArray = data.split(",");	
 			
-			this.country = dataArray[3];
-			this.city = dataArray[2];
-			this.number = dataArray[1];
-			this.street = dataArray[0];
+			if(dataArray.length == 4) {
+				this.country = dataArray[3];
+				this.city = dataArray[2];
+				this.number = dataArray[1];
+				this.street = dataArray[0];
+			}
+			else {
+				this.street = dataArray[0];
+			}
 			
 		}
 		
@@ -73,6 +78,9 @@ public class Adress {
 		
 		public String writeAsString() {
 			String splitter = ",";
+			if(city.equals("")) {
+				return street;
+			}
 			return street + splitter + number + splitter + city + splitter + country; 
 		}
 		

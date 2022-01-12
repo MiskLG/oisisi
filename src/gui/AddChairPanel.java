@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -25,11 +26,22 @@ public class AddChairPanel extends JDialog{
 
 	private boolean[] validData = {false, false};
 	
-	public AddChairPanel() {
+	public AddChairPanel(Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
-		setLocationRelativeTo(null);
+		int minX = 350;
+		int minY = 200;
+		
+		Double sizeX = (double) minX;
+		Double sizeY = (double) minY;
+		
+		Double locationX = location.getX() + size.getWidth()/2 - minX /2 ;
+		Double locationY = location.getY() + size.getHeight()/2 - minY / 2;
+		setLocation(locationX.intValue() , locationY.intValue() );
+		
+		setSize(sizeX.intValue(), sizeY.intValue());
+		
 		setSize(350, 200);
 		
 		setTitle("Dodavanje katedre");

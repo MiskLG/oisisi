@@ -41,7 +41,7 @@ public class RegXClass {
 	
 	public static boolean checkAdress(String adress) {
 		
-		Pattern pattern = Pattern.compile("(([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*)[ ]?[,][ ]?[1-9]+[0-9]*[a-z]*[ ]?[,][ ]?(([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*)[ ]?[,][ ]?(([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*)",Pattern.UNICODE_CHARACTER_CLASS);	
+		Pattern pattern = Pattern.compile("((([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*)[ ]?[,][ ]?[1-9]+[0-9]*[a-z]*[ ]?[,][ ]?(([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*)[ ]?[,][ ]?(([A-ZŽĐŠĆČ][a-zžđšćč]*)([ ][A-ZŠĐŽČĆ][a-zšđžčć]*)*))|(NULL)",Pattern.UNICODE_CHARACTER_CLASS);	
 		Matcher matcher = pattern.matcher(adress);
 		
 		return matcher.matches();
@@ -58,7 +58,7 @@ public class RegXClass {
 	
 	public static boolean checkPhone(String phone) {
 		
-		Pattern pattern = Pattern.compile("(06[0-9]{7,8})|([+][0-9]{11,12})|(00[0-9]{11,12})");		
+		Pattern pattern = Pattern.compile("((06[0-9]{7,8})|([+][0-9]{11,12})|(00[0-9]{11,12}))|([0-9]{3}/[0-9]{3,4}[-][0-9]{3,4})");		
 		Matcher matcher = pattern.matcher(phone);
 		
 		return matcher.matches();
@@ -105,7 +105,7 @@ public class RegXClass {
 	
 	public static boolean checkSubjectCode(String code) {
 		
-		Pattern pattern = Pattern.compile("[A-Z0-9]{1,8}");	
+		Pattern pattern = Pattern.compile("[a-zA-Z0-9]{1,8}");	
 		Matcher matcher = pattern.matcher(code);
 
 		return matcher.matches();
@@ -113,7 +113,8 @@ public class RegXClass {
 	}
 	
 	public static boolean checkSubjectTitle(String title) {
-		Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*([ ][0-9])?",Pattern.UNICODE_CHARACTER_CLASS);	
+		//Pattern pattern = Pattern.compile("([A-ZŽĐŠĆČ]{1}[a-zžđšćč]*)(([ ]|[-])[A-ZŠĐŽČĆ]?[a-zšđžčć]*)*([ ][0-9])?",Pattern.UNICODE_CHARACTER_CLASS);	
+		Pattern pattern = Pattern.compile("[A-ZŽĐŠĆČa-zžđšćč0-9 ]+",Pattern.UNICODE_CHARACTER_CLASS);	
 		Matcher matcher = pattern.matcher(title);
 
 		return matcher.matches();
@@ -139,7 +140,7 @@ public class RegXClass {
 	
 	public static boolean checkChairCode(String number) {
 		
-		Pattern pattern = Pattern.compile("[0-9]{6}");	
+		Pattern pattern = Pattern.compile("[a-zA-Z0-9]{1,6}");	
 		Matcher matcher = pattern.matcher(number);
 
 		return matcher.matches();

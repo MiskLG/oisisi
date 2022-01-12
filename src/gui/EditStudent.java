@@ -3,23 +3,12 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
 import controller.StudentController;
 import model.Student;
 
@@ -50,7 +39,7 @@ public class EditStudent extends JDialog {
 		StudentController con = new StudentController();
 		Student s = con.findStudentByIdx(index);
 		
-		editTabs = new EditStudentPanel(s);
+		editTabs = new EditStudentPanel(s,this);
 		
 		JPanel buttonsPanel = new JPanel();
 		
@@ -99,6 +88,11 @@ public class EditStudent extends JDialog {
 		this.setVisible(true);
 	}
 
+	public Point getLoc() {
+		System.out.println(this.getLocation());
+		return this.getLocation();
+	}
+	
 	public boolean getChangesMade() {
 		// TODO Auto-generated method stub
 		return editTabs.isChangesMade();

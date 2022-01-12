@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,24 +19,24 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
-import controller.ProfessorController;
+import controller.ChairController;
 import main.DataClass;
+import model.Chair;
 import model.Professor;
-import model.Subject;
 
-public class ProfessorAddTeachingSubject extends JDialog{
-	
+public class AddProfessorToChairWindow extends JDialog {
 	private JTable ableToAdd;
-	private JTable teachingSubjectsTable;
-	private String professorId;
+	private String chairCode;
+	private JTable professorTable;
 	
-	public ProfessorAddTeachingSubject(String id, JTable table, Point location, Dimension size) {
+	public AddProfessorToChairWindow(String chairCode, JTable tab, Point location, Dimension size) {
 		this.setModal(true);
 		this.setResizable(false);
 		
-		this.professorId = id;
-		this.teachingSubjectsTable = table;
+		this.chairCode = chairCode;
+		this.professorTable = tab;
 		
 		double widthRatio = 40./100;
 		double heightRatio = 95./100;
@@ -57,21 +56,12 @@ public class ProfessorAddTeachingSubject extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodaj predmet");
+		this.setTitle("Dodavanje profesora");
 		
-		JPanel labelPanel = new JPanel(new BorderLayout());
-		JLabel subjectLabel = new JLabel("Predmeti:");
-		labelPanel.setBorder(new EmptyBorder(15, 25, 0, 0));
-		labelPanel.add(subjectLabel, BorderLayout.WEST);
+		JButton addButton = new JButton("Dodaj");
+		JButton leaveButton = new JButton("Odustani");
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
-		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(acceptButton);
-		buttonPanel.add(cancelButton);
-		
-		String[] colHeadingsToAdd = {"Šifra predmeta", "Naziv predmeta"};
+		String[] colHeadingsToAdd = {"Ime", "Prezime", "Email", "Zvanje","ID"};
 		DefaultTableModel toAddModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -97,27 +87,31 @@ public class ProfessorAddTeachingSubject extends JDialog{
 		            return c;
 		         }
 		};
-		
 		ableToAdd.setBorder(new LineBorder(Color.black, 1));
-		ableToAdd.setRowHeight(24);
+		ableToAdd.setRowHeight(24);	
+		
+		
+		JPanel buttonPane = new JPanel();
+		buttonPane.add(addButton);
+		buttonPane.add(leaveButton);
 		
 		JScrollPane tablePane = new JScrollPane(ableToAdd);
-		
 
-		acceptButton.addActionListener(new ActionListener() {
+		addButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(ableToAdd.getSelectedRow() != -1){
 	    			String[] options = {"Da","Ne"};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-		    				"Da li želite da dodate izabrani predmet?", "Potvrditi!",
+		    				"Da li želite da dodate izabranog profesora na katedru (Briše se iz druge ako postoji!)?", "Potvrditi!",
 				            JOptionPane.WARNING_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
-				        	ProfessorController con = new ProfessorController();
-				        	if(con.addTeachingSubject(professorId, ableToAdd.getValueAt(ableToAdd.getSelectedRow(), 0).toString())) {
-				        		fillData();
-				        	}
+				        	ChairController con = new ChairController();
+				        	con.addProfessorToChair(chairCode, ableToAdd.getModel().getValueAt(ableToAdd.getSelectedRow(), 4).toString());
+				        	System.out.println(ableToAdd.getModel().getValueAt(ableToAdd.getSelectedRow(), 4).toString());
+				        	fillData();
+				        	
 				        	
 				        }
 				        else if (result == JOptionPane.NO_OPTION) {
@@ -126,7 +120,7 @@ public class ProfessorAddTeachingSubject extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet koji želite da dodate!", "GREŠKA!",
+		    				"Niste izabrali profesora!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 				
@@ -134,8 +128,7 @@ public class ProfessorAddTeachingSubject extends JDialog{
 			
 		});
 		
-		
-		cancelButton.addActionListener(new ActionListener() {
+		leaveButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -144,82 +137,65 @@ public class ProfessorAddTeachingSubject extends JDialog{
 			}
 			
 		});
-		
 		tablePane.setBorder(new EmptyBorder(15,25,15,25));
 		
+		TableColumnModel tcm = ableToAdd.getColumnModel();
+		tcm.removeColumn( tcm.getColumn(4));
+
+		buttonPane.add(addButton);
+		buttonPane.add(leaveButton);
 		
-		this.add(labelPanel, BorderLayout.NORTH);
+		this.add(buttonPane, BorderLayout.SOUTH);
 		this.add(tablePane,BorderLayout.CENTER);
-		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		fillData();
 		this.setVisible(true);
 	}
 	
 	private void fillData() {
-		ArrayList<Professor> professors = DataClass.getInstance().getProfessorListData();
+		ArrayList<Professor> profs= DataClass.getInstance().getProfessorListData();
+		ArrayList<Chair> chairs= DataClass.getInstance().getChairListData();
 		
-		updateTeachingSubjects();
+		updateProfessors();
 		
-		
-		int number = 0;
-		for(Professor pr: professors) {
-			if(pr.getIdNumber().equals(professorId)) {
-				break;
-			}
-			number++;
-		}
 		
 		while(ableToAdd.getModel().getRowCount() > 0) {
 			((DefaultTableModel) ableToAdd.getModel()).removeRow(0);
 		}
 		
 		
-		for(Subject sb: DataClass.getInstance().getSubjectListData()) {
-			int indicator = 0;
+		for(Professor pr: profs) {
+			String[] data = {pr.getName(),pr.getLastname(), pr.getEmail(), pr.getTitle(), pr.getIdNumber()};
+			((DefaultTableModel) ableToAdd.getModel()).addRow(data);		
+		}
 			
-			if(sb.getSubjectProfessor().equals(professors.get(number).getIdNumber())) {
-				indicator = 1;
-			}
-			
-			if(indicator == 1) {
-				continue;
-			}
-			for(String sub: professors.get(number).getListSubjects()) {
-				if(sub.equals(sb.getSubjectCode())) {
-					indicator = 1;
-					break;
-				}
-			}
-			if(indicator == 0) {
-				String[] subjectData = {sb.getSubjectCode(),sb.getTitle()};
-				((DefaultTableModel) ableToAdd.getModel()).addRow(subjectData);
-			}	
-		}			
 		
 	}
-	
-	public void updateTeachingSubjects() {
-		ArrayList<Professor> professors = DataClass.getInstance().getProfessorListData();
+	public void updateProfessors() {
+		ArrayList<Chair> chairs = DataClass.getInstance().getChairListData();
+		
 		
 		int number = 0;
-		for(Professor pr: professors) {
-			if(pr.getIdNumber().equals(professorId)) {
+		for(Chair ch : chairs) {
+			if(ch.getChairCode().equals(chairCode)) {
 				break;
 			}
 			number++;
 		}
 		
-		while(teachingSubjectsTable.getModel().getRowCount() > 0) {
-			((DefaultTableModel) teachingSubjectsTable.getModel()).removeRow(0);
+		while(professorTable.getModel().getRowCount() > 0) {
+			((DefaultTableModel) professorTable.getModel()).removeRow(0);
 		}
 		
-		for(Subject sub: DataClass.getInstance().getSubjectListData()) {
-			if ((professors.get(number).getIdNumber()).equals(sub.getSubjectProfessor())) {
-				String[] subjectData = {sub.getSubjectCode(), sub.getTitle(), Integer.toString(sub.getYearOfStudy()), sub.getSemester()};
-				((DefaultTableModel) teachingSubjectsTable.getModel()).addRow(subjectData);
+		for(String profID: chairs.get(number).getProfessorList() ){
+			for(Professor pr: DataClass.getInstance().getProfessorListData()) {
+				if(pr.getIdNumber().equals(profID)) {
+					String[] data = {pr.getName(),pr.getLastname(), pr.getEmail(), pr.getTitle(), pr.getIdNumber()};
+					((DefaultTableModel) professorTable.getModel()).addRow(data);
+				}	
 			}
+			
 		}
+		
 	}
-	
 }

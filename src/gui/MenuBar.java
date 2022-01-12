@@ -182,7 +182,9 @@ public class MenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ChairPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());				
+				new ChairPanel(getParent().getParent().getParent().getLocation(), getParent().getParent().getParent().getSize());
+				((MainWindow) getParent().getParent().getParent()).updateTable();
+				((MainWindow) getParent().getParent().getParent()).setChangesMade(true);
 			}
 		});
 		

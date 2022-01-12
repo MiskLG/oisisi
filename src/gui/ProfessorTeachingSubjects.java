@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import controller.ProfessorController;
-import controller.SubjectController;
 import main.DataClass;
 import model.Professor;
 import model.Subject;
@@ -29,7 +28,7 @@ public class ProfessorTeachingSubjects extends JPanel{
 	private ArrayList<String> listTeachingSubjects = new ArrayList<String>();
 	private String professorId = "";
 	
-	public ProfessorTeachingSubjects(Professor p) {
+	public ProfessorTeachingSubjects(Professor p, EditProfessor pan) {
 		listTeachingSubjects = p.getListSubjects();
 		professorId = p.getIdNumber();
 		this.setLayout(new BorderLayout());
@@ -73,7 +72,7 @@ public class ProfessorTeachingSubjects extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ProfessorAddTeachingSubject(professorId, teachingSubjectsTable);
+				new ProfessorAddTeachingSubject(professorId, teachingSubjectsTable, pan.getLocation(), pan.getSize());
 				updateTeachingSubjects(); 				
 			}
 			
