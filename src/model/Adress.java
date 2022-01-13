@@ -78,7 +78,7 @@ public class Adress {
 		
 		public String writeAsString() {
 			String splitter = ",";
-			if(city.equals("")) {
+			if(street.equals("NULL")) {
 				return street;
 			}
 			return street + splitter + number + splitter + city + splitter + country; 
