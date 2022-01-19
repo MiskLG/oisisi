@@ -59,10 +59,19 @@ public class ChairPanel extends JDialog{
 		JButton addProfessor = new JButton("Dodaj na katedru");
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(addButton);
-		buttonPanel.add(addProfessor);
-		buttonPanel.add(editButton);
-		buttonPanel.add(deleteButton);
+		
+		JPanel buttonPanelTOP = new JPanel();
+		JPanel buttonPanelBOT = new JPanel();
+		
+		buttonPanel.setLayout(new BorderLayout());
+		
+		buttonPanel.add(buttonPanelTOP, BorderLayout.NORTH);
+		buttonPanel.add(buttonPanelBOT, BorderLayout.SOUTH);
+		
+		buttonPanelTOP.add(addButton);
+		buttonPanelBOT.add(addProfessor);
+		buttonPanelTOP.add(editButton);
+		buttonPanelTOP.add(deleteButton);
 		
 		
 		String[] colHeadingsToAdd = {"Šifra", "Naziv", "Šef"};
