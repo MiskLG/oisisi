@@ -161,7 +161,8 @@ public class ChairPanel extends JDialog{
 				if(chairsTable.getSelectedRow() != -1){	  
 					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
 					String chName = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 1).toString();
-					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName,getLocation(),getSize());	        		
+					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName,getLocation(),getSize());	    
+					updateChairs();
 	    		}
 				else {
 	    			String[] options = {"OK"};
