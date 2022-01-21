@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,13 +11,17 @@ import java.util.Locale;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
-
+import javax.swing.border.EmptyBorder;
 
 import controller.ProfessorController;
 import controller.StudentController;
@@ -401,6 +406,83 @@ public class MenuBar extends JMenuBar{
 		ImageIcon helpIcon = new ImageIcon(helpIconPNG);
 		Image helpImage = helpIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
 		menuItemHelp.setIcon(new ImageIcon(helpImage));
+		
+		menuItemHelp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JDialog d = new JDialog();
+				d.setTitle("Pomoć");
+				d.setModal(true);
+				d.setSize(900, 700);
+				JPanel panel = new JPanel();
+				panel.setBackground(Color.WHITE);
+				JTextArea text = new JTextArea();
+				text.setText("Ovaj dijalog će vam pomoći prilikom korišćenja ove aplikacije. Sve što je potrebno jeste da pažljivo čitate naredna uputstva. "
+						+ "Aplikacija treba da podržava \nmnogobrojne funkcionalnosti koje bi trebalo maksimalno da olakšaju rad referentu studentske službe.\n\n"
+						+ "Funkcionalnosti koje aplikacija podržava:\n\n"
+						+ "Prikaz entiteta sistema (#prikaz_studenata, #prikaz_profesora, #prikaz_predmeta)\n\n"
+						+ "Prilikom izbora taba studenti, u centralnom delu panela taba prikazaće se tabela sa svim studentima. Tabela prikazuje sledeće podatke studenata: indeks, ime, \nprezime, godina studija, status i prosek. "
+						+ "Prilikom izbora taba profesori tabela će prikazati sledeće informacije o profesorima: ime, prezime, zvanje, e-mail adresa. \n"
+						+ "Izborom taba predmeti, prikazaće se tabela sa sledećim informacijama predmeta: šifra predmeta, naziv predmeta, broj ESPB bodova, godina na kojoj se \npredmet izvodi i semestar u kojem se predmet izvodi."
+						+ "Prikaz entiteta se moze pokrenuti i pomoću akceleratora u zavisnosti od željenog prikaza ali taj deo je \nobjašnjen u sekciji 'Lista akceleratora'.\n\n"
+						+ "Dodavanje novog entiteta (#dodavanje_studenta, #dodavanje_profesora, #dodavanje_predmeta)\n\n"
+						+ "Da bi se entitet registrovao u sistem, neophodno je da se na glavnom prozoru odabere potrebni tab (za dodavanje studenta potreban tab je Studenti, za \ndodavanje profesora potreban tab je Profesori, za "
+						+ "dodavanje predmeta potreban tab je Predmeti). Nakon toga, potrebno je da referent odabere jedan način za \ndodavanje novog entiteta (od 4 moguća načina): pritisak prvog dugmeta u ToolBar-u, izbor stavke "
+						+ "menija New, upotrebom odgovarajućih mnemonika ili \nupotrebom odgovarajućih mnemonika. Nakon toga, otvara se dijalog za dodavanje studenta u koji je potrebno uneti željene podatke.\n\n"
+						+ "Izmena informacija o entitetu (#izmena_studenta, #izmena_profesora, #izmena_predmeta)\n\n"
+						+ "Da bi referent izmenio informacije o entitetu, neophodno je da izabere odgovarajući tab (kao što je objašnjeno za dodavanje novog entiteta). Nakon toga, potrebno\nje da označi odgovarajući red tabele, "
+						+ "koji sadrži sažetak informacija o konkretnom entitetu. Zatim, potrebno je da izabere funkcionalnost izmene entiteta, pri čemu \nse otvara dijalog za izmenu postojećih podataka.\n\n"
+						+ "Brisanje entiteta iz sistema (#brisanje_studenta, #brisanje_profesora, #brisanje_predmeta)\n\n"
+						+ "Da bi referent bio u mogućnosti da ukloni entitet iz sistema, neophodno je da na početnom prozoru odabere odgovarajući tab (kao što je opisano u \nfunkcionalnosti za dodavanje novog entiteta). "
+						+ "Nakon toga, označiti red tabele kojim se reprezentuje entitet koga treba ukloniti iz sistema. Zatim, referent mora \nodabrati funkcionalnost brisanja (dugme u toolbaru, stavka menija) i potvrditi brisanje željenog entiteta.\n\n"
+						+ "Prikaz položenih ispita (#prikaz_polozenih_ispita)\n\n"
+						+ "Prilikom rada sa dijalogom za izmenu podataka o studentu, referent može da odabere tab Položeni, nakon čega se u panelu taba prikazuje tabela sa položenim \nispitima. "
+						+ "Iznad tabele nalazi se dugme 'Poništi ocenu'.\n\n"
+						+ "Poništavanje ocene (#ponistavanje_ocene)\n\n"
+						+ "Ako se predmet nalazi u tabeli sa položenim predmetima, njemu je dodeljena odgovarajuća ocena i moguće ju je poništiti. Da bi se ocena poništila, potrebno \nje "
+						+ "označiti predmet i kliknuti na dugme 'Poništi ocenu'. Prikazuje se novi dijalog sa odgovarajućom porukom koji sadrži dva dugmeta za potvrdu \nponištavanja ocene i odustanak.\n\n"
+						+ "Prikaz nepoloženih predmeta (#prikaz_nepolozenih_ispita)\n\n"
+						+ "Prilikom rada sa dijalogom za izmenu podataka o studentu, referent može da odabere tab Nepoloženi, nakon čega se prikazuje tabela sa svim nepoloženim \npredmetima, koje student sluša.\n\n"
+						+ "Dodavanje studenta na predmet\n\n"
+						+ "Da bi se dodao novi student na predmet, potrebno je pozicionirati se na tab Nepoloženi i kliknuti dugme Dodaj. Nakon toga, referentu se prikazuje dijalog sa \n"
+						+ "listom predmeta koje student može da sluša. Izborom odgovarajućeg predmeta i klikom na dugme Dodaj, dodaje se novi predmet u tabelu nepoloženih \npredmeta.\n\n"
+						+ "Uklanjanje studenta sa predmeta (#uklanjanje_predmeta_sa_studenta)\n\n"
+						+ "U okviru taba Nepoloženi moguće je ukloniti predmete, koje označeni student sluša. Nakon što se označi odgovarajući predmet i klikne na dugme Ukloni, \nprikazuje "
+						+ "se dijalog gde je potrebno potvrditi operaciju uklanjanja predmeta.\n\n"
+						+ "Upis ocene (#upis_ocene)\n\n"
+						+ "Tokom pregleda nepoloženih ispita, referent je u mogućnosti da upiše ocenu na neki od nepoloženih predmeta klikom na dugme Polaganje i popunjavanjem \nodgovarajuce forme.\n\n"
+						+ "Pretraga entiteta (#pretraga_studenata, #pretraga_profesora, #pretraga_predmeta)\n\n"
+						+ "Pretragu entiteta moguće je izvršiti korišćenjem polja koje se nalazi u ToolBar-u tako što ćete uneti odgovarajuće parametre odvojene zarezom.\n\n"
+						+ "Sortiranje entiteta (#sortiranje_studenata, #sortiranje_profesora, #sortiranje_predmeta)\n\n"
+						+ "Sortiranje entiteta je moguće odraditi klikom na naziv kolone po kojoj želite da odradite sortiranje, a po kojoj je sortiranje dozvoljeno.\n\n"
+						+ "Prikaz predmeta koje profesor predaje (#profesor_predaje_predmete)\n\n"
+						+ "Ukoliko referent izabere tab Profesori glavnog prozora, tada mu se prikazuje tabela sa svim profesorima registrovanim u sistemu. Selekcijom odgovarajućeg \n"
+						+ "reda i izborom funkcionalnosti za izmenu entiteta, prikazuje se dijalog Izmena profesora. Pomenuti dijalog poseduje dva taba: Informacije i Predmeti. Prvi tab \n"
+						+ "sadrži formu za izmenu podataka o profesoru. Drugi tab prikazuje tabelu sa spiskom predmeta koje profesor predaje u koju je moguće dodati nove i obrisati \npostojeće predmete.\n\n"
+						+ "Lokalizacija\n\n"
+						+ "Ukoliko želite da promenite jezik u aplikaciji to je moguće učiniti izborom jednog od dva ponuđena jezika u stavci menija 'Jezik'.\n\n"
+						+ "Lista akceleratora:\n"
+						+ "CTRL + N - pravljenj novog entiteta\n"
+						+ "CTRL + S - čuvanje podataka\n"
+						+ "CTRL + ALT + S - prikaz studenata\n"
+						+ "CTRL + ALT + P - prikaz profesora\n"
+						+ "CTRL + ALT + B - prikaz predmeta\n"
+						+ "CTRL + ALT + C - prikaz katedri\n"
+						+ "ALT + SHIFT + Q - zatvaranje aplikacije\n"
+						+ "CTRL + E - otvaranje dijaloga za izmenu entiteta\n"
+						+ "CTRL + D - brisanje entiteta\n"
+						+ "CTRL + H - otvaranje dijaloga za pomoć\n"
+						+ "CTRL + B - otvaranje dijaloga koji sadrži dodatne informacije o aplikaciji");
+				text.setEditable(false);
+				JScrollPane scroll = new JScrollPane(text);
+				d.add(scroll);
+				d.setLocationRelativeTo(null);
+				d.setVisible(true);
+				
+			}
+			
+		});
 		
 		ImageIcon aboutIcon = new ImageIcon(informationIconPNG);
 		Image aboutImage = aboutIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
