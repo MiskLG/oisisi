@@ -155,14 +155,30 @@ public class TablePanel extends JTabbedPane {
 		    }
 		};
 		
+		// overriding sorter for student average grade
+		Comparator<String> comparator3 = new Comparator<String>() {
+		    public int compare(String s1, String s2) {
+		        
+		    	
+			   if(Double.parseDouble(s1) - Double.parseDouble(s2) > 0) {
+				   return 1;
+			   }
+			   else if (Double.parseDouble(s1) - Double.parseDouble(s2)  == 0) {
+				   return 0;
+			   }
+			   return -1;
+		    }
+		};
+		
+		
 
 		studentsTable.setRowSorter(studentSorter);
 		
 		studentSorter.setModel(studentModel);
 		studentSorter.setComparator(0, comparator);
+		studentSorter.setComparator(5, comparator3);
 		
-		
-		// overriding sorter for student index
+		// overriding sorter for subject code
 		Comparator<String> comparator2 = new Comparator<String>() {
 		    public int compare(String s1, String s2) {
 		    	ArrayList<String> strings1 = new ArrayList<String>();
@@ -188,11 +204,19 @@ public class TablePanel extends JTabbedPane {
 		        return strings1.get(0).compareTo(strings2.get(0));
 		    }
 		};
-		
+
+		// overriding sorter for ESPB 
+				Comparator<String> comparator4 = new Comparator<String>() {
+				    public int compare(String s1, String s2) {
+				        return Integer.parseInt(s1) - Integer.parseInt(s2);
+				    }
+				};
 
 		subjectsTable.setRowSorter(subjectSorter);
 		subjectSorter.setModel(subjectModel);
 		subjectSorter.setComparator(0, comparator2);
+		subjectSorter.setComparator(2, comparator4);
+		
 		
 
 		professorsTable.setRowSorter(professorSorter);
