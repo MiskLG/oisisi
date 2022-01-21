@@ -21,7 +21,7 @@ public class EditProfessor extends JDialog {
 	public EditProfessor(Point location, Dimension size, String id) {
 		this.setResizable(false);
 		this.setModal(true);
-		setTitle("Izmena profesora");
+		setTitle(MainWindow.getInstance().getResourceBundle().getString("editProfDialName"));
 		
 		
 		double widthRatio = 40./100;
@@ -49,7 +49,7 @@ public class EditProfessor extends JDialog {
 		buttonsPanel.setLayout(new FlowLayout());
 		
 		JButton acceptButton = editProfTabs.getAcceptButton();
-		JButton cancelButton = new JButton("Odustani");
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		cancelButton.setPreferredSize(new Dimension(140,30));
@@ -61,10 +61,10 @@ public class EditProfessor extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(getChangesMade()) {
-					dispose();
-				}
-				
+//				if(getChangesMade()) {
+//					dispose();
+//				}
+				dispose();
 			}
 			
 		});

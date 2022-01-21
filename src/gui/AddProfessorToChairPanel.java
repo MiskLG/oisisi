@@ -57,12 +57,13 @@ public class AddProfessorToChairPanel extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		JButton addButton = new JButton("Dodaj");
-		JButton deleteButton = new JButton("Obriši");
+		JButton addButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("addButton"));
+		JButton deleteButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("delete"));
 		
 		JPanel buttonPane = new JPanel();
 		
-		String[] colHeadingsProfessor = {"Ime", "Prezime", "Email", "Zvanje","Licni Broj"};
+		String[] colHeadingsProfessor = {MainWindow.getInstance().getResourceBundle().getString("tableColName"), MainWindow.getInstance().getResourceBundle().getString("tableColLastname"),
+				MainWindow.getInstance().getResourceBundle().getString("tableColEmail"), MainWindow.getInstance().getResourceBundle().getString("tableColTitle"),"Licni Broj"};
 		DefaultTableModel professorModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -97,9 +98,9 @@ public class AddProfessorToChairPanel extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(professorTable.getSelectedRow() != -1){
-	    			String[] options = {"Da","Ne"};
+	    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-		    				"Da li želite da obrišete izabranog profesora sa katedre?", "UPOZORENJE!",
+	    					MainWindow.getInstance().getResourceBundle().getString("removeProfFromChairLbl"), MainWindow.getInstance().getResourceBundle().getString("warning"),
 				            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
 				        	ChairController con = new ChairController();
@@ -112,7 +113,7 @@ public class AddProfessorToChairPanel extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali profesora koji želite da obrišete!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("delProfSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 				

@@ -56,12 +56,13 @@ public class AddProfessorToChairWindow extends JDialog {
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje profesora");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addProfDialName"));
 		
-		JButton addButton = new JButton("Dodaj");
-		JButton leaveButton = new JButton("Odustani");
+		JButton addButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("addButton"));
+		JButton leaveButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
-		String[] colHeadingsToAdd = {"Ime", "Prezime", "Email", "Zvanje","ID"};
+		String[] colHeadingsToAdd = {MainWindow.getInstance().getResourceBundle().getString("tableColName"), MainWindow.getInstance().getResourceBundle().getString("tableColLastname"),
+			MainWindow.getInstance().getResourceBundle().getString("tableColEmail"), MainWindow.getInstance().getResourceBundle().getString("tableColTitle"),"ID"};
 		DefaultTableModel toAddModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -102,9 +103,9 @@ public class AddProfessorToChairWindow extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(ableToAdd.getSelectedRow() != -1){
-	    			String[] options = {"Da","Ne"};
+	    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-		    				"Da li želite da dodate izabranog profesora na katedru (Briše se iz druge ako postoji!)?", "Potvrditi!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addProfToChairLbl"), MainWindow.getInstance().getResourceBundle().getString("confirmationLbl"),
 				            JOptionPane.WARNING_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
 				        	ChairController con = new ChairController();
@@ -120,7 +121,7 @@ public class AddProfessorToChairWindow extends JDialog {
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali profesora!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addChairProfSelectFailed"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 				

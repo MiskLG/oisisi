@@ -37,10 +37,10 @@ public class EditProfessorPanel extends JTabbedPane {
 		informations = new JPanel();
 		subjectsTought = new ProfessorTeachingSubjects(p,pan);
 		
-		add("Informacije", informations);
-		add("Predmeti na kojima predaje", subjectsTought);
+		add(MainWindow.getInstance().getResourceBundle().getString("informationsLbl"), informations);
+		add(MainWindow.getInstance().getResourceBundle().getString("profTeachingSubjectsLbl"), subjectsTought);
 		
-		acceptButton = new JButton("Potvrdi");
+		acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		
 		
@@ -55,69 +55,69 @@ public class EditProfessorPanel extends JTabbedPane {
 		
 		Dimension d2 = new Dimension(180, 25);
 		
-		JLabel nameLabel = new JLabel("Ime*:");
+		JLabel nameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("nameLbl"));
 		JTextField nameField = new JTextField();
 		nameField.setText(p.getName());
 		nameLabel.setPreferredSize(d2);
 		nameField.setPreferredSize(d2);
 		
-		JLabel lastnameLabel = new JLabel("Prezime*:");
+		JLabel lastnameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("lastnameLbl"));
 		JTextField lastnameField = new JTextField();
 		lastnameField.setText(p.getLastname());
 		lastnameLabel.setPreferredSize(d2);
 		lastnameField.setPreferredSize(d2);
 		
 		
-		JLabel dateobLabel = new JLabel("Datum rođenja*:");
+		JLabel dateobLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("dateobLbl"));
 		JTextField dateobField = new JTextField();
 		dateobField.setText(p.getDateOfBirth().toString());
 		dateobLabel.setPreferredSize(d2);
 		dateobField.setPreferredSize(d2);
 		
 		
-		JLabel adressHomeLabel = new JLabel("Adresa stanovanja*:");
+		JLabel adressHomeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressLbl"));
 		JTextField adressHomeField = new JTextField();
 		adressHomeField.setText(p.getAdressHome().writeAsString());
 		adressHomeLabel.setPreferredSize(d2);
 		adressHomeField.setPreferredSize(d2);
 		
 		
-		JLabel phoneLabel = new JLabel("Broj telefona*:");
+		JLabel phoneLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("phoneLbl"));
 		JTextField phoneField = new JTextField();
 		phoneField.setText(p.getPhone());
 		phoneLabel.setPreferredSize(d2);
 		phoneField.setPreferredSize(d2);
 		
 		
-		JLabel emailLabel = new JLabel("E-mail adresa*:");
+		JLabel emailLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("emailLbl"));
 		JTextField emailField = new JTextField();
 		emailField.setText(p.getEmail());
 		emailLabel.setPreferredSize(d2);
 		emailField.setPreferredSize(d2);
 		
 		
-		JLabel adressWorkLabel = new JLabel("Adresa kancelarije*:");
+		JLabel adressWorkLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressWorkLbl"));
 		JTextField adressWorkField = new JTextField();
 		adressWorkField.setText(p.getAdressWork().writeAsString());
 		adressWorkLabel.setPreferredSize(d2);
 		adressWorkField.setPreferredSize(d2);
 		
 		
-		JLabel idLabel = new JLabel("Broj lične karte*:");
+		JLabel idLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("idLbl"));
 		JTextField idField = new JTextField();
 		idField.setText(p.getIdNumber());
 		idLabel.setPreferredSize(d2);
 		idField.setPreferredSize(d2);
 		
 		
-		JLabel titleLabel = new JLabel("Zvanje*:");
+		JLabel titleLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("titleLbl"));
 		JTextField titleField = new JTextField();
 		titleField.setText(p.getTitle());
 		titleLabel.setPreferredSize(d2);
 		titleField.setPreferredSize(d2);
 		
 		
-		JLabel workYearsLabel = new JLabel("Radni staž*:");
+		JLabel workYearsLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("workYearsLbl"));
 		JTextField workYearsField = new JTextField();
 		workYearsField.setText(Integer.toString(p.getWorkYears()));
 		workYearsLabel.setPreferredSize(d2);
@@ -441,7 +441,7 @@ public class EditProfessorPanel extends JTabbedPane {
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("takenIdLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}
@@ -457,7 +457,7 @@ public class EditProfessorPanel extends JTabbedPane {
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("takenIdLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}		

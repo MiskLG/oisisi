@@ -5,12 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Locale;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
 
@@ -41,30 +45,33 @@ public class MenuBar extends JMenuBar{
 	private OpenedTab current = OpenedTab.STUDENT;
 	
 	public MenuBar() {
-		JMenu file = new JMenu("File");
+		JMenu file = new JMenu(MainWindow.getInstance().getResourceBundle().getString("file"));
 		file.setMnemonic(KeyEvent.VK_F);
-		JMenu edit = new JMenu("Edit");
+		JMenu edit = new JMenu(MainWindow.getInstance().getResourceBundle().getString("edit"));
 		edit.setMnemonic(KeyEvent.VK_E);
-		JMenu help = new JMenu("Help");
+		JMenu help = new JMenu(MainWindow.getInstance().getResourceBundle().getString("help"));
 		help.setMnemonic(KeyEvent.VK_H);
+		JMenu language = new JMenu(MainWindow.getInstance().getResourceBundle().getString("language"));
+		language.setMnemonic(KeyEvent.VK_L);
 		
 		add(file);
 		add(edit);
 		add(help);
+		add(language);
 		
-		JMenuItem menuItemNew = new JMenuItem("New");
+		JMenuItem menuItemNew = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemNew"));
 		menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		menuItemNew.setMnemonic(KeyEvent.VK_N);
 			
 		
-		JMenuItem menuItemSave = new JMenuItem("Save");
+		JMenuItem menuItemSave = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemSave"));
 		menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		menuItemSave.setMnemonic(KeyEvent.VK_S);
 		
-		JMenu menuItemOpen = new JMenu("Open");
+		JMenu menuItemOpen = new JMenu(MainWindow.getInstance().getResourceBundle().getString("menuItemOpen"));
 		menuItemOpen.setMnemonic(KeyEvent.VK_O);
 		
-		JMenuItem menuItemClose = new JMenuItem("Close");
+		JMenuItem menuItemClose = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemClose"));
 		menuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
 		menuItemClose.setMnemonic(KeyEvent.VK_C);
 		
@@ -113,7 +120,7 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				String[] list = {"OK"};
 				int confimed = JOptionPane.showOptionDialog((getRootPane()), 
-	        			"Podaci su uspešno sačuvani!", "Informacija",
+						MainWindow.getInstance().getResourceBundle().getString("saveConfirmedLbl"), MainWindow.getInstance().getResourceBundle().getString("infoLbl"),
 			            JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, list,"");
 				DataClass.getInstance().writeOutData();
 				((MainWindow) getParent().getParent().getParent()).setChangesMade(false);
@@ -146,10 +153,10 @@ public class MenuBar extends JMenuBar{
 		file.add(menuItemOpen);
 		file.add(menuItemClose);
 		
-		JMenuItem menuItemStudents = new JMenuItem("Students");
-		JMenuItem menuItemSubjects = new JMenuItem("Subjects");
-		JMenuItem menuItemProfessors = new JMenuItem("Professors");
-		JMenuItem menuItemChairs = new JMenuItem("Chairs");
+		JMenuItem menuItemStudents = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemStudents"));
+		JMenuItem menuItemSubjects = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemSubjects"));
+		JMenuItem menuItemProfessors = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemProfessors"));
+		JMenuItem menuItemChairs = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("menuItemChairs"));
 		
 		menuItemStudents.setMnemonic(KeyEvent.VK_S);
 		menuItemSubjects.setMnemonic(KeyEvent.VK_B);
@@ -215,7 +222,7 @@ public class MenuBar extends JMenuBar{
 		menuItemOpen.add(menuItemSubjects);
 		menuItemOpen.add(menuItemChairs);
 		
-		JMenuItem menuItemEdit = new JMenuItem("Edit");
+		JMenuItem menuItemEdit = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("edit"));
 		menuItemEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		menuItemEdit.setMnemonic(KeyEvent.VK_E);
 		
@@ -237,7 +244,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali profesora kojeg želite da izmenite!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("editProfSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
@@ -253,7 +260,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali studenta kojeg želite da izmenite!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("editStudSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
@@ -269,7 +276,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali predmet koji želite da izmenite!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("editSubjSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
@@ -278,7 +285,7 @@ public class MenuBar extends JMenuBar{
 			}		
 		});
 		
-		JMenuItem menuItemDelete = new JMenuItem("Delete");
+		JMenuItem menuItemDelete = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("delete"));
 		menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		menuItemDelete.setMnemonic(KeyEvent.VK_D);
 		
@@ -290,9 +297,9 @@ public class MenuBar extends JMenuBar{
 					String id  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedProfessorId();		
 		    		
 		    		if(!id.equals("-1")) {
-		    			String[] options = {"Da","Ne"};
+		    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-			    				"Da li želite da obrišete izabranog profesora?", "UPOZORENJE!",
+		    					MainWindow.getInstance().getResourceBundle().getString("deletingProfLbl"), MainWindow.getInstance().getResourceBundle().getString("warning"),
 					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	ProfessorController con = new ProfessorController();
@@ -308,7 +315,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali profesora kojeg želite da obrišete!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("delProfSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
@@ -316,9 +323,9 @@ public class MenuBar extends JMenuBar{
 					String idx  = ((MainWindow) getParent().getParent().getParent()).getTablePanel().getSelectedStudentIndex();		
 		    		
 		    		if(!idx.equals("-1")) {
-		    			String[] options = {"Da","Ne"};
+		    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 		    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-			    				"Da li želite da obrišete izabranog studenta?", "UPOZORENJE!",
+		    					MainWindow.getInstance().getResourceBundle().getString("deletingStudLbl"), MainWindow.getInstance().getResourceBundle().getString("warning"),
 					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	StudentController con = new StudentController();
@@ -334,7 +341,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali studenta kojeg želite da obrišete!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("delStudSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 		    		break;
@@ -342,9 +349,9 @@ public class MenuBar extends JMenuBar{
 					String index  = (((MainWindow) getParent().getParent().getParent()).getTablePanel()).getSelectedSubjectCode();				
 					    		
 		    		if(!index.equals("-1")) {
-		    			String[] options = {"Da","Ne"};
+		    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Da li želite da obrišete izabrani predmet?", "UPOZORENJE!",
+		    					MainWindow.getInstance().getResourceBundle().getString("deletingSubjLbl"), MainWindow.getInstance().getResourceBundle().getString("warning"),
 					            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 					        if (result == JOptionPane.YES_OPTION) {				        	
 					        	SubjectController con = new SubjectController();
@@ -360,7 +367,7 @@ public class MenuBar extends JMenuBar{
 		    		else {
 		    			String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("delSubjSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 		    		}
 					break;
@@ -382,11 +389,11 @@ public class MenuBar extends JMenuBar{
 		edit.add(menuItemEdit);
 		edit.add(menuItemDelete);
 		
-		JMenuItem menuItemHelp = new JMenuItem("Help");
+		JMenuItem menuItemHelp = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("help"));
 		menuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		menuItemHelp.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem menuItemAbout = new JMenuItem("About");
+		JMenuItem menuItemAbout = new JMenuItem(MainWindow.getInstance().getResourceBundle().getString("about"));
 		menuItemAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
 		menuItemAbout.setMnemonic(KeyEvent.VK_A);
 		
@@ -427,6 +434,74 @@ public class MenuBar extends JMenuBar{
 		
 		help.add(menuItemHelp);
 		help.add(menuItemAbout);
+		
+		JCheckBoxMenuItem menuItemSerbian = new JCheckBoxMenuItem(MainWindow.getInstance().getResourceBundle().getString("serbian"));
+		JCheckBoxMenuItem menuItemEnglish = new JCheckBoxMenuItem(MainWindow.getInstance().getResourceBundle().getString("english"));
+		menuItemSerbian.setSelected(true);
+		
+		
+		menuItemEnglish.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("en", "US"));
+				MainWindow.getInstance().changeLanguage();
+				menuItemSerbian.setSelected(false);
+				file.setText(MainWindow.getInstance().getResourceBundle().getString("file"));
+				edit.setText(MainWindow.getInstance().getResourceBundle().getString("edit"));
+				help.setText(MainWindow.getInstance().getResourceBundle().getString("help"));
+				language.setText(MainWindow.getInstance().getResourceBundle().getString("language"));
+				menuItemNew.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemNew"));
+				menuItemSave.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemSave"));
+				menuItemOpen.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemOpen"));
+				menuItemClose.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemClose"));
+				menuItemStudents.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemStudents"));
+				menuItemProfessors.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemProfessors"));
+				menuItemSubjects.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemSubjects"));
+				menuItemChairs.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemChairs"));
+				menuItemEdit.setText(MainWindow.getInstance().getResourceBundle().getString("edit"));
+				menuItemDelete.setText(MainWindow.getInstance().getResourceBundle().getString("delete"));
+				menuItemHelp.setText(MainWindow.getInstance().getResourceBundle().getString("help"));
+				menuItemAbout.setText(MainWindow.getInstance().getResourceBundle().getString("about"));
+				menuItemSerbian.setText(MainWindow.getInstance().getResourceBundle().getString("serbian"));
+				menuItemEnglish.setText(MainWindow.getInstance().getResourceBundle().getString("english"));
+			}
+			
+		});
+		
+		menuItemSerbian.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("sr", "RS"));
+				MainWindow.getInstance().changeLanguage();
+				menuItemEnglish.setSelected(false);
+				file.setText(MainWindow.getInstance().getResourceBundle().getString("file"));
+				help.setText(MainWindow.getInstance().getResourceBundle().getString("help"));
+				edit.setText(MainWindow.getInstance().getResourceBundle().getString("edit"));
+				language.setText(MainWindow.getInstance().getResourceBundle().getString("language"));
+				menuItemNew.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemNew"));
+				menuItemSave.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemSave"));
+				menuItemOpen.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemOpen"));
+				menuItemClose.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemClose"));
+				menuItemStudents.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemStudents"));
+				menuItemProfessors.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemProfessors"));
+				menuItemSubjects.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemSubjects"));
+				menuItemChairs.setText(MainWindow.getInstance().getResourceBundle().getString("menuItemChairs"));
+				menuItemEdit.setText(MainWindow.getInstance().getResourceBundle().getString("edit"));
+				menuItemDelete.setText(MainWindow.getInstance().getResourceBundle().getString("delete"));
+				menuItemHelp.setText(MainWindow.getInstance().getResourceBundle().getString("help"));
+				menuItemAbout.setText(MainWindow.getInstance().getResourceBundle().getString("about"));
+				menuItemSerbian.setText(MainWindow.getInstance().getResourceBundle().getString("serbian"));
+				menuItemEnglish.setText(MainWindow.getInstance().getResourceBundle().getString("english"));
+				
+				
+			}
+			
+		});
+		
+		language.add(menuItemSerbian);
+		language.add(menuItemEnglish);
 	}
 	
 	public void setIndicator(int number) {
@@ -444,4 +519,5 @@ public class MenuBar extends JMenuBar{
 				return;
 		}
 	}
+	
 }

@@ -37,13 +37,15 @@ public class StudentUnfinishedPanel extends JPanel{
 		
 		studentIndex = s.getIndex();
 		
-		JButton addButton = new JButton("Dodaj");
-		JButton deleteButton = new JButton("Obriši");
-		JButton finishButton = new JButton("Polaganje");
+		JButton addButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("addButton"));
+		JButton deleteButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("delete"));
+		JButton finishButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("finishButton"));
 		
 		JPanel buttonPane = new JPanel();
 		
-		String[] colHeadingsUnfinished = {"Sifra Predmeta", "Naziv Predmeta", "ESPB", "Godina Studija", "Semestar"};
+		String[] colHeadingsUnfinished = {MainWindow.getInstance().getResourceBundle().getString("tableColSubjCode"), MainWindow.getInstance().getResourceBundle().getString("tableColSubjName"), 
+				MainWindow.getInstance().getResourceBundle().getString("tableColSubjECTS"), MainWindow.getInstance().getResourceBundle().getString("tableColYearOfStudy"),
+				MainWindow.getInstance().getResourceBundle().getString("tableColSubjSemester")};
 		DefaultTableModel unfinishedModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -78,9 +80,9 @@ public class StudentUnfinishedPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(unfinishedTable.getSelectedRow() != -1){
-	    			String[] options = {"Da","Ne"};
+	    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-		    				"Da li želite da obrišete izabrani predmet iz liste?", "UPOZORENJE!",
+	    					MainWindow.getInstance().getResourceBundle().getString("removingSubjLbl"), MainWindow.getInstance().getResourceBundle().getString("warning"),
 				            JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
 				        	SubjectController con = new SubjectController();
@@ -95,7 +97,7 @@ public class StudentUnfinishedPanel extends JPanel{
 				else {
 	    			String[] options = {"OK"};
 	    			JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("delSubjSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 				
@@ -127,7 +129,7 @@ public class StudentUnfinishedPanel extends JPanel{
 				else {
 	    			String[] options = {"OK"};
 	    			JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet za koji želite da upišete ocenu!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("passSubjSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}				
 			}

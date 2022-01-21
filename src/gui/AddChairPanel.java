@@ -44,7 +44,7 @@ public class AddChairPanel extends JDialog{
 		
 		setSize(350, 200);
 		
-		setTitle("Dodavanje katedre");
+		setTitle(MainWindow.getInstance().getResourceBundle().getString("addChairDialName"));
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -52,8 +52,8 @@ public class AddChairPanel extends JDialog{
 		JPanel fieldsPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel();
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		JPanel spacer = new JPanel();
 		spacer.setPreferredSize(new Dimension(15,30));
@@ -64,10 +64,10 @@ public class AddChairPanel extends JDialog{
 		
 		fieldsPanel.setLayout(new GridLayout(2,2));
 		
-		JLabel chairCodeLabel = new JLabel("Šifra*:");
+		JLabel chairCodeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("chairCodeLbl"));
 		JTextField chairCodeField = new JTextField();		
 		
-		JLabel titleLabel = new JLabel("Naziv*:");
+		JLabel titleLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("chairNameLbl"));
 		JTextField titleField = new JTextField();
 		
 		fieldsPanel.add(chairCodeLabel);
@@ -165,7 +165,7 @@ public class AddChairPanel extends JDialog{
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Šifra je već zauzeta!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("takenChairCodeLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}

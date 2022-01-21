@@ -54,11 +54,11 @@ public class EditStudentPanel extends JTabbedPane{
 		unpassedExams = new StudentUnfinishedPanel(s,pan);
 		
 		
-		add("Informacije", informations);
-		add("Položeni", passedExams);
-		add("Nepoloženi", unpassedExams);
+		add(MainWindow.getInstance().getResourceBundle().getString("informationsLbl"), informations);
+		add(MainWindow.getInstance().getResourceBundle().getString("studFinishedSubjLbl"), passedExams);
+		add(MainWindow.getInstance().getResourceBundle().getString("studUnfinishedSubjLbl"), unpassedExams);
 		
-		acceptButton = new JButton("Potvrdi");
+		acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		
 		this.addChangeListener(new ChangeListener() {
@@ -91,63 +91,65 @@ public class EditStudentPanel extends JTabbedPane{
 		
 		Dimension d2 = new Dimension(180, 25);
 		
-		JLabel nameLabel = new JLabel("Ime*:");
+		JLabel nameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("nameLbl"));
 		JTextField nameField = new JTextField();
 		nameField.setText(s.getName());
 		nameLabel.setPreferredSize(d2);
 		nameField.setPreferredSize(d2);
 		
-		JLabel lastnameLabel = new JLabel("Prezime*:");
+		JLabel lastnameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("lastnameLbl"));
 		JTextField lastnameField = new JTextField();
 		lastnameField.setText(s.getLastname());
 		lastnameLabel.setPreferredSize(d2);
 		lastnameField.setPreferredSize(d2);
 		
 		
-		JLabel dateobLabel = new JLabel("Datum rođenja*:");
+		JLabel dateobLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("dateobLbl"));
 		JTextField dateobField = new JTextField();
 		dateobField.setText(s.getDateOfBirth().toString());
 		dateobLabel.setPreferredSize(d2);
 		dateobField.setPreferredSize(d2);
 		
 		
-		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
+		JLabel adressLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressLbl"));
 		JTextField adressField = new JTextField();
 		adressField.setText(s.getAdress().writeAsString());
 		adressLabel.setPreferredSize(d2);
 		adressField.setPreferredSize(d2);
 		
 		
-		JLabel phoneLabel = new JLabel("Broj telefona*:");
+		JLabel phoneLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("phoneLbl"));
 		JTextField phoneField = new JTextField();
 		phoneField.setText(s.getPhone());
 		phoneLabel.setPreferredSize(d2);
 		phoneField.setPreferredSize(d2);
 		
 		
-		JLabel emailLabel = new JLabel("E-mail adresa*:");
+		JLabel emailLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("emailLbl"));
 		JTextField emailField = new JTextField();
 		emailField.setText(s.getEmail());
 		emailLabel.setPreferredSize(d2);
 		emailField.setPreferredSize(d2);
 		
 		
-		JLabel indexLabel = new JLabel("Broj indeksa*:");
+		JLabel indexLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("indexLbl"));
 		JTextField indexField = new JTextField();
 		indexField.setText(s.getIndex());
 		indexLabel.setPreferredSize(d2);
 		indexField.setPreferredSize(d2);
 		
 		
-		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
+		JLabel enrolmentLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("enrolmentLbl"));
 		JTextField enrolmentField = new JTextField();
 		enrolmentField.setText(Integer.toString(s.getEnrolmentYear()));
 		enrolmentLabel.setPreferredSize(d2);
 		enrolmentField.setPreferredSize(d2);
 		
 		
-		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
-		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
+		JLabel yearOfStudyLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("yearOfStudyLbl"));
+		String  yearChoices[] = {MainWindow.getInstance().getResourceBundle().getString("yearChoiceOne"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceTwo"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceThree"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceFour"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceFive"), MainWindow.getInstance().getResourceBundle().getString("yearChoiceSix")};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
 		if(s.getYearOfStudy() == 1) {
 			yearOfStudyField.setSelectedIndex(0);
@@ -171,8 +173,8 @@ public class EditStudentPanel extends JTabbedPane{
 		yearOfStudyField.setPreferredSize(d2);
 		
 		
-		JLabel statusLabel = new JLabel("Način finansiranja*:");
-		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
+		JLabel statusLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("statusLbl"));
+		String  statusChoices[] = {MainWindow.getInstance().getResourceBundle().getString("statusChoiceOne"), MainWindow.getInstance().getResourceBundle().getString("statusChoiceTwo")};     
 		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
 		if(s.getStatus().equals("B")) {
 			statusField.setSelectedIndex(0);
@@ -447,7 +449,7 @@ public class EditStudentPanel extends JTabbedPane{
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("takenIndexLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}
@@ -463,7 +465,7 @@ public class EditStudentPanel extends JTabbedPane{
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+		    					MainWindow.getInstance().getResourceBundle().getString("takenIndexLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}		
