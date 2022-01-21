@@ -51,12 +51,12 @@ public class ChairPanel extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Katedre");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("chairsLbl"));
 		
-		JButton addButton = new JButton("Dodaj katedru");
-		JButton editButton = new JButton("Promeni šefa");
-		JButton deleteButton = new JButton("Obriši");
-		JButton addProfessor = new JButton("Dodaj na katedru");
+		JButton addButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("addChairButton"));
+		JButton editButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("editChairHeadButton"));
+		JButton deleteButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("delete"));
+		JButton addProfessor = new JButton(MainWindow.getInstance().getResourceBundle().getString("addToChairButton"));
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(addButton);
@@ -65,7 +65,7 @@ public class ChairPanel extends JDialog{
 		buttonPanel.add(deleteButton);
 		
 		
-		String[] colHeadingsToAdd = {"Šifra", "Naziv", "Šef"};
+		String[] colHeadingsToAdd = {MainWindow.getInstance().getResourceBundle().getString("tableColChairCode"), MainWindow.getInstance().getResourceBundle().getString("tableColChairName"), MainWindow.getInstance().getResourceBundle().getString("tableColChairHead")};
 		DefaultTableModel chairModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -112,9 +112,9 @@ public class ChairPanel extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(chairsTable.getSelectedRow() != -1) {
-					String[] options = {"Da", "Ne"};
+					String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 					int result = JOptionPane.showOptionDialog((getRootPane()),
-							"Da li ste sigurni da želite da obrišete katedru?", "Brisanje katedre",
+							MainWindow.getInstance().getResourceBundle().getString("deletingChairLbl"), MainWindow.getInstance().getResourceBundle().getString("deletingChairDialName"),
 							JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, "");
 						if(result == JOptionPane.YES_OPTION) {
 							ChairController con = new ChairController();
@@ -128,7 +128,7 @@ public class ChairPanel extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali katedru koju želite da obrišete!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("deletingChairFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 			}
@@ -146,7 +146,7 @@ public class ChairPanel extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali katedru koju želite da izmenite!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("editChairFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}				
 			}
@@ -165,7 +165,7 @@ public class ChairPanel extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali katedru na koju želite da dodate profesora!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addProfToChairFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}				
 			}

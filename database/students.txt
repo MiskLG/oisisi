@@ -2,7 +2,7 @@ Milosevic*/Marko*/12.3.2001.*/Šafarikova*/ 2*/Novi Sad*/Srbija*/021/333-555*/ma
 Milić*/Marija*/12.1.2000.*/Nikole Tesle*/56*/Novi Sad*/Srbija*/021/555-2222*/marija.milic@mailinator.com*/RA-3-2019*/2019*/2*/S*/10.0
 Nikolic*/Nikola*/30.8.2001.*/Bulevar Patrijaha Pavla*/3*/Beograd*/Srbija*/021/135-463*/nikola.nikolic@mailinator.com*/RA-3-2017*/2017*/1*/B*/0.0
 Peric*/Pera*/7.6.1995.*/Stražilovska*/6a*/Novi Sad*/Srbija*/021/903-463*/pera.peric@mailinator.com*/RA-134-2015*/2015*/3*/S*/9.0
-Ilic*/Sofija*/6.5.1999.*/Nikole Pašića*/2d*/Kikinda*/Srbija*/021/731-067*/sofija.ilic@mailinator.com*/RA-5-2019*/2019*/3*/S*/0.0
+Ilic*/Sofija*/6.5.1999.*/Nikole Pašića*/2d*/Kikinda*/Srbija*/021/731-067*/sofija.ilic@mailinator.com*/RA-5-2019*/2019*/3*/B*/0.0
 Lukic*/Martina*/16.5.1999.*/Bulevar Kralja Petra*/22*/Niš*/Srbija*/011/4333-800*/martina.lukic@mailinator.com*/RA-8-2018*/2018*/3*/S*/0.0
 Stojakovic*/Stojan*/19.10.2001.*/Tolstojeva*/31*/Novi Sad*/Srbija*/011/3130-007*/stojan.stojakovic@mailinator.com*/RA-10-2017*/2017*/1*/B*/0.0
 Milanovic*/Milan*/2.11.2000.*/Marićeva*/11*/Kragujevac*/Srbija*/015/313-061*/milan.milanovic@mailinator.com*/RA-12-2017*/2017*/2*/S*/0.0

@@ -45,7 +45,7 @@ public class AddSubjectsPanel extends JDialog{
 		setLocation(locationX.intValue() , locationY.intValue() );
 		setSize(380, 450);
 		
-		this.setTitle("Dodavanje predmeta");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addSubjDialName"));
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -58,29 +58,31 @@ public class AddSubjectsPanel extends JDialog{
 		fieldsPanel.setPreferredSize(d);
 		
 		Dimension d2 = new Dimension(130, 35);
-		JLabel subjectCodeLabel = new JLabel("Šifra predmeta*:");
+		JLabel subjectCodeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("subjCodeLbl"));
 		JTextField subjectCodeField = new JTextField();
 		subjectCodeLabel.setPreferredSize(d2);
 		subjectCodeField.setPreferredSize(d2);
 		
-		JLabel titleLabel = new JLabel("Naziv predmeta*:");
+		JLabel titleLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("subjNameLbl"));
 		JTextField titleField = new JTextField();
 		titleLabel.setPreferredSize(d2);
 		titleField.setPreferredSize(d2);
 		
-		JLabel semesterLabel = new JLabel("Semestar*:");
-		String  semesterChoices[] = {"Zimski", "Letnji"};     
+		JLabel semesterLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("semesterLbl"));
+		String  semesterChoices[] = {MainWindow.getInstance().getResourceBundle().getString("semesterChoiceOne"), MainWindow.getInstance().getResourceBundle().getString("semesterChoiceTwo")};     
 		JComboBox<String> semesterField = new JComboBox<String>(semesterChoices);
 		semesterLabel.setPreferredSize(d2);
 		semesterField.setPreferredSize(d2);
 		
-		JLabel yearOfStudyLabel = new JLabel("Godina slušanja*:");
-		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
+		JLabel yearOfStudyLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("subjYearOfStudyLbl"));
+		String  yearChoices[] = {MainWindow.getInstance().getResourceBundle().getString("yearChoiceOne"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceTwo"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceThree"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceFour"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceFive"), MainWindow.getInstance().getResourceBundle().getString("yearChoiceSix")};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
 		yearOfStudyLabel.setPreferredSize(d2);
 		yearOfStudyField.setPreferredSize(d2);
 		
-		JLabel numberECTSLabel = new JLabel("Broj ESPB*:");
+		JLabel numberECTSLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("subjECTSLbl"));
 		JTextField numberECTSField = new JTextField();
 		numberECTSLabel.setPreferredSize(d2);
 		numberECTSField.setPreferredSize(d2);
@@ -104,8 +106,8 @@ public class AddSubjectsPanel extends JDialog{
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(110,30));
 		cancelButton.setPreferredSize(new Dimension(110,30));
@@ -217,7 +219,7 @@ public class AddSubjectsPanel extends JDialog{
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Šifra predmeta je već zauzeta!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("takenSubjCodeLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}

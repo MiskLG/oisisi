@@ -49,14 +49,14 @@ public class ChairEditHead extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Izmena šefa katedre");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("editChairHeadDialName"));
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		
 
-		String[] professorTableHead = {"Profesor", "Šifra"};
+		String[] professorTableHead = {MainWindow.getInstance().getResourceBundle().getString("tableColProfessor"), "Šifra"};
 		DefaultTableModel professorTableModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -100,7 +100,7 @@ public class ChairEditHead extends JDialog{
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali profesora!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addChairProfSelectFailed"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 				

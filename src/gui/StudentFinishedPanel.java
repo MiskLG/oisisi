@@ -50,7 +50,7 @@ public class StudentFinishedPanel extends JPanel{
 		this.setLayout(new BorderLayout());
 		indexOfStudent = s.getIndex();
 		
-		JButton cancelGradeButton = new JButton("Poništi ocenu");
+		JButton cancelGradeButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelGradeButton"));
 		JPanel buttonPanel = new JPanel();
 		
 		
@@ -59,7 +59,8 @@ public class StudentFinishedPanel extends JPanel{
 		
 		buttonPanel.add(cancelGradeButton);
 		
-		String[] colHeadingsFinished = {"Šifra predmeta", "Naziv predmeta", "ESPB", "Ocena", "Datum"};
+		String[] colHeadingsFinished = {MainWindow.getInstance().getResourceBundle().getString("tableColSubjCode"), MainWindow.getInstance().getResourceBundle().getString("tableColSubjName"),
+				MainWindow.getInstance().getResourceBundle().getString("tableColSubjECTS"), MainWindow.getInstance().getResourceBundle().getString("tableColGrade"), MainWindow.getInstance().getResourceBundle().getString("tableColDate")};
 		DefaultTableModel finishedModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -94,9 +95,9 @@ public class StudentFinishedPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(finishedSubjectsTable.getSelectedRow() != -1) {
-					String[] options = {"Da", "Ne"};
+					String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 					int result = JOptionPane.showOptionDialog((getRootPane()),
-							"Da li ste sigurni da želite da poništite ocenu?", "Poništavanje ocene",
+							MainWindow.getInstance().getResourceBundle().getString("cancelGradeLbl"), MainWindow.getInstance().getResourceBundle().getString("gradeCanceling"),
 							JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, "");
 						if(result == JOptionPane.YES_OPTION) {
 							SubjectController con = new SubjectController();
@@ -112,7 +113,7 @@ public class StudentFinishedPanel extends JPanel{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("delSubjSelectionFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 			}
@@ -130,7 +131,7 @@ public class StudentFinishedPanel extends JPanel{
 		
 		calculateAverageGrade(s);
 		
-		JLabel averageGradeLabel = new JLabel("Prosečna ocena:");
+		JLabel averageGradeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("avgGradeFieldLbl"));
 		averageGradeField.setEditable(false);
 		averageGradeField.setBackground(this.getBackground());
 		averageGradeField.setBorder(null);
@@ -142,7 +143,7 @@ public class StudentFinishedPanel extends JPanel{
 		
 		calculateECTS();
 		
-		JLabel totalNumberOfECTSLabel = new JLabel("Ukupno ESPB:");
+		JLabel totalNumberOfECTSLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("totalECTSFieldLbl"));
 		totalNumberOfECTSField.setEditable(false);
 		totalNumberOfECTSField.setBackground(this.getBackground());
 		totalNumberOfECTSField.setBorder(null);

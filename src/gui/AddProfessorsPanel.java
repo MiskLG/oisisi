@@ -47,7 +47,7 @@ public class AddProfessorsPanel extends JDialog {
 		setLocation(locationX.intValue() , locationY.intValue() );
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje profesora");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addProfDialName"));
 		
 		
 		JPanel mainPanel = new JPanel();
@@ -58,42 +58,42 @@ public class AddProfessorsPanel extends JDialog {
 		
 		fieldsPanel.setLayout(new GridLayout(10,2));
 		
-		JLabel nameLabel = new JLabel("Ime*:");
+		JLabel nameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("nameLbl"));
 		JTextField nameField = new JTextField();		
 		
-		JLabel lastnameLabel = new JLabel("Prezime*:");
+		JLabel lastnameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("lastnameLbl"));
 		JTextField lastnameField = new JTextField();
 		
 		
-		JLabel dateobLabel = new JLabel("Datum rođenja*:");
+		JLabel dateobLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("dateobLbl"));
 		JTextField dateobField = new JTextField();
 		
 		
-		JLabel adressHomeLabel = new JLabel("Adresa stanovanja*:");
+		JLabel adressHomeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressLbl"));
 		JTextField adressHomeField = new JTextField();
 		
 		
-		JLabel phoneLabel = new JLabel("Broj telefona*:");
+		JLabel phoneLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("phoneLbl"));
 		JTextField phoneField = new JTextField();
 		
 		
-		JLabel emailLabel = new JLabel("E-mail adresa*:");
+		JLabel emailLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("emailLbl"));
 		JTextField emailField = new JTextField();
 		
 		
-		JLabel adressWorkLabel = new JLabel("Adresa kancelarije*:");
+		JLabel adressWorkLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressWorkLbl"));
 		JTextField adressWorkField = new JTextField();
 		
 		
-		JLabel idLabel = new JLabel("Broj lične karte*:");
+		JLabel idLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("idLbl"));
 		JTextField idField = new JTextField();
 		
 		
-		JLabel titleLabel = new JLabel("Zvanje*:");
+		JLabel titleLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("titleLbl"));
 		JTextField titleField = new JTextField();
 		
 		
-		JLabel workYearsLabel = new JLabel("Radni staž*:");
+		JLabel workYearsLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("workYearsLbl"));
 		JTextField workYearsField = new JTextField();
 		
 		
@@ -127,8 +127,8 @@ public class AddProfessorsPanel extends JDialog {
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		cancelButton.setPreferredSize(new Dimension(140,30));
@@ -429,7 +429,7 @@ public class AddProfessorsPanel extends JDialog {
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Broj lične karte je već zauzet!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("takenIdLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}

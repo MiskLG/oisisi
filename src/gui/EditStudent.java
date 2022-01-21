@@ -19,7 +19,7 @@ public class EditStudent extends JDialog {
 	public EditStudent(Point location, Dimension size, String index) {
 		this.setResizable(false);
 		this.setModal(true);
-		setTitle("Izmena studenta");
+		setTitle(MainWindow.getInstance().getResourceBundle().getString("editStudDialName"));
 		
 		double widthRatio = 40./100;
 		double heightRatio = 95./100;
@@ -46,7 +46,7 @@ public class EditStudent extends JDialog {
 		buttonsPanel.setLayout(new FlowLayout());
 		
 		JButton acceptButton = editTabs.getAcceptButton();
-		JButton cancelButton = new JButton("Odustani");
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		cancelButton.setPreferredSize(new Dimension(140,30));
@@ -58,9 +58,10 @@ public class EditStudent extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(getChangesMade()) {
-					dispose();
-				}
+//				if(getChangesMade()) {
+//					dispose();
+//				}
+				dispose();
 				
 			}
 			

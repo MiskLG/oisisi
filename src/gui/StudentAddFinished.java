@@ -29,7 +29,7 @@ public class StudentAddFinished extends JDialog{
 		this.setModal(true);
 		this.setResizable(false);
 		
-		setTitle("Unos ocene");
+		setTitle(MainWindow.getInstance().getResourceBundle().getString("enterGradeDialName"));
 		
 		int minX = 450;
 		int minY = 350;
@@ -56,28 +56,28 @@ public class StudentAddFinished extends JDialog{
 		Dimension d2 = new Dimension(100, 33);//dimesion of label
 		Dimension d3 = new Dimension(220, 33);//dimension of text field
 		
-		JLabel subjectCodeLabel = new JLabel("Šifra*:");
+		JLabel subjectCodeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("finishSubjCodeLbl"));
 		JTextField subjectCodeField = new JTextField();
 		subjectCodeField.setText(s.getSubjectCode());
 		subjectCodeLabel.setPreferredSize(d2);
 		subjectCodeField.setPreferredSize(d3);
 		subjectCodeField.setEditable(false);
 		
-		JLabel titleLabel = new JLabel("Naziv*:");
+		JLabel titleLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("finishSubjNameLbl"));
 		JTextField titleField = new JTextField();
 		titleField.setText(s.getTitle());
 		titleLabel.setPreferredSize(d2);
 		titleField.setPreferredSize(d3);
 		titleField.setEditable(false);
 		
-		JLabel gradeLabel = new JLabel("Ocena*:");
+		JLabel gradeLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("finishSubjGradeLbl"));
 		String  gradeChoices[] = {"6", "7", "8", "9", "10"};     
 		JComboBox<String> gradeField = new JComboBox<String>(gradeChoices);
 		
 		gradeLabel.setPreferredSize(d2);
 		gradeField.setPreferredSize(d3);
 		
-		JLabel dateLabel = new JLabel("Datum*:");
+		JLabel dateLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("finishSubjDateLbl"));
 		JTextField dateField = new JTextField();
 		
 		dateLabel.setPreferredSize(d2);
@@ -100,8 +100,8 @@ public class StudentAddFinished extends JDialog{
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(110,30));
 		cancelButton.setPreferredSize(new Dimension(110,30));

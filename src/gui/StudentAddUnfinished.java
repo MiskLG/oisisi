@@ -58,12 +58,12 @@ public class StudentAddUnfinished extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje predmeta");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addSubjDialName"));
 		
-		JButton addButton = new JButton("Dodaj");
-		JButton leaveButton = new JButton("Odustani");
+		JButton addButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("addButton"));
+		JButton leaveButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
-		String[] colHeadingsToAdd = {"Sifra Predmeta", "Naziv Predmeta"};
+		String[] colHeadingsToAdd = {MainWindow.getInstance().getResourceBundle().getString("tableColSubjCode"), MainWindow.getInstance().getResourceBundle().getString("tableColSubjName")};
 		DefaultTableModel toAddModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -104,9 +104,9 @@ public class StudentAddUnfinished extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(ableToAdd.getSelectedRow() != -1){
-	    			String[] options = {"Da","Ne"};
+	    			String[] options = {MainWindow.getInstance().getResourceBundle().getString("yesButton"),MainWindow.getInstance().getResourceBundle().getString("noButton")};
 	    			int result = JOptionPane.showOptionDialog( (getRootPane()), 
-		    				"Da li želite da dodate izabrani predmet?", "Potvrditi!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addUnfinishedSubjLbl"), MainWindow.getInstance().getResourceBundle().getString("confirmationLbl"),
 				            JOptionPane.WARNING_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options,"");
 				        if (result == JOptionPane.YES_OPTION) {				        	
 				        	SubjectController con = new SubjectController();
@@ -121,7 +121,7 @@ public class StudentAddUnfinished extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet koji želite da dodate!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addTeachingSubjFailedLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 				

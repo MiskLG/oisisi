@@ -48,7 +48,7 @@ public class AddStudentsPanel extends JDialog {
 		setLocation(locationX.intValue() , locationY.intValue() );
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje studenta");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addStudDialName"));
 		
 		
 		JPanel mainPanel = new JPanel();
@@ -59,44 +59,46 @@ public class AddStudentsPanel extends JDialog {
 		
 		fieldsPanel.setLayout(new GridLayout(10,2));
 		
-		JLabel nameLabel = new JLabel("Ime*:");
+		JLabel nameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("nameLbl"));
 		JTextField nameField = new JTextField();		
 		
-		JLabel lastnameLabel = new JLabel("Prezime*:");
+		JLabel lastnameLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("lastnameLbl"));
 		JTextField lastnameField = new JTextField();
 		
 		
-		JLabel dateobLabel = new JLabel("Datum rođenja*:");
+		JLabel dateobLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("dateobLbl"));
 		JTextField dateobField = new JTextField();
 		
 		
-		JLabel adressLabel = new JLabel("Adresa stanovanja*:");
+		JLabel adressLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("adressLbl"));
 		JTextField adressField = new JTextField();
 		
 		
-		JLabel phoneLabel = new JLabel("Broj telefona*:");
+		JLabel phoneLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("phoneLbl"));
 		JTextField phoneField = new JTextField();
 		
 		
-		JLabel emailLabel = new JLabel("E-mail adresa*:");
+		JLabel emailLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("emailLbl"));
 		JTextField emailField = new JTextField();
 		
 		
-		JLabel indexLabel = new JLabel("Broj indeksa*:");
+		JLabel indexLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("indexLbl"));
 		JTextField indexField = new JTextField();
 		
 		
-		JLabel enrolmentLabel = new JLabel("Godina upisa*:");
+		JLabel enrolmentLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("enrolmentLbl"));
 		JTextField enrolmentField = new JTextField();
 		
 		
-		JLabel yearOfStudyLabel = new JLabel("Trenutna godina studija*:");
-		String  yearChoices[] = {"I (prva)","II (druga)","III (treća)","IV (četvrta)", "V (peta)", "VI (šesta)"};     
+		JLabel yearOfStudyLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("yearOfStudyLbl"));
+		String  yearChoices[] = {MainWindow.getInstance().getResourceBundle().getString("yearChoiceOne"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceTwo"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceThree"),MainWindow.getInstance().getResourceBundle().getString("yearChoiceFour"),
+				MainWindow.getInstance().getResourceBundle().getString("yearChoiceFive"), MainWindow.getInstance().getResourceBundle().getString("yearChoiceSix")};     
 		JComboBox<String> yearOfStudyField = new JComboBox<String>(yearChoices);
 		
 		
-		JLabel statusLabel = new JLabel("Način finansiranja*:");
-		String  statusChoices[] = {"Budžet", "Samofinansirajuće"};     
+		JLabel statusLabel = new JLabel(MainWindow.getInstance().getResourceBundle().getString("statusLbl"));
+		String  statusChoices[] = {MainWindow.getInstance().getResourceBundle().getString("statusChoiceOne"), MainWindow.getInstance().getResourceBundle().getString("statusChoiceTwo")};     
 		JComboBox<String> statusField = new JComboBox<String>(statusChoices);
 		
 		
@@ -131,8 +133,8 @@ public class AddStudentsPanel extends JDialog {
 		
 		buttonsPanel.setLayout(new FlowLayout());
 		
-		JButton acceptButton = new JButton("Potvrdi");
-		JButton cancelButton = new JButton("Odustani");
+		JButton acceptButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
+		JButton cancelButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
 		
 		acceptButton.setPreferredSize(new Dimension(140,30));
 		cancelButton.setPreferredSize(new Dimension(140,30));
@@ -379,7 +381,7 @@ public class AddStudentsPanel extends JDialog {
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Indeks je već zauzet!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("takenIndexLbl"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 			}

@@ -50,13 +50,13 @@ public class AddProfessorToSubject extends JDialog{
 		
 		setSize(sizeX.intValue(), sizeY.intValue());
 		
-		this.setTitle("Dodavanje profesora na predmet");
+		this.setTitle(MainWindow.getInstance().getResourceBundle().getString("addProfToSubjDialName"));
 		
-		JButton leaveButton = new JButton("Odustani");
-		JButton confirmButton = new JButton("Potvrdi");
+		JButton leaveButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("cancelButton"));
+		JButton confirmButton = new JButton(MainWindow.getInstance().getResourceBundle().getString("acceptButton"));
 		
 
-		String[] professorTableHead = {"Professor", "Sifra"};
+		String[] professorTableHead = {MainWindow.getInstance().getResourceBundle().getString("tableColProfessor"), "Sifra"};
 		DefaultTableModel professorTableModel = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -101,7 +101,7 @@ public class AddProfessorToSubject extends JDialog{
 				else {
 					String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali profesora!", "GREŠKA!",
+	    					MainWindow.getInstance().getResourceBundle().getString("addSubjProfSelectFailed"), MainWindow.getInstance().getResourceBundle().getString("error"),
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 				}
 				
