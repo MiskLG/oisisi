@@ -102,6 +102,9 @@ public class ChairController {
 				break;
 			}
 		}
+		
+		// ako nije bio na toj katedri sada se stavi
+		addProfessorToChair(chCode,profId);
 	
 	}
 	
@@ -144,6 +147,7 @@ public class ChairController {
 			boolean ind = false;
 			for(String prof : c.getProfessorList()) {
 				if(prof.equals(profID)) {
+					c.setHead("Nema šefa");
 					ind = true;
 					break;
 				}

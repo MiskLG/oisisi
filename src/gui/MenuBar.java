@@ -406,6 +406,32 @@ public class MenuBar extends JMenuBar{
 		Image aboutImage = aboutIcon.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
 		menuItemAbout.setIcon(new ImageIcon(aboutImage));
 		
+		menuItemAbout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String text = "Verzija aplikacije : v1.17a\n\n"
+						+ "Aplikacija je napravljenja za predmet OISISI na FTN-u.\n"
+						+ "Aplikacija simulira rad studentske sluzbe na njihovom\n"
+						+ "radnom mestu\n\n"
+						+ "Autori:\n"
+						+ "Aleksandar Hornjak\n"
+						+ "Radicic Dusko\n\n"
+						+ "Biografija:\n"
+						+ "Aleksandar Hornjak je upisao fakultet 2019 godine.\n"
+						+ "Omiljena boja mu je narandzasta\n\n"
+						+ "Radicic Dusko je upisao fakultet 2019 godine.\n"
+						+ "Omiljena boja mu je zelena";
+				String title = "Opis";
+				String[] options = {"OK"};
+				JOptionPane.showOptionDialog((getRootPane()), 
+	    				text, title,
+			            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,"");
+				
+			}
+			
+		});
+		
 		help.add(menuItemHelp);
 		help.add(menuItemAbout);
 		

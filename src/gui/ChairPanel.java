@@ -59,10 +59,19 @@ public class ChairPanel extends JDialog{
 		JButton addProfessor = new JButton(MainWindow.getInstance().getResourceBundle().getString("addToChairButton"));
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(addButton);
-		buttonPanel.add(addProfessor);
-		buttonPanel.add(editButton);
-		buttonPanel.add(deleteButton);
+		
+		JPanel buttonPanelTOP = new JPanel();
+		JPanel buttonPanelBOT = new JPanel();
+		
+		buttonPanel.setLayout(new BorderLayout());
+		
+		buttonPanel.add(buttonPanelTOP, BorderLayout.NORTH);
+		buttonPanel.add(buttonPanelBOT, BorderLayout.SOUTH);
+		
+		buttonPanelTOP.add(addButton);
+		buttonPanelBOT.add(addProfessor);
+		buttonPanelTOP.add(editButton);
+		buttonPanelTOP.add(deleteButton);
 		
 		
 		String[] colHeadingsToAdd = {MainWindow.getInstance().getResourceBundle().getString("tableColChairCode"), MainWindow.getInstance().getResourceBundle().getString("tableColChairName"), MainWindow.getInstance().getResourceBundle().getString("tableColChairHead")};
@@ -160,7 +169,8 @@ public class ChairPanel extends JDialog{
 				if(chairsTable.getSelectedRow() != -1){	  
 					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
 					String chName = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 1).toString();
-					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName,getLocation(),getSize());	        		
+					AddProfessorToChairPanel pan = new AddProfessorToChairPanel(chCode,chName,getLocation(),getSize());	    
+					updateChairs();
 	    		}
 				else {
 	    			String[] options = {"OK"};

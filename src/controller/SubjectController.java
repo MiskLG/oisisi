@@ -177,7 +177,32 @@ public class SubjectController {
 					subUnfinished.remove(studentUnfinishedIndex);
 				}
 				
+				double sum = 0;
+				int numberOfPassedSubjects = 0;
+			
+				for(Grade g: subPassed) {
+					sum = sum + g.getGrade();
+					numberOfPassedSubjects++;
+				}
+				
+				double avgGrade;
+				if(numberOfPassedSubjects == 0) {
+					avgGrade = 0;
+				}
+				else {
+					avgGrade = sum/numberOfPassedSubjects;
+				}
+				
+				
+				// taken from https://mkyong.com/java/how-to-round-double-float-value-to-2-decimal-points-in-java/#mathround
+				avgGrade = Math.round(avgGrade * 100.0) / 100.0;
+				
+				
+				stud.setAverageGrade(avgGrade);
+				
 		}
+
+		
 		
 		
 		// removing from the professors
