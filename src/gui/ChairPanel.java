@@ -114,7 +114,7 @@ public class ChairPanel extends JDialog{
 				if(chairsTable.getSelectedRow() != -1) {
 					String[] options = {"Da", "Ne"};
 					int result = JOptionPane.showOptionDialog((getRootPane()),
-							"Da li ste sigurni da želite da brišete katedru?", "Brisanje katedre",
+							"Da li ste sigurni da želite da obrišete katedru?", "Brisanje katedre",
 							JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, "");
 						if(result == JOptionPane.YES_OPTION) {
 							ChairController con = new ChairController();
@@ -128,7 +128,7 @@ public class ChairPanel extends JDialog{
 				else {
 	    			String[] options = {"OK"};
 	    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-		    				"Niste izabrali predmet koji želite da obrišete!", "GREŠKA!",
+		    				"Niste izabrali katedru koju želite da obrišete!", "GREŠKA!",
 				            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 	    		}
 			}
@@ -141,7 +141,6 @@ public class ChairPanel extends JDialog{
 				if(chairsTable.getSelectedRow() != -1){	  
 					String chCode = chairsTable.getModel().getValueAt(chairsTable.getSelectedRow(), 0).toString();
 					ChairEditHead chairEdit = new ChairEditHead(chCode,getLocation(),getSize());
-//					StudentAddFinished stAddFinished = new StudentAddFinished(studentIndex, subCode, unfinishedTable);
 					updateChairs();		        		
 	    		}
 				else {
@@ -180,8 +179,6 @@ public class ChairPanel extends JDialog{
 		this.add(buttonPanel, BorderLayout.NORTH);
 		this.add(tablePane,BorderLayout.CENTER);
 		
-		//mozda i ovo treba ali ne verujem
-		//fillData();
 		
 		updateChairs();
 		

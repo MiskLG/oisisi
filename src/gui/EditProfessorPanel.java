@@ -441,7 +441,7 @@ public class EditProfessorPanel extends JTabbedPane {
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+			    				"Broj lične karte je već zauzet!", "GREŠKA!",
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}
@@ -457,7 +457,7 @@ public class EditProfessorPanel extends JTabbedPane {
 					else {
 						String[] options = {"OK"};
 		    			int result = JOptionPane.showOptionDialog((getRootPane()), 
-			    				"Broj indeksa je već zauzet!", "GREŠKA!",
+			    				"Broj lične karte je već zauzet!", "GREŠKA!",
 					            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options,"");
 					}
 				}		
